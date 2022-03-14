@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>API Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>API Framework\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="GameNode.cpp">
+      <Filter>API Framework\GameNode</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>API Framework\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="FontManager.cpp">
+      <Filter>API Framework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageManager.cpp">
+      <Filter>API Framework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyManager.cpp">
+      <Filter>API Framework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>API Framework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="TextDataManager.cpp">
+      <Filter>API Framework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="TempSoundManager.cpp">
+      <Filter>API Framework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
+      <Filter>API Framework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Stdafx.cpp">
+      <Filter>API Framework\Stdafx</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>API Framework\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="MainGame.cpp">
+      <Filter>MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScene.cpp">
+      <Filter>MainGame\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>API Framework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>API Framework\Manager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Animation.h">
+      <Filter>API Framework\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="SingletonBase.h">
+      <Filter>API Framework\DesignPattern\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="GameNode.h">
+      <Filter>API Framework\GameNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>API Framework\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="FontManager.h">
+      <Filter>API Framework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageManager.h">
+      <Filter>API Framework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyManager.h">
+      <Filter>API Framework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>API Framework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="TextDataManager.h">
+      <Filter>API Framework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="TempSoundManager.h">
+      <Filter>API Framework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>API Framework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Stdafx.h">
+      <Filter>API Framework\Stdafx</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>API Framework\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonMacroFunction.h">
+      <Filter>API Framework\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomFunction.h">
+      <Filter>API Framework\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="MainGame.h">
+      <Filter>MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScene.h">
+      <Filter>MainGame\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>API Framework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>API Framework\Manager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="API Framework">
+      <UniqueIdentifier>{38fb49f9-83f6-4038-876e-83f5a09347e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API Framework\Animation">
+      <UniqueIdentifier>{1fd9b066-540e-4233-a1b5-e935d092a495}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API Framework\DesignPattern">
+      <UniqueIdentifier>{e9d565bf-8b89-44e5-ab69-4cd3305b24b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API Framework\DesignPattern\Singleton">
+      <UniqueIdentifier>{eda7ebf8-f829-46ce-8ad5-4785ca712f8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API Framework\GameNode">
+      <UniqueIdentifier>{b2a765cd-02a1-4eb9-bd26-884c4e78c81d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API Framework\Image">
+      <UniqueIdentifier>{1e0aef09-bc23-4df7-a2fe-cc1471ce1124}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API Framework\Manager">
+      <UniqueIdentifier>{80b8b3fe-ced1-4522-9402-525b0b8b64bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API Framework\Stdafx">
+      <UniqueIdentifier>{8d5d6307-99ee-4042-b4aa-87049f1d1e9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API Framework\Utility">
+      <UniqueIdentifier>{31a8ac12-8afb-4044-91ef-f5ecdcf98450}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame">
+      <UniqueIdentifier>{c390ad7b-552e-407f-85b6-c117de374185}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Scene">
+      <UniqueIdentifier>{166d6552-872b-4eb1-b32d-556c53b641ee}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,32 +1,22 @@
-# Prerequisites
-*.d
+# Ignore Everything
+*
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+# But not .cpp
+!*.cpp
+!*.h
+!*.sln
+!*.vcxproj
+!*.vcxproj.filters
+!*.vcxproj.user
+# Or directories
+!*/
+!.gitignore
+!README.md
+!.editorconfig
+!*.bmp
+!*.png
+!*.mp3
+!*.wav
+!*.txt
+!*.csv
+!*.ttf
