@@ -1,7 +1,7 @@
 #pragma once
 #include "GameNode.h"
 
-class MainGame : public GameNode {
+class PlantManager : public GameNode {
 private:
 
 public:
@@ -9,8 +9,5 @@ public:
 	void release(void);
 	void update(void);
 	void render(void);
-
-	MainGame() {}
-	~MainGame() {}
 };
 

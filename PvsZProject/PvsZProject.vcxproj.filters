@@ -43,14 +43,41 @@
     <ClCompile Include="MainGame.cpp">
       <Filter>MainGame</Filter>
     </ClCompile>
-    <ClCompile Include="StartScene.cpp">
-      <Filter>MainGame\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>API Framework\Manager</Filter>
     </ClCompile>
     <ClCompile Include="SoundManager.cpp">
       <Filter>API Framework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>MainGame\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>MainGame\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="PlantManager.cpp">
+      <Filter>MainGame\Object\Plant</Filter>
+    </ClCompile>
+    <ClCompile Include="Plant.cpp">
+      <Filter>MainGame\Object\Plant</Filter>
+    </ClCompile>
+    <ClCompile Include="Zombie.cpp">
+      <Filter>MainGame\Object\Zombie</Filter>
+    </ClCompile>
+    <ClCompile Include="ZombieManager.cpp">
+      <Filter>MainGame\Object\Zombie</Filter>
+    </ClCompile>
+    <ClCompile Include="Deck.cpp">
+      <Filter>MainGame\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>MainGame\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Sun.cpp">
+      <Filter>MainGame\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Card.cpp">
+      <Filter>MainGame\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -102,14 +129,41 @@
     <ClInclude Include="MainGame.h">
       <Filter>MainGame</Filter>
     </ClInclude>
-    <ClInclude Include="StartScene.h">
-      <Filter>MainGame\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>API Framework\Manager</Filter>
     </ClInclude>
     <ClInclude Include="SoundManager.h">
       <Filter>API Framework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>MainGame\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>MainGame\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="PlantManager.h">
+      <Filter>MainGame\Object\Plant</Filter>
+    </ClInclude>
+    <ClInclude Include="Plant.h">
+      <Filter>MainGame\Object\Plant</Filter>
+    </ClInclude>
+    <ClInclude Include="Zombie.h">
+      <Filter>MainGame\Object\Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="ZombieManager.h">
+      <Filter>MainGame\Object\Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="Deck.h">
+      <Filter>MainGame\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>MainGame\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Sun.h">
+      <Filter>MainGame\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Card.h">
+      <Filter>MainGame\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +199,18 @@
     </Filter>
     <Filter Include="MainGame\Scene">
       <UniqueIdentifier>{166d6552-872b-4eb1-b32d-556c53b641ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Object">
+      <UniqueIdentifier>{469cd02f-6b53-4c82-9c80-0056e14b5294}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Object\Plant">
+      <UniqueIdentifier>{279412c4-f78d-4683-a45b-6458800cba34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Object\Zombie">
+      <UniqueIdentifier>{43f3ffb7-fa33-4745-b900-8f357673383b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Object\Bullet">
+      <UniqueIdentifier>{a27b79a9-56ba-4444-9866-ae22dee81554}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

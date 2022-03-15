@@ -150,46 +150,64 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Card.cpp" />
+    <ClCompile Include="Deck.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameNode.cpp" />
+    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageManager.cpp" />
+    <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="Plant.cpp" />
+    <ClCompile Include="PlantManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />
-    <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Sun.cpp" />
     <ClCompile Include="TempSoundManager.cpp" />
     <ClCompile Include="TextDataManager.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="Zombie.cpp" />
+    <ClCompile Include="ZombieManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Card.h" />
     <ClInclude Include="CommonMacroFunction.h" />
+    <ClInclude Include="Deck.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="GameNode.h" />
+    <ClInclude Include="GameScene.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageManager.h" />
+    <ClInclude Include="Inventory.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="Plant.h" />
+    <ClInclude Include="PlantManager.h" />
     <ClInclude Include="RandomFunction.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SingletonBase.h" />
     <ClInclude Include="SoundManager.h" />
-    <ClInclude Include="StartScene.h" />
     <ClInclude Include="Stdafx.h" />
+    <ClInclude Include="Sun.h" />
     <ClInclude Include="TempSoundManager.h" />
     <ClInclude Include="TextDataManager.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Utils.h" />
+    <ClInclude Include="Zombie.h" />
+    <ClInclude Include="ZombieManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

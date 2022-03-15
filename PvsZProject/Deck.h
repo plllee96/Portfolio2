@@ -1,7 +1,8 @@
 #pragma once
 #include "GameNode.h"
+#include "Card.h"
 
-class MainGame : public GameNode {
+class Deck : public GameNode {
 private:
 
 public:
@@ -9,8 +10,5 @@ public:
 	void release(void);
 	void update(void);
 	void render(void);
-
-	MainGame() {}
-	~MainGame() {}
 };
 

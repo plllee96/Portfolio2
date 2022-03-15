@@ -1,13 +1,14 @@
 #include "Stdafx.h"
 #include "MainGame.h"
-#include "StartScene.h"
+#include "TitleScene.h"
+#include "GameScene.h"
 
 HRESULT MainGame::init(void) {
 	GameNode::init(true);
-	SCENEMANAGER->addScene("Start", new StartScene);
+	SCENEMANAGER->addScene("Title", new TitleScene);
+	SCENEMANAGER->addScene("Game", new GameScene);
 
-	SCENEMANAGER->changeScene("Start");
-
+	SCENEMANAGER->changeScene("Game");
 	return S_OK;
 }
 

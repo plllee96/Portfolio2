@@ -81,10 +81,10 @@ using namespace MY_UTIL;
 #define WINSIZE_Y				GetSystemMetrics(SM_CYSCREEN)
 #define WINSTYLE					WS_POPUPWINDOW | WS_MAXIMIZE
 #else
-#define WINSTART_X				100
-#define WINSTART_Y				0
-#define WINSIZE_X				1200
-#define WINSIZE_Y				800
+#define WINSTART_X				500
+#define WINSTART_Y				200
+#define WINSIZE_X				548
+#define WINSIZE_Y				384
 #define WINSTYLE					WS_CAPTION | WS_SYSMENU
 #endif
 

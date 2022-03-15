@@ -1,7 +1,7 @@
 #pragma once
 #include "GameNode.h"
 
-class StartScene : public GameNode {
+class TitleScene : public GameNode {
 private:
 	char _text[32];
 public:
