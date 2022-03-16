@@ -5,7 +5,7 @@ enum class SunType { FALL, GENERATE, GAIN };
 const float sunCooltime = 10.0f;
 const float sunFrameDelay = 0.5f;
 const float uiX = 50;
-const float uiY = 50;
+const float uiY = 10;
 
 class Sun : public GameNode {
 private:

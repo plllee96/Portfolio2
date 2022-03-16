@@ -1,14 +1,15 @@
 #pragma once
 #include "GameNode.h"
+#include "PlantType.h"
 #include "PlantManager.h"
 #include "ZombieManager.h"
 #include "Inventory.h"
 #include "Deck.h"
 #include "Sun.h"
+#include "Tile.h"
 
 enum class GameStatus {SETTING, PLAY, PAUSE, CLEAR};
 enum class CursorSelect {NONE, PLANT, SHOVEL};
-
 
 class GameScene : public GameNode {
 private:
@@ -26,11 +27,15 @@ private:
 	Inventory* _inventory;
 	PlantManager* _pm;
 	ZombieManager* _zm;
+	Tile* _tile;
 
 	vector<Sun*> _vSun;
 	vector<Sun*>::iterator _viSun;
 
 	//Game Variable
+	PlantType _selectedPlant;
+	int _selectedPlantIndex;
+
 	int _sun;
 	float _sunCount;
 	float _sunCooltime;
@@ -49,5 +54,11 @@ public:
 	void playGame();
 	void mouseControl();
 	void sunControl();
+
+	//render
+	void printSelectedPlant();
+
+	//debug
+	string printPlantType(PlantType type);
 };
 

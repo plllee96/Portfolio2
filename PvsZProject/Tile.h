@@ -1,21 +1,32 @@
 #pragma once
 #include "GameNode.h"
-#include "TileSetting.h"
-#include "TileMap.h"
 
+const int startX = 64;
+const int startY = 51;
+const int tileWidth = 52;
+const int firstMapTileHeight = 63;
+const int secondMapTileHeight = 52;
+
+struct SingleTile {
+	RECT rc;
+	bool hasPlant;
+};
 class Tile : public GameNode {
 private:
-	enum TILEMENU {SETTING, MAP};
-	TILEMENU _tilemenu;
-	TileSetting* _tileSetting;
-	TileMap* _tileMap;
+	int _row;
+	int _column;
+	vector<SingleTile> _vTile;
+
+	int _count;
 public:
-	HRESULT init(void);
+	HRESULT init(int stageNum);
 	void release(void);
 	void update(void);
 	void render(void);
 
-	Tile() {}
-	~Tile() {}
+	int selectTile();
+	SingleTile getTile(int index) { return _vTile[index]; }
+	RECT getRect(int index) { return _vTile[index].rc; }
+	void setPlant(int index, bool plant) { _vTile[index].hasPlant = plant; }
 };
 

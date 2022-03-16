@@ -67,18 +67,19 @@
     <ClCompile Include="ZombieManager.cpp">
       <Filter>MainGame\Object\Zombie</Filter>
     </ClCompile>
-    <ClCompile Include="Deck.cpp">
-      <Filter>MainGame\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Inventory.cpp">
-      <Filter>MainGame\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Sun.cpp">
       <Filter>MainGame\Object</Filter>
     </ClCompile>
     <ClCompile Include="Card.cpp">
-      <Filter>MainGame\Object</Filter>
+      <Filter>MainGame\Object\CardDeck</Filter>
     </ClCompile>
+    <ClCompile Include="Deck.cpp">
+      <Filter>MainGame\Object\CardDeck</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>MainGame\Object\CardDeck</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -153,16 +154,20 @@
     <ClInclude Include="ZombieManager.h">
       <Filter>MainGame\Object\Zombie</Filter>
     </ClInclude>
-    <ClInclude Include="Deck.h">
-      <Filter>MainGame\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Inventory.h">
-      <Filter>MainGame\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Sun.h">
       <Filter>MainGame\Object</Filter>
     </ClInclude>
     <ClInclude Include="Card.h">
+      <Filter>MainGame\Object\CardDeck</Filter>
+    </ClInclude>
+    <ClInclude Include="Deck.h">
+      <Filter>MainGame\Object\CardDeck</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>MainGame\Object\CardDeck</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="PlantType.h">
       <Filter>MainGame\Object</Filter>
     </ClInclude>
   </ItemGroup>
@@ -211,6 +216,9 @@
     </Filter>
     <Filter Include="MainGame\Object\Bullet">
       <UniqueIdentifier>{a27b79a9-56ba-4444-9866-ae22dee81554}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Object\CardDeck">
+      <UniqueIdentifier>{39ce994f-1304-4ed6-aadf-9052bfaa1f21}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

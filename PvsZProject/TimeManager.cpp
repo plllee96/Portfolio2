@@ -23,16 +23,16 @@ void TimeManager::update(float lock) {
 void TimeManager::render(HDC hdc) {
 	char str[256];
 	SetBkMode(hdc, TRANSPARENT);
-	SetTextColor(hdc, RGB(255, 255, 255));
+	SetTextColor(hdc, RGB(0, 0, 0));
 
 #ifdef _DEBUG
 	if (_timer != nullptr) {
-		sprintf_s(str, "FramePerSec : %d", _timer->getFrameRate());
+		sprintf_s(str, "FPS : %d", _timer->getFrameRate());
 		TextOut(hdc, 0, 0, str, strlen(str));
-		sprintf_s(str, "WorldTime : %f", _timer->getWorldTime());
-		TextOut(hdc, 0, 20, str, strlen(str));
-		sprintf_s(str, "ElapsedTime : %f", _timer->getElapsedTime());
-		TextOut(hdc, 0, 40, str, strlen(str));
+		//sprintf_s(str, "WorldTime : %f", _timer->getWorldTime());
+		//TextOut(hdc, 0, 20, str, strlen(str));
+		//sprintf_s(str, "ElapsedTime : %f", _timer->getElapsedTime());
+		//TextOut(hdc, 0, 40, str, strlen(str));
 	}
 #else
 	if (_timer != nullptr) {

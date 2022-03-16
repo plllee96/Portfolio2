@@ -171,6 +171,7 @@
     <ClCompile Include="Sun.cpp" />
     <ClCompile Include="TempSoundManager.cpp" />
     <ClCompile Include="TextDataManager.cpp" />
+    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TitleScene.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="PlantManager.h" />
+    <ClInclude Include="PlantType.h" />
     <ClInclude Include="RandomFunction.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SingletonBase.h" />
@@ -202,6 +204,7 @@
     <ClInclude Include="Sun.h" />
     <ClInclude Include="TempSoundManager.h" />
     <ClInclude Include="TextDataManager.h" />
+    <ClInclude Include="Tile.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TitleScene.h" />

@@ -6,12 +6,25 @@ HRESULT GameScene::init(void) {
 	_background = IMAGEMANAGER->addImage("Background", "Resources/Images/Backgrounds/Stage1.bmp", 894, 384, false, RGB(255, 0, 255));
 	_status = GameStatus::SETTING;
 	_cursor = CursorSelect::NONE;
-
+	_selectedPlant = PlantType::NONE;
+	_selectedPlantIndex = -1;
 	_sunCount = TIMEMANAGER->getWorldTime();
 
+	////////////////////////////////
 	//loadStage();
+	_stageNum = 0;
+	///////////////////////////////
+
 	_sun = 50;
 	_sunCooltime = 10.0f;
+	_sunCooltime = 2.0f;		//debug
+	_tile = new Tile;
+	_tile->init(_stageNum);
+
+	//init Class
+	_deck = new Deck;
+	_deck->init();
+
 	return S_OK;
 }
 
@@ -50,12 +63,28 @@ void GameScene::update(void) {
 //===============================================================
 void GameScene::render(void) {
 	//cout << _ptMouse.x << "," << _ptMouse.y << endl;
-	cout << _sun << endl;
 	_background->render(getMemDC(), 0, 0, _camera.left, _camera.top, 548, 384);
 
+	//debug
+	_tile->render();
+
+	//render Object
 	for (Sun* iter : _vSun) {
 		iter->render();
 	}
+
+	//render UI
+	if(_cursor == CursorSelect::NONE) _deck->render();
+	else _deck->disableRender();
+
+	if (_cursor == CursorSelect::PLANT) {
+		printSelectedPlant();
+	}
+
+	char str[256];
+	wsprintf(str, "%d", _sun);
+	TextOut(getMemDC(), 50, 10, str, strlen(str));
+
 }
 
 void GameScene::loadStage() {
@@ -69,12 +98,15 @@ void GameScene::playGame() {
 	mouseControl();
 	sunControl();
 
+	_deck->update();
+	_tile->update();
 }
 
 void GameScene::mouseControl() {
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) {
 		switch (_cursor) {
 		case CursorSelect::NONE: {
+			//Click Sun
 			_viSun = _vSun.begin();
 			for (; _viSun != _vSun.end(); ++_viSun) {
 				if (PtInRect(&(*_viSun)->getRect(), _ptMouse)) {
@@ -83,20 +115,41 @@ void GameScene::mouseControl() {
 					break;
 				}
 			}
-			//Deck 클릭시 PLANT로 넘어감
+
+			//Select PlantCard from Deck
+			_selectedPlantIndex = _deck->selectCard();
+			if (_selectedPlantIndex != -1 && _deck->getCard(_selectedPlantIndex)->isActive() && _deck->getCard(_selectedPlantIndex)->getPrice() <= _sun) {
+				_selectedPlant = _deck->getPlant(_selectedPlantIndex);
+				_cursor = CursorSelect::PLANT;
+			}
+
+			//Select Shovel
+
 		} break;
 		case CursorSelect::PLANT: {
-			//투명 식물 이미지가 마우스를 따라옴
-			//마우스+타일일 경우 
-
-			//타일 클릭시
-				//식물이 없다면 식물 설치
-			//NONE으로 넘어감
+			int tempIndex = _tile->selectTile();
+			if (tempIndex != -1 && _selectedPlant != PlantType::NONE) {
+				if (!_tile->getTile(tempIndex).hasPlant) {
+					//_pm에 _selectedPlant 추가
+					_tile->setPlant(tempIndex, true);
+					_deck->getCard(_selectedPlantIndex)->startCoolTime();
+					_sun -= _deck->getCard(_selectedPlantIndex)->getPrice();
+				}
+			}
+			_cursor = CursorSelect::NONE;
+			_selectedPlant = PlantType::NONE;
+			_selectedPlantIndex = -1;
 		} break;
 		case CursorSelect::SHOVEL: {
-			//타일 클릭시
-				//식물이 있다면 식물 제거
-			//NONE으로 넘어감
+			int tempIndex = _tile->selectTile();
+			if (tempIndex != -1 && _selectedPlant != PlantType::NONE) {
+				if (_tile->getTile(tempIndex).hasPlant) {
+					//_pm에 _selectedPlant 제거
+					_tile->setPlant(tempIndex, false);
+				}
+				else cout << "식물이 없는 타일임" << endl;
+			}
+			_cursor = CursorSelect::NONE;
 		} break;
 		}
 
@@ -105,6 +158,8 @@ void GameScene::mouseControl() {
 		switch (_cursor) {
 		case CursorSelect::PLANT: {
 			_cursor = CursorSelect::NONE;
+			_selectedPlant = PlantType::NONE;
+			_selectedPlantIndex = -1;
 		} break;
 		case CursorSelect::SHOVEL: {
 			_cursor = CursorSelect::NONE;
@@ -130,6 +185,33 @@ void GameScene::sunControl() {
 		}
 		else _viSun++;
 	}
+}
+
+//===============================================================
+// Render
+//===============================================================
+void GameScene::printSelectedPlant() {
+	switch (_selectedPlant) {
+		//이후에 plant render로 바꿀 것
+		case PlantType::PEASHOOTER: printf("피슈터 선택중\n"); break;
+		case PlantType::SUNFLOWER: printf("선플라워 선택중\n"); break;
+		case PlantType::WALLNUT: printf("월넛 선택중\n"); break;
+		case PlantType::CHERRYBOMB: printf("체리폭탄 선택중\n"); break;
+		default: break;
+	}
+}
 
 
+//===============================================================
+// Debug
+//===============================================================
+string GameScene::printPlantType(PlantType type) {
+	switch (type) {
+		case PlantType::NONE: return "NONE";
+		case PlantType::PEASHOOTER: return "피슈터";
+		case PlantType::SUNFLOWER: return "선플라워";
+		case PlantType::WALLNUT: return "월넛";
+		case PlantType::CHERRYBOMB: return "체리폭탄";
+		default: return "";
+	}
 }
