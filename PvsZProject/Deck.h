@@ -12,6 +12,7 @@ public:
 	void release(void);
 	void update(void);
 	void render(void);
+	void render(int sun);
 
 	void disableRender();
 

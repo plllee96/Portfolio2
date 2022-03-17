@@ -25,6 +25,14 @@ void Deck::render(void) {
 	}
 }
 
+void Deck::render(int sun) {
+	_viCard = _vCard.begin();
+	for (; _viCard != _vCard.end(); ++_viCard) {
+		if ((*_viCard)->getPrice() > sun) (*_viCard)->disableRender();
+		else (*_viCard)->render();
+	}
+}
+
 void Deck::disableRender() {
 	_viCard = _vCard.begin();
 	for (; _viCard != _vCard.end(); ++_viCard) {

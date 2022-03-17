@@ -4,7 +4,9 @@
 HRESULT GameScene::init(void) {
 	_camera = RectMake(100, 0, WINSIZE_X, WINSIZE_Y);		//tempCameraPosition
 	_background = IMAGEMANAGER->addImage("Background", "Resources/Images/Backgrounds/Stage1.bmp", 894, 384, false, RGB(255, 0, 255));
-	_status = GameStatus::SETTING;
+	_sunIcon = IMAGEMANAGER->addImage("SunIcon", "Resources/Images/Objects/SunIcon.bmp", 32, 32, true, RGB(255, 0, 255));
+
+	_status = GameStatus::PLAY;
 	_cursor = CursorSelect::NONE;
 	_selectedPlant = PlantType::NONE;
 	_selectedPlantIndex = -1;
@@ -13,15 +15,27 @@ HRESULT GameScene::init(void) {
 	////////////////////////////////
 	//loadStage();
 	_stageNum = 0;
+	
+	//debug
+	_stageTimer = 180.0f;
+	_stageWaveTimer.push_back(90.0f);
+	_stageWaveTimer.push_back(179.9f);
 	///////////////////////////////
 
-	_sun = 50;
-	_sun = 50000;			//debug
-	_sunCooltime = 10.0f;
+	_sun = 100;
+	_sunCooltime = 7.0f;
+	_sunNumX = 78;
+	_sunNumY = 30;
+
+
+
+	//init Class
 	_tile = new Tile;
 	_tile->init(_stageNum);
 
-	//init Class
+	_sunNum = new NumberImage;
+	_sunNum->init(&_sunNumX, &_sunNumY);
+
 	_pm = new PlantManager;
 	_pm->init();
 
@@ -44,12 +58,18 @@ void GameScene::update(void) {
 		/*
 		선행작업
 		1. 인벤토리 랜더링 중지
-		2. 카메라 돌리기
+		2. 카메라 이동
 		*/
-		_status = GameStatus::PLAY;
+		//_status = GameStatus::PLAY;
 	}break;
 	case GameStatus::PLAY: {
 		//Ready, Set, Plant! 화면 선행
+		if (!_progressbar) {
+			_progressbar = new Progressbar;
+			_progressbar->init(_stageTimer, _stageWaveTimer);
+		}
+		else _progressbar->update();
+
 		playGame();
 	}break;
 	case GameStatus::PAUSE: {
@@ -61,9 +81,6 @@ void GameScene::update(void) {
 	}
 }
 
-//===============================================================
-// Set, Load
-//===============================================================
 void GameScene::render(void) {
 	//cout << _ptMouse.x << "," << _ptMouse.y << endl;
 	_background->render(getMemDC(), 0, 0, _camera.left, _camera.top, 548, 384);
@@ -72,24 +89,28 @@ void GameScene::render(void) {
 	_tile->render();
 
 	//render Object
+	_pm->render();
+
+	//render UI
+	_sunIcon->render(getMemDC(), 70, 0);
+	_sunNum->render(_sun);
+
+	if (_progressbar) _progressbar->render();
 	for (Sun* iter : _vSun) {
 		iter->render();
 	}
 
-	//render UI
-	if(_cursor == CursorSelect::NONE) _deck->render();
+	if(_cursor == CursorSelect::NONE) _deck->render(_sun);
 	else _deck->disableRender();
 
 	if (_cursor == CursorSelect::PLANT) {
 		printSelectedPlant();
 	}
-
-	char str[256];
-	wsprintf(str, "%d", _sun);
-	TextOut(getMemDC(), 50, 10, str, strlen(str));
-
 }
 
+//===============================================================
+// Set, Load
+//===============================================================
 void GameScene::loadStage() {
 	//	파일 받아서 로드
 }
@@ -104,12 +125,21 @@ void GameScene::playGame() {
 	_pm->update();
 	_deck->update();
 	_tile->update();
+	_sunNum->update();
 }
 
 void GameScene::mouseControl() {
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) {
 		switch (_cursor) {
 		case CursorSelect::NONE: {
+			//Select PlantCard from Deck
+			_selectedPlantIndex = _deck->selectCard();
+			if (_selectedPlantIndex != -1 && _deck->getCard(_selectedPlantIndex)->isActive() && _deck->getCard(_selectedPlantIndex)->getPrice() <= _sun) {
+				_selectedPlant = _deck->getPlant(_selectedPlantIndex);
+				_cursor = CursorSelect::PLANT;
+				break;
+			}
+
 			//Click Sun
 			_viSun = _vSun.begin();
 			for (; _viSun != _vSun.end(); ++_viSun) {
@@ -118,13 +148,6 @@ void GameScene::mouseControl() {
 					(*_viSun)->setType(SunType::GAIN);
 					break;
 				}
-			}
-
-			//Select PlantCard from Deck
-			_selectedPlantIndex = _deck->selectCard();
-			if (_selectedPlantIndex != -1 && _deck->getCard(_selectedPlantIndex)->isActive() && _deck->getCard(_selectedPlantIndex)->getPrice() <= _sun) {
-				_selectedPlant = _deck->getPlant(_selectedPlantIndex);
-				_cursor = CursorSelect::PLANT;
 			}
 
 			//Select Shovel

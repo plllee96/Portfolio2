@@ -7,6 +7,8 @@
 #include "Deck.h"
 #include "Sun.h"
 #include "Tile.h"
+#include "Progressbar.h"
+#include "NumberImage.h"
 
 enum class GameStatus {SETTING, PLAY, PAUSE, CLEAR};
 enum class CursorSelect {NONE, PLANT, SHOVEL};
@@ -15,14 +17,20 @@ class GameScene : public GameNode {
 private:
 	//Image
 	Image* _background;
+	Image* _sunIcon;
 
 	//Game Controller
 	int _stageNum;
+	float _stageTimer;
+	vector<float> _stageWaveTimer;
+
 	GameStatus _status;
 	CursorSelect _cursor;
 	RECT _camera;
 
 	//Object & Class
+	NumberImage* _sunNum;
+	Progressbar* _progressbar;
 	Deck* _deck;
 	Inventory* _inventory;
 	PlantManager* _pm;
@@ -39,6 +47,8 @@ private:
 	int _sun;
 	float _sunCount;
 	float _sunCooltime;
+	float _sunNumX;
+	float _sunNumY;
 
 public:
 	HRESULT init(void);

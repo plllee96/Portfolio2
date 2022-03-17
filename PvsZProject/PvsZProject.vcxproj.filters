@@ -67,9 +67,6 @@
     <ClCompile Include="ZombieManager.cpp">
       <Filter>MainGame\Object\Zombie</Filter>
     </ClCompile>
-    <ClCompile Include="Sun.cpp">
-      <Filter>MainGame\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Card.cpp">
       <Filter>MainGame\Object\CardDeck</Filter>
     </ClCompile>
@@ -79,14 +76,23 @@
     <ClCompile Include="Inventory.cpp">
       <Filter>MainGame\Object\CardDeck</Filter>
     </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>MainGame\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Peashooter.cpp">
       <Filter>MainGame\Object\Plant\Plants</Filter>
     </ClCompile>
     <ClCompile Include="Sunflower.cpp">
       <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="Progressbar.cpp">
+      <Filter>MainGame\Object\Progressbar</Filter>
+    </ClCompile>
+    <ClCompile Include="Sun.cpp">
+      <Filter>MainGame\Object\Sun</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>MainGame\Object\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="NumberImage.cpp">
+      <Filter>MainGame\Object\NumberImage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -162,9 +168,6 @@
     <ClInclude Include="ZombieManager.h">
       <Filter>MainGame\Object\Zombie</Filter>
     </ClInclude>
-    <ClInclude Include="Sun.h">
-      <Filter>MainGame\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Card.h">
       <Filter>MainGame\Object\CardDeck</Filter>
     </ClInclude>
@@ -177,14 +180,23 @@
     <ClInclude Include="PlantType.h">
       <Filter>MainGame\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>MainGame\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Peashooter.h">
       <Filter>MainGame\Object\Plant\Plants</Filter>
     </ClInclude>
     <ClInclude Include="Sunflower.h">
       <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="Progressbar.h">
+      <Filter>MainGame\Object\Progressbar</Filter>
+    </ClInclude>
+    <ClInclude Include="Sun.h">
+      <Filter>MainGame\Object\Sun</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>MainGame\Object\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="NumberImage.h">
+      <Filter>MainGame\Object\NumberImage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -238,6 +250,18 @@
     </Filter>
     <Filter Include="MainGame\Object\Plant\Plants">
       <UniqueIdentifier>{c45f44ea-6107-4895-afc3-6cf1f278a00a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Object\Progressbar">
+      <UniqueIdentifier>{076f4114-b273-4d36-a70f-9e3ce7de174d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Object\Sun">
+      <UniqueIdentifier>{faad3eda-c6ec-49cb-9cb2-665fc1af8fcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Object\Tile">
+      <UniqueIdentifier>{85309cc2-67da-4a2c-998d-cab9486c2841}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Object\NumberImage">
+      <UniqueIdentifier>{ea3122ff-0b05-49aa-a1b4-fb9497a92478}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,7 +1,10 @@
 #pragma once
 #include "Plant.h"
 
+enum class PeashooterStatus {WAIT, SHOT};
 class Peashooter : public Plant {
+private:
+	PeashooterStatus _status;
 public:
 	virtual HRESULT init(PlantType type, POINT location);
 	virtual void release(void);
@@ -9,5 +12,8 @@ public:
 	virtual void render(void);
 
 	virtual void act();
+	
+	void setFrame();
+	void updateFrame();
 };
 
