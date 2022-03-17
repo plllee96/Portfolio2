@@ -9,6 +9,8 @@ const int secondMapTileHeight = 52;
 
 struct SingleTile {
 	RECT rc;
+	int x;
+	int y;
 	bool hasPlant;
 };
 class Tile : public GameNode {
@@ -28,5 +30,6 @@ public:
 	SingleTile getTile(int index) { return _vTile[index]; }
 	RECT getRect(int index) { return _vTile[index].rc; }
 	void setPlant(int index, bool plant) { _vTile[index].hasPlant = plant; }
+	POINT getLocation(int index) { return { _vTile[index].x, _vTile[index].y }; }
 };
 

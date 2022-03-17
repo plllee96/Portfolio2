@@ -79,7 +79,15 @@
     <ClCompile Include="Inventory.cpp">
       <Filter>MainGame\Object\CardDeck</Filter>
     </ClCompile>
-    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Tile.cpp">
+      <Filter>MainGame\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Peashooter.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="Sunflower.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -166,9 +174,17 @@
     <ClInclude Include="Inventory.h">
       <Filter>MainGame\Object\CardDeck</Filter>
     </ClInclude>
-    <ClInclude Include="Tile.h" />
     <ClInclude Include="PlantType.h">
       <Filter>MainGame\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>MainGame\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Peashooter.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="Sunflower.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -219,6 +235,9 @@
     </Filter>
     <Filter Include="MainGame\Object\CardDeck">
       <UniqueIdentifier>{39ce994f-1304-4ed6-aadf-9052bfaa1f21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Object\Plant\Plants">
+      <UniqueIdentifier>{c45f44ea-6107-4895-afc3-6cf1f278a00a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

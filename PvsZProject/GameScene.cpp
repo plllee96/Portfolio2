@@ -16,12 +16,15 @@ HRESULT GameScene::init(void) {
 	///////////////////////////////
 
 	_sun = 50;
+	_sun = 50000;			//debug
 	_sunCooltime = 10.0f;
-	_sunCooltime = 2.0f;		//debug
 	_tile = new Tile;
 	_tile->init(_stageNum);
 
 	//init Class
+	_pm = new PlantManager;
+	_pm->init();
+
 	_deck = new Deck;
 	_deck->init();
 
@@ -98,6 +101,7 @@ void GameScene::playGame() {
 	mouseControl();
 	sunControl();
 
+	_pm->update();
 	_deck->update();
 	_tile->update();
 }
@@ -132,6 +136,7 @@ void GameScene::mouseControl() {
 				if (!_tile->getTile(tempIndex).hasPlant) {
 					//_pm에 _selectedPlant 추가
 					_tile->setPlant(tempIndex, true);
+					_pm->addPlant(_deck->getPlant(_selectedPlantIndex), _tile->getLocation(tempIndex));
 					_deck->getCard(_selectedPlantIndex)->startCoolTime();
 					_sun -= _deck->getCard(_selectedPlantIndex)->getPrice();
 				}
@@ -147,7 +152,6 @@ void GameScene::mouseControl() {
 					//_pm에 _selectedPlant 제거
 					_tile->setPlant(tempIndex, false);
 				}
-				else cout << "식물이 없는 타일임" << endl;
 			}
 			_cursor = CursorSelect::NONE;
 		} break;
@@ -193,10 +197,10 @@ void GameScene::sunControl() {
 void GameScene::printSelectedPlant() {
 	switch (_selectedPlant) {
 		//이후에 plant render로 바꿀 것
-		case PlantType::PEASHOOTER: printf("피슈터 선택중\n"); break;
-		case PlantType::SUNFLOWER: printf("선플라워 선택중\n"); break;
-		case PlantType::WALLNUT: printf("월넛 선택중\n"); break;
-		case PlantType::CHERRYBOMB: printf("체리폭탄 선택중\n"); break;
+		case PlantType::PEASHOOTER: break;
+		case PlantType::SUNFLOWER: break;
+		case PlantType::WALLNUT: break;
+		case PlantType::CHERRYBOMB: break;
 		default: break;
 	}
 }

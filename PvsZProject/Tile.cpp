@@ -13,6 +13,8 @@ HRESULT Tile::init(int stageNum) {
 	}
 	for (int i = 0; i < _row * _column; i++) {
 		SingleTile temp;
+		temp.x = i % _column;
+		temp.y = i / _column;
 		if (_row == 5) temp.rc = RectMake(startX + (i%_column) * tileWidth, startY + (i/_column) * firstMapTileHeight, tileWidth, firstMapTileHeight);
 		else temp.rc = RectMake(startX + (i%_column) * tileWidth, startY + (i / _column) * firstMapTileHeight, tileWidth, firstMapTileHeight);
 		temp.hasPlant = false;
