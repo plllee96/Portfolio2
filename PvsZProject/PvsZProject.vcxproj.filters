@@ -94,6 +94,9 @@
     <ClCompile Include="NumberImage.cpp">
       <Filter>MainGame\Object\NumberImage</Filter>
     </ClCompile>
+    <ClCompile Include="ObserverManager.cpp">
+      <Filter>MainGame\Observer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -198,6 +201,12 @@
     <ClInclude Include="NumberImage.h">
       <Filter>MainGame\Object\NumberImage</Filter>
     </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>MainGame\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="ObserverManager.h">
+      <Filter>MainGame\Observer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="API Framework">
@@ -262,6 +271,9 @@
     </Filter>
     <Filter Include="MainGame\Object\NumberImage">
       <UniqueIdentifier>{ea3122ff-0b05-49aa-a1b4-fb9497a92478}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Observer">
+      <UniqueIdentifier>{d6beb8fb-587d-4b2c-a020-339c258ec68b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

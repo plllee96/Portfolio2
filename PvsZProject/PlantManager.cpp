@@ -35,9 +35,11 @@ void PlantManager::addPlant(PlantType type, POINT location) {
 }
 
 void PlantManager::removePlant(int index) {
+	_vPlant[index]->release();
 	_vPlant.erase(_vPlant.begin() + index);
 }
 
 void PlantManager::removePlant(viPlant iter) {
+	(*iter)->release();
 	_vPlant.erase(iter);
 }

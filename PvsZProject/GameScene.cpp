@@ -119,6 +119,7 @@ void GameScene::loadStage() {
 // Play Game
 //===============================================================
 void GameScene::playGame() {
+	OBSERVERMANAGER->update();
 	mouseControl();
 	sunControl();
 

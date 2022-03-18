@@ -52,6 +52,7 @@ using namespace std;
 #include "TextDataManager.h"
 #include "SceneManager.h"
 #include "SoundManager.h"
+#include "ObserverManager.h"
 
 using namespace MY_UTIL;
 
@@ -67,6 +68,7 @@ using namespace MY_UTIL;
 #define TEXTDATAMANAGER	TextDataManager::getSingleton()
 #define SCENEMANAGER		SceneManager::getSingleton()
 #define SOUNDMANAGER		SoundManager::getSingleton()
+#define OBSERVERMANAGER	ObserverManager::getSingleton()
 
 //===============================================================
 //# Window Macro

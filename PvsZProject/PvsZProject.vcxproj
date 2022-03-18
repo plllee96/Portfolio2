@@ -161,6 +161,7 @@
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="NumberImage.cpp" />
+    <ClCompile Include="ObserverManager.cpp" />
     <ClCompile Include="Peashooter.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="PlantManager.cpp" />
@@ -198,6 +199,8 @@
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="NumberImage.h" />
+    <ClInclude Include="Observer.h" />
+    <ClInclude Include="ObserverManager.h" />
     <ClInclude Include="Peashooter.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="PlantManager.h" />

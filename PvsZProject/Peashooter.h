@@ -12,6 +12,10 @@ public:
 	virtual void render(void);
 
 	virtual void act();
+
+	virtual ObserveData getRectUpdate();
+	virtual void collideObject(ObserveData obData);
+	virtual void recognizeObject(ObserveData observer);
 	
 	void setFrame();
 	void updateFrame();

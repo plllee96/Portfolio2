@@ -29,6 +29,20 @@ void Peashooter::act() {
 
 }
 
+ObserveData Peashooter::getRectUpdate() {
+	ObserveData temp;
+	temp.rc = &_rc;
+	temp.recognizeRc = &_recognizeRc;
+	temp.type = &_obType;
+	return temp;
+}
+
+void Peashooter::collideObject(ObserveData obData) {
+}
+
+void Peashooter::recognizeObject(ObserveData observer) {
+}
+
 void Peashooter::setFrame() {
 	switch (_status) {
 		case PeashooterStatus::WAIT: {
