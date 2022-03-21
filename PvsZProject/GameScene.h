@@ -3,6 +3,7 @@
 #include "PlantType.h"
 #include "PlantManager.h"
 #include "ZombieManager.h"
+#include "BulletManager.h"
 #include "Inventory.h"
 #include "Deck.h"
 #include "Sun.h"
@@ -35,6 +36,7 @@ private:
 	Inventory* _inventory;
 	PlantManager* _pm;
 	ZombieManager* _zm;
+	BulletManager* _bm;
 	Tile* _tile;
 
 	vector<Sun*> _vSun;
@@ -50,6 +52,9 @@ private:
 	float _sunNumX;
 	float _sunNumY;
 
+	float _zombieCount;
+	float _zombieCooltime;
+
 public:
 	HRESULT init(void);
 	void release(void);
@@ -64,6 +69,7 @@ public:
 	void playGame();
 	void mouseControl();
 	void sunControl();
+	void zombieControl();
 
 	//render
 	void printSelectedPlant();

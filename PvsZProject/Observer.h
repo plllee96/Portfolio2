@@ -12,12 +12,15 @@ typedef struct tagObservedInfo {
 	RECT* rc;
 	RECT* recognizeRc;
 	float* damage;
-	bool* specialBullet;
+	bool* hitActive;
 
 	tagObservedInfo() {
 		type = nullptr;
+		damageType = nullptr;
 		rc = nullptr;
+		recognizeRc = nullptr;
 		damage = nullptr;
+		hitActive = nullptr;
 	}
 } ObserveData; 
 

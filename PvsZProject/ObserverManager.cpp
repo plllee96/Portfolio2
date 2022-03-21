@@ -3,7 +3,7 @@
 
 #include "Plant.h"
 #include "Zombie.h"
-//#include "Bullets.h"
+#include "Bullet.h"
 
 HRESULT ObserverManager::init(void) {
 	return S_OK;

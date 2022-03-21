@@ -1,28 +1,25 @@
 #pragma once
-#include "Plant.h"
+#include "Zombie.h"
 
-enum class PeashooterStatus {WAIT, SHOT};
-class Peashooter : public Plant {
+enum class NormalZombieStatus {
+	WAIT, WALK, ATTACK, DEAD, EXPLODE
+};
+
+class NormalZombie : public Zombie {
 private:
-	PeashooterStatus _status;
-
-	float _shotCount;
-	float _shotCooltime;
-	bool _alreadyShot;
-
+	NormalZombieStatus _status;
 public:
-	virtual HRESULT init(PlantType type, POINT location);
+	virtual HRESULT init(ZombieType type, int line);
 	virtual void release(void);
 	virtual void update(void);
 	virtual void render(void);
 
 	virtual void act();
-	void fire();
 
 	virtual ObserveData getRectUpdate();
 	virtual void collideObject(ObserveData obData);
 	virtual void recognizeObject(ObserveData observer);
-	
+
 	void setFrame();
 	void updateFrame();
 };

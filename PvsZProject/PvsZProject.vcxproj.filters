@@ -61,9 +61,6 @@
     <ClCompile Include="Plant.cpp">
       <Filter>MainGame\Object\Plant</Filter>
     </ClCompile>
-    <ClCompile Include="Zombie.cpp">
-      <Filter>MainGame\Object\Zombie</Filter>
-    </ClCompile>
     <ClCompile Include="ZombieManager.cpp">
       <Filter>MainGame\Object\Zombie</Filter>
     </ClCompile>
@@ -96,6 +93,21 @@
     </ClCompile>
     <ClCompile Include="ObserverManager.cpp">
       <Filter>MainGame\Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalZombie.cpp">
+      <Filter>MainGame\Object\Zombie\Zombies</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletManager.cpp">
+      <Filter>MainGame\Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>MainGame\Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Zombie.cpp">
+      <Filter>MainGame\Object\Zombie</Filter>
+    </ClCompile>
+    <ClCompile Include="PeashooterBullet.cpp">
+      <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -165,9 +177,6 @@
     <ClInclude Include="Plant.h">
       <Filter>MainGame\Object\Plant</Filter>
     </ClInclude>
-    <ClInclude Include="Zombie.h">
-      <Filter>MainGame\Object\Zombie</Filter>
-    </ClInclude>
     <ClInclude Include="ZombieManager.h">
       <Filter>MainGame\Object\Zombie</Filter>
     </ClInclude>
@@ -179,9 +188,6 @@
     </ClInclude>
     <ClInclude Include="Inventory.h">
       <Filter>MainGame\Object\CardDeck</Filter>
-    </ClInclude>
-    <ClInclude Include="PlantType.h">
-      <Filter>MainGame\Object</Filter>
     </ClInclude>
     <ClInclude Include="Peashooter.h">
       <Filter>MainGame\Object\Plant\Plants</Filter>
@@ -206,6 +212,30 @@
     </ClInclude>
     <ClInclude Include="ObserverManager.h">
       <Filter>MainGame\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalZombie.h">
+      <Filter>MainGame\Object\Zombie\Zombies</Filter>
+    </ClInclude>
+    <ClInclude Include="PlantType.h">
+      <Filter>MainGame\Object\Plant</Filter>
+    </ClInclude>
+    <ClInclude Include="ZombieType.h">
+      <Filter>MainGame\Object\Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletManager.h">
+      <Filter>MainGame\Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>MainGame\Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletType.h">
+      <Filter>MainGame\Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Zombie.h">
+      <Filter>MainGame\Object\Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="PeashooterBullet.h">
+      <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +304,12 @@
     </Filter>
     <Filter Include="MainGame\Observer">
       <UniqueIdentifier>{d6beb8fb-587d-4b2c-a020-339c258ec68b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Object\Zombie\Zombies">
+      <UniqueIdentifier>{7cb0fdb3-39d2-4b3c-8ddf-a5256c797bf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Object\Bullet\Bullets">
+      <UniqueIdentifier>{e27ac1f6-f16d-43a9-9621-1e42ddf540bf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

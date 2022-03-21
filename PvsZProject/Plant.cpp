@@ -17,6 +17,7 @@ HRESULT Plant::init(PlantType type, POINT location) {
 	_frame.count = TIMEMANAGER->getWorldTime();
 	_frame.coolTime = 0.5f;
 
+
 	return S_OK;
 }
 

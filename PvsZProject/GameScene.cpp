@@ -8,9 +8,8 @@ HRESULT GameScene::init(void) {
 
 	_status = GameStatus::PLAY;
 	_cursor = CursorSelect::NONE;
-	_selectedPlant = PlantType::NONE;
+	_selectedPlant = PlantType::NONE; 
 	_selectedPlantIndex = -1;
-	_sunCount = TIMEMANAGER->getWorldTime();
 
 	////////////////////////////////
 	//loadStage();
@@ -23,9 +22,13 @@ HRESULT GameScene::init(void) {
 	///////////////////////////////
 
 	_sun = 100;
+	_sunCount = TIMEMANAGER->getWorldTime();
 	_sunCooltime = 7.0f;
 	_sunNumX = 78;
 	_sunNumY = 30;
+
+	_zombieCount = TIMEMANAGER->getWorldTime();
+	_zombieCooltime = 10.0f;
 
 
 
@@ -35,6 +38,12 @@ HRESULT GameScene::init(void) {
 
 	_sunNum = new NumberImage;
 	_sunNum->init(&_sunNumX, &_sunNumY);
+
+	_zm = new ZombieManager;
+	_zm->init();
+
+	_bm = new BulletManager;
+	_bm->init();
 
 	_pm = new PlantManager;
 	_pm->init();
@@ -90,6 +99,8 @@ void GameScene::render(void) {
 
 	//render Object
 	_pm->render();
+	_zm->render();
+	_bm->render();
 
 	//render UI
 	_sunIcon->render(getMemDC(), 70, 0);
@@ -122,8 +133,12 @@ void GameScene::playGame() {
 	OBSERVERMANAGER->update();
 	mouseControl();
 	sunControl();
+	zombieControl();
 
 	_pm->update();
+	_zm->update();
+	_bm->update();
+
 	_deck->update();
 	_tile->update();
 	_sunNum->update();
@@ -213,6 +228,14 @@ void GameScene::sunControl() {
 		}
 		else _viSun++;
 	}
+}
+
+void GameScene::zombieControl() {
+	if (_zombieCount + _zombieCooltime < TIMEMANAGER->getWorldTime()) {
+		_zombieCount = TIMEMANAGER->getWorldTime();
+		_zm->addZombie(ZombieType::ZOMBIE, RND->getInt(5));	//이후  getInt숫자를 maxTiileAmount로 바꿀것
+	}
+	
 }
 
 //===============================================================

@@ -1,13 +1,49 @@
 #pragma once
 #include "GameNode.h"
+#include "ZombieType.h"
+#include "Tile.h"
 
-class Zombie : public GameNode {
-private:
+const int fixY = 30;
+struct ZombieFrame {
+	int maxFrameX;
+	int currentFrameX;
+	int currentFrameY;
+	float count;
+	float coolTime;
+};
+class Zombie : public GameNode, public Observer {
+protected:
+	Image* _image;
+	ZombieType _type;
+
+	int _line;
+	float _x;
+	RECT _rc;
+	RECT _recognizeRc;
+
+	ZombieFrame _frame;
+
+	float _hp;
+
+	bool _active;
+
+	//Observer Variable
+	ObservedType _obType;
 
 public:
-	HRESULT init(void);
-	void release(void);
-	void update(void);
-	void render(void);
+	virtual HRESULT init(ZombieType type, int line);
+	virtual void release(void);
+	virtual void update(void);
+	virtual void render(void);
+
+
+	virtual ObserveData getRectUpdate();
+	virtual void collideObject(ObserveData obData);
+	virtual void recognizeObject(ObserveData observer);
+
+	virtual void act();
+
+	virtual int getLine() { return _line; }
+	virtual bool isActive() { return _active; }
 };
 

@@ -150,6 +150,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="Deck.cpp" />
     <ClCompile Include="FontManager.cpp" />
@@ -160,9 +162,11 @@
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="NormalZombie.cpp" />
     <ClCompile Include="NumberImage.cpp" />
     <ClCompile Include="ObserverManager.cpp" />
     <ClCompile Include="Peashooter.cpp" />
+    <ClCompile Include="PeashooterBullet.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="PlantManager.cpp" />
     <ClCompile Include="Progressbar.cpp" />
@@ -187,6 +191,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletManager.h" />
+    <ClInclude Include="BulletType.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="CommonMacroFunction.h" />
     <ClInclude Include="Deck.h" />
@@ -198,10 +205,12 @@
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="NormalZombie.h" />
     <ClInclude Include="NumberImage.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="ObserverManager.h" />
     <ClInclude Include="Peashooter.h" />
+    <ClInclude Include="PeashooterBullet.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="PlantManager.h" />
     <ClInclude Include="PlantType.h" />
@@ -222,6 +231,7 @@
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Zombie.h" />
     <ClInclude Include="ZombieManager.h" />
+    <ClInclude Include="ZombieType.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
