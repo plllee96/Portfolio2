@@ -12,6 +12,10 @@ void PlantManager::update(void) {
 	_viPlant = _vPlant.begin();
 	for (; _viPlant != _vPlant.end(); ++_viPlant) {
 		(*_viPlant)->update();
+		if (!(*_viPlant)->isActive()) {
+			removePlant(_viPlant);
+			break;
+		}
 	}
 }
 
@@ -27,6 +31,10 @@ void PlantManager::addPlant(PlantType type, POINT location) {
 	switch (type) {
 		case PlantType::PEASHOOTER: temp = new Peashooter; break;
 		case PlantType::SUNFLOWER: temp = new Sunflower; break;
+		case PlantType::WALLNUT: temp = new Wallnut; break;
+		case PlantType::CHERRYBOMB: temp = new CherryBomb; break;
+		case PlantType::POTATOMINE: temp = new PotatoMine; break;
+		case PlantType::CHOMPER: temp = new Chomper; break;
 		default: temp = new Plant;
 	}
 	temp->init(type, location);
@@ -40,6 +48,32 @@ void PlantManager::removePlant(int index) {
 }
 
 void PlantManager::removePlant(viPlant iter) {
+	int temp = (*iter)->getLocation().x + _tile->getColumn() * (*iter)->getLocation().y;
+	_tile->setPlant(temp, false);
 	(*iter)->release();
 	_vPlant.erase(iter);
+}
+
+generateTypeContainer PlantManager::isGeneratePlant() {
+	generateTypeContainer tempContainer;
+	_viPlant = _vPlant.begin();
+	for (; _viPlant != _vPlant.end(); ++_viPlant) {
+		if ((*_viPlant)->getType() == PlantType::SUNFLOWER) {
+			Sunflower* temp = static_cast<Sunflower*>(*_viPlant);
+			if (temp->isGenerate()) {
+				tempContainer.isGenerate = true;
+				tempContainer.x = temp->getRect().left;
+				tempContainer.y = temp->getRect().top;
+				tempContainer.isSmallSun = false;
+				temp->setGenerate(false);
+				return tempContainer;
+			}
+			else continue;
+		}
+	}
+	tempContainer.isGenerate = false;
+	tempContainer.x = 0;
+	tempContainer.y = 0;
+	tempContainer.isSmallSun = false;
+	return tempContainer;
 }

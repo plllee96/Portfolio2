@@ -65,6 +65,8 @@ void Card::initCardImage() {
 		"Cherrybomb_Icon", "Resources/Images/Plants/Icon/Cherrybomb_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
 	case PlantType::POTATOMINE: _cardImage = IMAGEMANAGER->addFrameImage(
 		"PotatoMine_Icon", "Resources/Images/Plants/Icon/PotatoMine_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
+	case PlantType::CHOMPER: _cardImage = IMAGEMANAGER->addFrameImage(
+		"Chomper_Icon", "Resources/Images/Plants/Icon/Chomper_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
 	//아이콘 제작 후 전부 추가할 것
 	}
 }

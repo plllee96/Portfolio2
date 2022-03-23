@@ -153,6 +153,9 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="Card.cpp" />
+    <ClCompile Include="CherryBomb.cpp" />
+    <ClCompile Include="CherryExplode.cpp" />
+    <ClCompile Include="Chomper.cpp" />
     <ClCompile Include="Deck.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameNode.cpp" />
@@ -160,6 +163,7 @@
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="InvisibleRect.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="NormalZombie.cpp" />
@@ -169,6 +173,8 @@
     <ClCompile Include="PeashooterBullet.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="PlantManager.cpp" />
+    <ClCompile Include="PotatoExplode.cpp" />
+    <ClCompile Include="PotatoMine.cpp" />
     <ClCompile Include="Progressbar.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />
@@ -185,6 +191,7 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="Wallnut.cpp" />
     <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="Zombie.cpp" />
     <ClCompile Include="ZombieManager.cpp" />
@@ -195,6 +202,9 @@
     <ClInclude Include="BulletManager.h" />
     <ClInclude Include="BulletType.h" />
     <ClInclude Include="Card.h" />
+    <ClInclude Include="CherryBomb.h" />
+    <ClInclude Include="CherryExplode.h" />
+    <ClInclude Include="Chomper.h" />
     <ClInclude Include="CommonMacroFunction.h" />
     <ClInclude Include="Deck.h" />
     <ClInclude Include="FontManager.h" />
@@ -203,6 +213,7 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="Inventory.h" />
+    <ClInclude Include="InvisibleRect.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="NormalZombie.h" />
@@ -214,6 +225,8 @@
     <ClInclude Include="Plant.h" />
     <ClInclude Include="PlantManager.h" />
     <ClInclude Include="PlantType.h" />
+    <ClInclude Include="PotatoExplode.h" />
+    <ClInclude Include="PotatoMine.h" />
     <ClInclude Include="Progressbar.h" />
     <ClInclude Include="RandomFunction.h" />
     <ClInclude Include="SceneManager.h" />
@@ -229,6 +242,7 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Utils.h" />
+    <ClInclude Include="Wallnut.h" />
     <ClInclude Include="Zombie.h" />
     <ClInclude Include="ZombieManager.h" />
     <ClInclude Include="ZombieType.h" />

@@ -109,6 +109,27 @@
     <ClCompile Include="PeashooterBullet.cpp">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClCompile>
+    <ClCompile Include="Wallnut.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="CherryBomb.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="PotatoMine.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="CherryExplode.cpp">
+      <Filter>MainGame\Object\Bullet\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="PotatoExplode.cpp">
+      <Filter>MainGame\Object\Bullet\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="Chomper.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="InvisibleRect.cpp">
+      <Filter>MainGame\Object\Bullet\Bullets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -235,6 +256,27 @@
       <Filter>MainGame\Object\Zombie</Filter>
     </ClInclude>
     <ClInclude Include="PeashooterBullet.h">
+      <Filter>MainGame\Object\Bullet\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="Wallnut.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="CherryBomb.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="PotatoMine.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="CherryExplode.h">
+      <Filter>MainGame\Object\Bullet\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="PotatoExplode.h">
+      <Filter>MainGame\Object\Bullet\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="Chomper.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="InvisibleRect.h">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClInclude>
   </ItemGroup>

@@ -16,7 +16,7 @@ private:
 	float _y;
 	float _targetY;
 	float _gravity;
-
+	float _xspeed;
 	float _timer;
 	RECT _rc;
 

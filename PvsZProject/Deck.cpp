@@ -5,6 +5,9 @@ HRESULT Deck::init(void) {
 	addCard(PlantType::PEASHOOTER, 100, 10.0f);
 	addCard(PlantType::SUNFLOWER, 50, 10.0f);
 	addCard(PlantType::WALLNUT, 50, 10.0f);
+	addCard(PlantType::CHERRYBOMB, 150, 30.0f);
+	addCard(PlantType::POTATOMINE, 25, 10.0f);
+	addCard(PlantType::CHOMPER, 150, 30.0f);
 	return S_OK;
 }
 

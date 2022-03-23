@@ -31,5 +31,8 @@ public:
 	RECT getRect(int index) { return _vTile[index].rc; }
 	void setPlant(int index, bool plant) { _vTile[index].hasPlant = plant; }
 	POINT getLocation(int index) { return { _vTile[index].x, _vTile[index].y }; }
+	int getRow() { return _row; }
+	int getColumn() { return _column; }
+
 };
 

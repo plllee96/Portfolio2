@@ -10,10 +10,16 @@ private:
 	typedef  vector<Observer*> vObserver;
 	typedef  vector<Observer*>::iterator viObserver;
 
+	typedef vector<BulletObserver*> vBulletObserver;
+	typedef vector<BulletObserver*>::iterator viBulletObserver;
 private:
 	vObserver _vObserver;
 	viObserver _viObserver;
 	viObserver _viObserverCompare;
+
+	vBulletObserver _vBulletObserver;
+	viBulletObserver _viBulletObserver;
+	viBulletObserver _viBulletObserverCompare;
 
 public:
 	HRESULT init(void);
@@ -24,7 +30,11 @@ public:
 	virtual void registerObserver(Observer* observer);
 	virtual void removeObserver(Observer* observer);
 
+	virtual void registerBulletObserver(BulletObserver* observer);
+	virtual void removeBulletObserver(BulletObserver* observer);
+
 	virtual void manageRect();
+	virtual void manageBullet();
 
 	ObserverManager() {}
 	~ObserverManager() {}

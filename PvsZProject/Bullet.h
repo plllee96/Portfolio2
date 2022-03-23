@@ -7,23 +7,24 @@ protected:
 	Image* _image;
 	BulletType _type;
 	DamageType _damageType;
+	int _line;
 	int _x;
 	int _y;
 	RECT _rc;
 	RECT _recognizeRc;
 	float _damage;
-	bool _hitActive;
-	bool _active;
+	bool _hitActive;			//true : damage Zombie, false : ignore
+	bool _active;			//false : remove Bullet
 
 	ObservedType _obType;
 
 public:
-	virtual HRESULT init(BulletType type, int x, int y);
+	virtual HRESULT init(BulletType type, int x, int y, int line);
 	virtual void release(void);
 	virtual void update(void);
 	virtual void render(void);
 
-	virtual ObserveData getRectUpdate();
+	ObserveData getRectUpdate();
 	virtual void collideObject(ObserveData obData);
 	virtual void recognizeObject(ObserveData observer);
 

@@ -9,7 +9,9 @@ HRESULT Zombie::init(ZombieType type, int line) {
 	_obType = ObservedType::ZOMBIE;
 	_type = type;
 	_line = line;
+	_damage = 0.02f;
 	_active = true;
+	_attack = false;
 
 	//init Frame
 	_frame.maxFrameX = 1;
@@ -37,6 +39,9 @@ ObserveData Zombie::getRectUpdate() {
 	temp.rc = &_rc;
 	temp.recognizeRc = &_recognizeRc;
 	temp.type = &_obType;
+	temp.line = &_line;
+	temp.hitActive = &_attack;
+	temp.damage = &_damage;
 	return temp;
 }
 

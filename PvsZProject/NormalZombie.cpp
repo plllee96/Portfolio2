@@ -18,42 +18,57 @@ void NormalZombie::release(void) {
 
 void NormalZombie::update(void) {
 	Zombie::update();
+	act();
 	setFrame();
 	updateFrame();
-	act();
+	attack();
 	_rc = _recognizeRc = RectMake(_x, startY + _line * firstMapTileHeight - fixY, _image->getFrameWidth(), _image->getFrameHeight());
 }
 
 void NormalZombie::render(void) {
-	_image->frameRender(getMemDC(), _rc.left, _rc.top, _frame.currentFrameX, _frame.currentFrameY);
+	_image->frameRender(getMemDC(), _rc.left - 10, _rc.top, _frame.currentFrameX, _frame.currentFrameY);
 }
 
 void NormalZombie::act() {
 	if (_status == NormalZombieStatus::WALK) _x -= 0.05f;
 
-	//debug
-	if (PtInRect(&_rc, _ptMouse)) {
-		_hp -= 0.05f;
-	}
-
 	if (_hp <= 0.0f) {
-		if (_hp <= -50.0f) _status = NormalZombieStatus::EXPLODE;
+		if (_status == NormalZombieStatus::DEAD || _status == NormalZombieStatus::EXPLODE) return;
+
+		if (_hp <= -10000.0f) _active = false;
+		else if (_hp <= -50.0f) {
+			if (_status != NormalZombieStatus::EXPLODE) _frame.currentFrameX = 0;
+			_status = NormalZombieStatus::EXPLODE;
+		}
 		else _status = NormalZombieStatus::DEAD;
 	}
 }
 
-ObserveData NormalZombie::getRectUpdate() {
-	ObserveData temp;
-	temp.rc = &_rc;
-	temp.recognizeRc = &_recognizeRc;
-	temp.type = &_obType;
-	return temp;
+void NormalZombie::attack() {
+	if (_status == NormalZombieStatus::ATTACK) {
+		if (_frame.currentFrameX == 1 || _frame.currentFrameX == 4) {
+			_attack = true;
+		}
+		else {
+			_attack = false;
+		}
+	}
+	else {
+		_attack = false;
+	}
 }
 
 void NormalZombie::collideObject(ObserveData obData) {
+	if (*obData.type == ObservedType::BULLET && *obData.hitActive) {
+		_hp -= *obData.damage;
+	}
 }
 
 void NormalZombie::recognizeObject(ObserveData observer) {
+	if (_status == NormalZombieStatus::WALK) {
+		_status = NormalZombieStatus::ATTACK;
+		_frame.currentFrameX = 0;
+	}
 }
 
 void NormalZombie::setFrame() {
@@ -81,8 +96,8 @@ void NormalZombie::setFrame() {
 			_frame.currentFrameY = 5;
 		} break;
 		case NormalZombieStatus::EXPLODE: {
-			_frame.maxFrameX = 4;
-			_frame.coolTime = 0.5f;
+			_frame.maxFrameX = 2;
+			_frame.coolTime = 1.0f;
 			_frame.currentFrameY = 6;
 		} break;
 	}
@@ -92,9 +107,14 @@ void NormalZombie::updateFrame() {
 	if (_frame.count + _frame.coolTime < TIMEMANAGER->getWorldTime()) {
 		_frame.count = TIMEMANAGER->getWorldTime();
 		if (_frame.currentFrameX >= _frame.maxFrameX - 1) {
-			if (_status == NormalZombieStatus::DEAD) _active = false;
+			if (_status == NormalZombieStatus::DEAD || _status == NormalZombieStatus::EXPLODE) _active = false;
+			if (_status == NormalZombieStatus::ATTACK) {
+				_status = NormalZombieStatus::WALK;
+			}
 			else _frame.currentFrameX = 0;
 		}
-		else _frame.currentFrameX += 1;
+		else {
+			_frame.currentFrameX += 1;
+		}
 	}
 }

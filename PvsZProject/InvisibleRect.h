@@ -1,9 +1,9 @@
 #pragma once
 #include "Bullet.h"
 
-class PeashooterBullet : public Bullet {
+class InvisibleRect : public Bullet {
 private:
-	float _speed;
+	float _availableTime;
 public:
 	HRESULT init(BulletType type, int x, int y, int line);
 	void release(void);
@@ -12,6 +12,5 @@ public:
 
 	void collideObject(ObserveData obData);
 	void recognizeObject(ObserveData observer);
-
 };
 

@@ -21,7 +21,7 @@ HRESULT GameScene::init(void) {
 	_stageWaveTimer.push_back(179.9f);
 	///////////////////////////////
 
-	_sun = 100;
+	_sun = 1000;
 	_sunCount = TIMEMANAGER->getWorldTime();
 	_sunCooltime = 7.0f;
 	_sunNumX = 78;
@@ -47,6 +47,7 @@ HRESULT GameScene::init(void) {
 
 	_pm = new PlantManager;
 	_pm->init();
+	_pm->setTileMemory(_tile);
 
 	_deck = new Deck;
 	_deck->init();
@@ -173,7 +174,6 @@ void GameScene::mouseControl() {
 			int tempIndex = _tile->selectTile();
 			if (tempIndex != -1 && _selectedPlant != PlantType::NONE) {
 				if (!_tile->getTile(tempIndex).hasPlant) {
-					//_pm¿¡ _selectedPlant Ãß°¡
 					_tile->setPlant(tempIndex, true);
 					_pm->addPlant(_deck->getPlant(_selectedPlantIndex), _tile->getLocation(tempIndex));
 					_deck->getCard(_selectedPlantIndex)->startCoolTime();
@@ -218,6 +218,13 @@ void GameScene::sunControl() {
 		sun->init(SunType::FALL);
 		_vSun.push_back(sun);
 	}
+	generateTypeContainer temp = _pm->isGeneratePlant();
+	if (temp.isGenerate) {
+		Sun* sun = new Sun;
+		sun->init(SunType::GENERATE, temp.x, temp.y);
+		_vSun.push_back(sun);
+	}
+
 	_viSun = _vSun.begin();
 	for (; _viSun != _vSun.end();) {
 		(*_viSun)->update();

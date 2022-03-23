@@ -24,8 +24,9 @@ protected:
 	ZombieFrame _frame;
 
 	float _hp;
-
+	float _damage;
 	bool _active;
+	bool _attack;
 
 	//Observer Variable
 	ObservedType _obType;
@@ -37,7 +38,7 @@ public:
 	virtual void render(void);
 
 
-	virtual ObserveData getRectUpdate();
+	ObserveData getRectUpdate();
 	virtual void collideObject(ObserveData obData);
 	virtual void recognizeObject(ObserveData observer);
 

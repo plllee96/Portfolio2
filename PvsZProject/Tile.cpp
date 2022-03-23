@@ -30,9 +30,9 @@ void Tile::update(void) {
 }
 
 void Tile::render(void) {
-	/*for (auto iter : _vTile) {
-		if (iter.hasPlant) Rectangle(getMemDC(), iter.rc.left, iter.rc.top, iter.rc.right, iter.rc.bottom);
-	}*/
+	//for (auto iter : _vTile) {
+	//	if (iter.hasPlant) Rectangle(getMemDC(), iter.rc.left, iter.rc.top, iter.rc.right, iter.rc.bottom);
+	//}
 }
 
 int Tile::selectTile() {

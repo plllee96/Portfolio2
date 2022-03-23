@@ -8,10 +8,17 @@ HRESULT Peashooter::init(PlantType type, POINT location) {
 	_rc = RectMake(startX + _location.x * tileWidth, startY + _location.y * firstMapTileHeight, tileWidth, firstMapTileHeight);
 	_recognizeRc = RectMake(startX + _location.x * tileWidth + (tileWidth / 2), startY + _location.y * firstMapTileHeight, WINSIZE_X, firstMapTileHeight);
 	_status = PeashooterStatus::WAIT;
+	_bulletType = BulletType::PEASHOOTER_BULLET;
+
+	fixFireX = 45;
+	fixFireY = -2;
 
 	_shotCount = TIMEMANAGER->getWorldTime();
 	_shotCooltime = 1.5f;
 	_alreadyShot = false;
+
+	_fireX = _rc.left + fixFireX;
+	_fireY = _rc.top + fixFireY;
 
 	return S_OK;
 }
@@ -34,24 +41,14 @@ void Peashooter::act() {
 	if (_status == PeashooterStatus::SHOT) {
 		if (_frame.currentFrameX == 1 && !_alreadyShot) {
 			_alreadyShot = true;
-			fire();
+			fire(true);
 		}
+		else fire(false);
 	}
 }
 
-void Peashooter::fire() {
-	//옵저버 전송
-}
-
-ObserveData Peashooter::getRectUpdate() {
-	ObserveData temp;
-	temp.rc = &_rc;
-	temp.recognizeRc = &_recognizeRc;
-	temp.type = &_obType;
-	return temp;
-}
-
-void Peashooter::collideObject(ObserveData obData) {
+void Peashooter::fire(bool fire) {
+	_fire = fire;
 }
 
 void Peashooter::recognizeObject(ObserveData observer) {
@@ -60,6 +57,20 @@ void Peashooter::recognizeObject(ObserveData observer) {
 		_frame.currentFrameX = 0;
 		_shotCount = TIMEMANAGER->getWorldTime();
 	}
+}
+
+BulletObserveData Peashooter::getFireUpdate() {
+	BulletObserveData temp;
+	temp.type = &_bulletObType;
+	temp.bulletType = &_bulletType;
+	temp.x = &_fireX;
+	temp.y = &_fireY;
+	temp.fire = &_fire;
+	temp.line = &_line;
+	return temp;
+}
+
+void Peashooter::fireObject(BulletObserveData observer) {
 }
 
 void Peashooter::setFrame() {

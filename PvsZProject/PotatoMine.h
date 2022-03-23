@@ -1,14 +1,12 @@
 #pragma once
 #include "Plant.h"
+const float _potatoReadyTime = 5.0f;
 
-enum class PeashooterStatus {WAIT, SHOT};
-class Peashooter : public Plant {
+enum class PotatoStatus {LOAD, READY, WAIT};
+class PotatoMine : public Plant {
 private:
-	PeashooterStatus _status;
-
-	float _shotCount;
-	float _shotCooltime;
-	bool _alreadyShot;
+	PotatoStatus _status;
+	float _readyCount;
 
 public:
 	virtual HRESULT init(PlantType type, POINT location);
@@ -16,11 +14,8 @@ public:
 	virtual void update(void);
 	virtual void render(void);
 
-	virtual void act();
-	void fire(bool fire);
-
 	virtual void recognizeObject(ObserveData observer);
-	
+
 	virtual BulletObserveData getFireUpdate();
 	virtual void fireObject(BulletObserveData observer);
 

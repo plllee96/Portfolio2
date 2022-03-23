@@ -15,6 +15,7 @@ void ObserverManager::release(void) {
 
 void ObserverManager::update(void) {
 	manageRect();
+	manageBullet();
 }
 
 void ObserverManager::render(void) {
@@ -29,6 +30,20 @@ void ObserverManager::removeObserver(Observer * observer) {
 	for (; _viObserver != _vObserver.end(); ++_viObserver) {
 		if (*_viObserver == observer) {
 			_vObserver.erase(_viObserver);
+			break;
+		}
+	}
+}
+
+void ObserverManager::registerBulletObserver(BulletObserver * observer) {
+	_vBulletObserver.push_back(observer);
+}
+
+void ObserverManager::removeBulletObserver(BulletObserver * observer) {
+	_viBulletObserver = _vBulletObserver.begin();
+	for (; _viBulletObserver != _vBulletObserver.end(); ++_viBulletObserver) {
+		if (*_viBulletObserver == observer) {
+			_vBulletObserver.erase(_viBulletObserver);
 			break;
 		}
 	}
@@ -54,17 +69,18 @@ void ObserverManager::manageRect() {
 			//Collide Plant's RecognizeRect & Zombie -> Plant Attack
 			if ((*observer.type) == ObservedType::PLANT && (*observerCompare.type) == ObservedType::ZOMBIE) {
 				RECT collisionRc;
-				if (IntersectRect(&collisionRc, observer.recognizeRc, observerCompare.rc)) {
+				if (IntersectRect(&collisionRc, observer.recognizeRc, observerCompare.rc) && *observer.line == *observerCompare.line) {
 					(*_viObserver)->recognizeObject(observerCompare);
 					continue;
 				}				
 			}
 			
-			//Collide Zombie & Plant -> Zombie Attack
+			//Collide Zombie & Plant -> Zombie Attack, Plant HP Down
 			if ((*observer.type) == ObservedType::ZOMBIE && (*observerCompare.type) == ObservedType::PLANT) {
 				RECT collisionRc;
-				if (IntersectRect(&collisionRc, observer.recognizeRc, observerCompare.rc)) {
+				if (IntersectRect(&collisionRc, observer.recognizeRc, observerCompare.rc) && *observer.line == *observerCompare.line) {
 					(*_viObserver)->recognizeObject(observerCompare);
+					(*_viObserverCompare)->collideObject(observer);
 					continue;
 				}
 			}
@@ -90,3 +106,28 @@ void ObserverManager::manageRect() {
 		}
 	}
 }
+
+void ObserverManager::manageBullet() {
+	if (_vBulletObserver.size() == 0) return;
+
+	_viBulletObserver = _vBulletObserver.begin();
+	for (; _viBulletObserver != _vBulletObserver.end(); ++_viBulletObserver) {
+		BulletObserveData observer;
+		observer = (*_viBulletObserver)->getFireUpdate();
+
+		_viBulletObserverCompare = _vBulletObserver.begin();
+		for (; _viBulletObserverCompare != _vBulletObserver.end(); ++_viBulletObserverCompare) {
+			BulletObserveData observerCompare;
+			observerCompare = (*_viBulletObserverCompare)->getFireUpdate();
+
+			if ((*observer.type) == (*observerCompare.type)) continue;
+
+			if ((*observer.type) == BulletObservedType::OBJECT && (*observerCompare.type == BulletObservedType::BULLETMANAGER)) {
+				if (*observer.fire) {
+					(*_viBulletObserverCompare)->fireObject(observer);
+				}
+			}
+		}
+	}
+}
+

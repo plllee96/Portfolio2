@@ -15,8 +15,9 @@ public:
 	virtual void render(void);
 
 	virtual void act();
+	void attack();
 
-	virtual ObserveData getRectUpdate();
+
 	virtual void collideObject(ObserveData obData);
 	virtual void recognizeObject(ObserveData observer);
 

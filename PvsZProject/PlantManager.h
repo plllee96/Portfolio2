@@ -1,11 +1,23 @@
 #pragma once
 #include "GameNode.h"
 #include "Plant.h"
+#include "Tile.h"
 
 #pragma region PLANTS
 #include "Peashooter.h"
 #include "Sunflower.h"
+#include "Wallnut.h"
+#include "CherryBomb.h"
+#include "PotatoMine.h"
+#include "Chomper.h"
 #pragma endregion
+
+struct generateTypeContainer {
+	bool isGenerate;
+	float x;
+	float y;
+	bool isSmallSun;
+};
 
 class PlantManager : public GameNode {
 private:
@@ -13,6 +25,8 @@ private:
 	typedef vector<Plant*>::iterator viPlant;
 	vPlant _vPlant;
 	viPlant _viPlant;
+
+	Tile* _tile;
 public:
 	HRESULT init(void);
 	void release(void);
@@ -23,5 +37,8 @@ public:
 	Plant* getPlant(int index) { return _vPlant[index]; }
 	void removePlant(int index);
 	void removePlant(viPlant iter);
+
+	generateTypeContainer isGeneratePlant();
+	void setTileMemory(Tile* tile) { _tile = tile; }
 };
 

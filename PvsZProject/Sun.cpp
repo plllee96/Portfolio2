@@ -19,8 +19,12 @@ HRESULT Sun::init(SunType type, float x, float y) {
 	_image = IMAGEMANAGER->addFrameImage("Sun", "Resources/Images/Objects/Sun.bmp", 106, 52, 2, 1, true, RGB(255, 0, 255));
 	_type = type;
 	if (type == SunType::GENERATE) {
-		
+		_x = x;
+		_y = y;
+		_targetY = _y + RND->getFromFloatTo(10.0f, 20.0f);
+		_xspeed = RND->getFromFloatTo(-0.5f, 0.5f);
 	}
+	_gravity = RND->getFromFloatTo(2.0f, 3.0f);
 	_timer = 0.0f;
 	_frame = 0;
 	_frameTimer = TIMEMANAGER->getWorldTime();
@@ -40,7 +44,11 @@ void Sun::update(void) {
 			}
 		} break;
 		case SunType::GENERATE: {
-
+			if (_y <= _targetY) {
+				_y -= _gravity;
+				_x += _xspeed;
+				_gravity -= 0.1f;
+			}
 		} break;
 		case SunType::GAIN: {
 			if (_x > uiX) 	_x -= (_x - uiX) * 0.05f;

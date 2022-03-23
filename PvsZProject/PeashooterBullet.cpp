@@ -1,31 +1,30 @@
 #include "Stdafx.h"
 #include "PeashooterBullet.h"
 
-HRESULT PeashooterBullet::init(BulletType type, int x, int y) {
-	Bullet::init(type, x, y);
+HRESULT PeashooterBullet::init(BulletType type, int x, int y, int line) {
+	Bullet::init(type, x, y, line);
+	_image = IMAGEMANAGER->addFrameImage("PeashooterBullet", "Resources/Images/Plants/Bullet/Peashooter_Bullet.bmp", 84, 34, 3, 1, true, RGB(255, 0, 255));
+	_damage = 1.0f;
+	_rc = _recognizeRc = RectMake(x, y, _image->getFrameWidth(), _image->getFrameHeight());
+
 	return S_OK;
 }
 
 void PeashooterBullet::release(void) {
+	Bullet::release();
 }
 
 void PeashooterBullet::update(void) {
-	cout << "PeashooterBullet::update" << endl;;
+	_x += 2;
+	_rc = _recognizeRc = RectMake(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
 }
 
 void PeashooterBullet::render(void) {
-}
-
-ObserveData PeashooterBullet::getRectUpdate() {
-	ObserveData temp;
-	temp.rc = &_rc;
-	temp.recognizeRc = &_recognizeRc;
-	temp.type = &_obType;
-	temp.damage = &_damage;
-	return temp;
+	_image->frameRender(getMemDC(), _x, _y, 0, 0);
 }
 
 void PeashooterBullet::collideObject(ObserveData obData) {
+	if (*obData.type == ObservedType::ZOMBIE && *obData.line == _line) _active = false;
 }
 
 void PeashooterBullet::recognizeObject(ObserveData observer) {
