@@ -160,12 +160,14 @@
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameNode.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="Grave.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="InvisibleRect.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="MushroomBullet.cpp" />
     <ClCompile Include="NormalZombie.cpp" />
     <ClCompile Include="NumberImage.cpp" />
     <ClCompile Include="ObserverManager.cpp" />
@@ -176,6 +178,8 @@
     <ClCompile Include="PotatoExplode.cpp" />
     <ClCompile Include="PotatoMine.cpp" />
     <ClCompile Include="Progressbar.cpp" />
+    <ClCompile Include="Puffshroom.cpp" />
+    <ClCompile Include="Scaredyshroom.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Stdafx.cpp">
@@ -184,6 +188,7 @@
     </ClCompile>
     <ClCompile Include="Sun.cpp" />
     <ClCompile Include="Sunflower.cpp" />
+    <ClCompile Include="Sunshroom.cpp" />
     <ClCompile Include="TempSoundManager.cpp" />
     <ClCompile Include="TextDataManager.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -210,12 +215,14 @@
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="GameNode.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Grave.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="InvisibleRect.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="MushroomBullet.h" />
     <ClInclude Include="NormalZombie.h" />
     <ClInclude Include="NumberImage.h" />
     <ClInclude Include="Observer.h" />
@@ -228,13 +235,16 @@
     <ClInclude Include="PotatoExplode.h" />
     <ClInclude Include="PotatoMine.h" />
     <ClInclude Include="Progressbar.h" />
+    <ClInclude Include="Puffshroom.h" />
     <ClInclude Include="RandomFunction.h" />
+    <ClInclude Include="Scaredyshroom.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SingletonBase.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="Sun.h" />
     <ClInclude Include="Sunflower.h" />
+    <ClInclude Include="Sunshroom.h" />
     <ClInclude Include="TempSoundManager.h" />
     <ClInclude Include="TextDataManager.h" />
     <ClInclude Include="Tile.h" />

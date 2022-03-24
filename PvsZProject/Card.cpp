@@ -67,6 +67,19 @@ void Card::initCardImage() {
 		"PotatoMine_Icon", "Resources/Images/Plants/Icon/PotatoMine_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
 	case PlantType::CHOMPER: _cardImage = IMAGEMANAGER->addFrameImage(
 		"Chomper_Icon", "Resources/Images/Plants/Icon/Chomper_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
+
+	case PlantType::PUFFSHROOM: _cardImage = IMAGEMANAGER->addFrameImage(
+		"PuffShroom_Icon", "Resources/Images/Plants/Icon/PuffShroom_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
+	case PlantType::SUNSHROOM: _cardImage = IMAGEMANAGER->addFrameImage(
+		"Sunshroom_Icon", "Resources/Images/Plants/Icon/Sunshroom_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
+	case PlantType::FUMESHROOM: _cardImage = IMAGEMANAGER->addFrameImage(
+		"FumeShroom_Icon", "Resources/Images/Plants/Icon/FumeShroom_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
+	case PlantType::SCAREDYSHROOM: _cardImage = IMAGEMANAGER->addFrameImage(
+		"ScaredyShroom_Icon", "Resources/Images/Plants/Icon/ScaredyShroom_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
+	case PlantType::GRAVEBUSTER: _cardImage = IMAGEMANAGER->addFrameImage(
+		"GraveBuster_Icon", "Resources/Images/Plants/Icon/GraveBuster_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
+
+		
 	//아이콘 제작 후 전부 추가할 것
 	}
 }

@@ -16,7 +16,7 @@ void PeashooterBullet::release(void) {
 
 void PeashooterBullet::update(void) {
 	_x += 2;
-	_rc = _recognizeRc = RectMake(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
+	_rc = _recognizeRc = RectMake(_x, _y + 15, _image->getFrameWidth(), _image->getFrameHeight() - 10);
 }
 
 void PeashooterBullet::render(void) {
@@ -24,7 +24,7 @@ void PeashooterBullet::render(void) {
 }
 
 void PeashooterBullet::collideObject(ObserveData obData) {
-	if (*obData.type == ObservedType::ZOMBIE && *obData.line == _line) _active = false;
+	if (*obData.type == ObservedType::ZOMBIE) _active = false;
 }
 
 void PeashooterBullet::recognizeObject(ObserveData observer) {

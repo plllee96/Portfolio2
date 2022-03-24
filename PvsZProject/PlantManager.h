@@ -10,6 +10,9 @@
 #include "CherryBomb.h"
 #include "PotatoMine.h"
 #include "Chomper.h"
+#include "Puffshroom.h"
+#include "Sunshroom.h"
+#include "Scaredyshroom.h"
 #pragma endregion
 
 struct generateTypeContainer {
@@ -17,6 +20,7 @@ struct generateTypeContainer {
 	float x;
 	float y;
 	bool isSmallSun;
+	bool isTwin;
 };
 
 class PlantManager : public GameNode {

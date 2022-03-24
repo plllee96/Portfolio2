@@ -6,6 +6,7 @@
 #include "PeashooterBullet.h"
 #include "CherryExplode.h"
 #include "PotatoExplode.h"
+#include "MushroomBullet.h"
 
 #include "InvisibleRect.h"
 #pragma endregion

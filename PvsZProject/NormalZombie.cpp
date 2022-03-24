@@ -22,11 +22,11 @@ void NormalZombie::update(void) {
 	setFrame();
 	updateFrame();
 	attack();
-	_rc = _recognizeRc = RectMake(_x, startY + _line * firstMapTileHeight - fixY, _image->getFrameWidth(), _image->getFrameHeight());
+	_rc = _recognizeRc = RectMake(_x, startY + _line * firstMapTileHeight - fixY + 40, _image->getFrameWidth(), _image->getFrameHeight() - 60);
 }
 
 void NormalZombie::render(void) {
-	_image->frameRender(getMemDC(), _rc.left - 10, _rc.top, _frame.currentFrameX, _frame.currentFrameY);
+	_image->frameRender(getMemDC(), _rc.left - 10, _rc.top - 40, _frame.currentFrameX, _frame.currentFrameY);
 }
 
 void NormalZombie::act() {

@@ -3,7 +3,6 @@
 
 HRESULT GameScene::init(void) {
 	_camera = RectMake(100, 0, WINSIZE_X, WINSIZE_Y);		//tempCameraPosition
-	_background = IMAGEMANAGER->addImage("Background", "Resources/Images/Backgrounds/Stage1.bmp", 894, 384, false, RGB(255, 0, 255));
 	_sunIcon = IMAGEMANAGER->addImage("SunIcon", "Resources/Images/Objects/SunIcon.bmp", 32, 32, true, RGB(255, 0, 255));
 
 	_status = GameStatus::PLAY;
@@ -13,7 +12,14 @@ HRESULT GameScene::init(void) {
 
 	////////////////////////////////
 	//loadStage();
-	_stageNum = 0;
+	_stageNum = 1;
+	switch (_stageNum) {
+		case 0: _background = IMAGEMANAGER->addImage("Stage1", "Resources/Images/Backgrounds/Stage1.bmp", 894, 384, false, RGB(255, 0, 255)); break;
+		case 1: _background = IMAGEMANAGER->addImage("Stage2", "Resources/Images/Backgrounds/Stage2.bmp", 894, 384, false, RGB(255, 0, 255)); break;
+		case 2: _background = IMAGEMANAGER->addImage("Stage3", "Resources/Images/Backgrounds/Stage3.bmp", 894, 384, false, RGB(255, 0, 255)); break;
+		case 3: break;
+		default : _background = IMAGEMANAGER->addImage("Stage1", "Resources/Images/Backgrounds/Stage1.bmp", 894, 384, false, RGB(255, 0, 255));
+	}
 	
 	//debug
 	_stageTimer = 180.0f;
@@ -23,14 +29,13 @@ HRESULT GameScene::init(void) {
 
 	_sun = 1000;
 	_sunCount = TIMEMANAGER->getWorldTime();
-	_sunCooltime = 7.0f;
+	if (_stageNum == 0 || _stageNum == 2) _sunCooltime = 7.0f;
+	else _sunCooltime = 9999.0f;
 	_sunNumX = 78;
 	_sunNumY = 30;
 
 	_zombieCount = TIMEMANAGER->getWorldTime();
 	_zombieCooltime = 10.0f;
-
-
 
 	//init Class
 	_tile = new Tile;
@@ -62,15 +67,11 @@ void GameScene::update(void) {
 	switch (_status) {
 	case GameStatus::SETTING: {
 		/*
-		_inventory가 _deck의 MAX치보다 같거나 적을 경우
-		or Ready 버튼을 누를 경우
+		Ready 버튼을 눌렀을 경우 && (Deck이 maxDeck 개수와 같을 경우
+			1. 인벤토리 랜더링 중지
+			2. 카메라 이동(if 시작위치가 아님 : 이동, 시작위치에 도착 : GameStatus::PLAY
+			//_status = GameStatus::PLAY;
 		*/
-		/*
-		선행작업
-		1. 인벤토리 랜더링 중지
-		2. 카메라 이동
-		*/
-		//_status = GameStatus::PLAY;
 	}break;
 	case GameStatus::PLAY: {
 		//Ready, Set, Plant! 화면 선행
@@ -161,7 +162,7 @@ void GameScene::mouseControl() {
 			_viSun = _vSun.begin();
 			for (; _viSun != _vSun.end(); ++_viSun) {
 				if (PtInRect(&(*_viSun)->getRect(), _ptMouse)) {
-					_sun += 25;
+					((*_viSun)->isSmall()) ? _sun += 15 : _sun += 25;
 					(*_viSun)->setType(SunType::GAIN);
 					break;
 				}
@@ -173,11 +174,23 @@ void GameScene::mouseControl() {
 		case CursorSelect::PLANT: {
 			int tempIndex = _tile->selectTile();
 			if (tempIndex != -1 && _selectedPlant != PlantType::NONE) {
-				if (!_tile->getTile(tempIndex).hasPlant) {
-					_tile->setPlant(tempIndex, true);
-					_pm->addPlant(_deck->getPlant(_selectedPlantIndex), _tile->getLocation(tempIndex));
-					_deck->getCard(_selectedPlantIndex)->startCoolTime();
-					_sun -= _deck->getCard(_selectedPlantIndex)->getPrice();
+				if (!_tile->getTile(tempIndex).hasPlant && !_tile->getTile(tempIndex).hasObstacle) {
+					if (_tile->getTile(tempIndex).isWater) {
+						//Lilypad만 설치 가능
+						if (_selectedPlant == PlantType::LILYPAD) {
+							//설치
+						}
+						//Lilypad가 설치되어 있는 타일인 경우에만 설치
+						else if (true) {
+
+						}
+					}
+					else {
+						_tile->setPlant(tempIndex, true);
+						_pm->addPlant(_deck->getPlant(_selectedPlantIndex), _tile->getLocation(tempIndex));
+						_deck->getCard(_selectedPlantIndex)->startCoolTime();
+						_sun -= _deck->getCard(_selectedPlantIndex)->getPrice();
+					}
 				}
 			}
 			_cursor = CursorSelect::NONE;
@@ -222,7 +235,15 @@ void GameScene::sunControl() {
 	if (temp.isGenerate) {
 		Sun* sun = new Sun;
 		sun->init(SunType::GENERATE, temp.x, temp.y);
+		if (temp.isSmallSun) sun->setSmall();
 		_vSun.push_back(sun);
+
+		if (temp.isTwin) {
+			Sun* sun2 = new Sun;
+			sun2->init(SunType::GENERATE, temp.x, temp.y);
+			if (temp.isSmallSun) sun2->setSmall();
+			_vSun.push_back(sun2);
+		}
 	}
 
 	_viSun = _vSun.begin();
@@ -238,6 +259,8 @@ void GameScene::sunControl() {
 }
 
 void GameScene::zombieControl() {
+	//wave시간이 될 경우 8초 후 대량 스폰
+
 	if (_zombieCount + _zombieCooltime < TIMEMANAGER->getWorldTime()) {
 		_zombieCount = TIMEMANAGER->getWorldTime();
 		_zm->addZombie(ZombieType::ZOMBIE, RND->getInt(5));	//이후  getInt숫자를 maxTiileAmount로 바꿀것

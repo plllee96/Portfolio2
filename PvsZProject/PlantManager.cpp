@@ -35,6 +35,10 @@ void PlantManager::addPlant(PlantType type, POINT location) {
 		case PlantType::CHERRYBOMB: temp = new CherryBomb; break;
 		case PlantType::POTATOMINE: temp = new PotatoMine; break;
 		case PlantType::CHOMPER: temp = new Chomper; break;
+
+		case PlantType::PUFFSHROOM: temp = new Puffshroom; break;
+		case PlantType::SUNSHROOM: temp = new Sunshroom; break;
+		case PlantType::SCAREDYSHROOM: temp = new Scaredyshroom; break;
 		default: temp = new Plant;
 	}
 	temp->init(type, location);
@@ -65,6 +69,34 @@ generateTypeContainer PlantManager::isGeneratePlant() {
 				tempContainer.x = temp->getRect().left;
 				tempContainer.y = temp->getRect().top;
 				tempContainer.isSmallSun = false;
+				tempContainer.isTwin = false;
+				temp->setGenerate(false);
+				return tempContainer;
+			}
+			else continue;
+		}
+		else if ((*_viPlant)->getType() == PlantType::SUNSHROOM) {
+			Sunshroom* temp = static_cast<Sunshroom*>(*_viPlant);
+			if (temp->isGenerate()) {
+				tempContainer.isGenerate = true;
+				tempContainer.x = temp->getRect().left;
+				tempContainer.y = temp->getRect().top;
+				if (temp->isGrow()) tempContainer.isSmallSun = false;
+				else tempContainer.isSmallSun = true;
+				tempContainer.isTwin = false;
+				temp->setGenerate(false);
+				return tempContainer;
+			}
+			else continue;
+		}
+		else if ((*_viPlant)->getType() == PlantType::TWINSUNFLOWER) {
+			Sunflower* temp = static_cast<Sunflower*>(*_viPlant);
+			if (temp->isGenerate()) {
+				tempContainer.isGenerate = true;
+				tempContainer.x = temp->getRect().left;
+				tempContainer.y = temp->getRect().top;
+				tempContainer.isSmallSun = false;
+				tempContainer.isTwin = true;
 				temp->setGenerate(false);
 				return tempContainer;
 			}

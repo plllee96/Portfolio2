@@ -18,6 +18,9 @@ HRESULT Tile::init(int stageNum) {
 		if (_row == 5) temp.rc = RectMake(startX + (i%_column) * tileWidth, startY + (i/_column) * firstMapTileHeight, tileWidth, firstMapTileHeight);
 		else temp.rc = RectMake(startX + (i%_column) * tileWidth, startY + (i / _column) * firstMapTileHeight, tileWidth, firstMapTileHeight);
 		temp.hasPlant = false;
+		temp.hasObstacle = false;
+		temp.isWater = false;
+		temp.hasLilypad = false;
 		_vTile.push_back(temp);
 	}
 	return S_OK;

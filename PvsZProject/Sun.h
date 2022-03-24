@@ -10,8 +10,9 @@ const float uiY = 20;
 class Sun : public GameNode {
 private:
 	Image* _image;
-
+	Image* _smallImage;
 	SunType _type;
+	bool _small;
 	float _x;
 	float _y;
 	float _targetY;
@@ -33,8 +34,11 @@ public:
 	
 	RECT getRect() { return _rc; }
 	void setType(SunType type) { _type = type; }
+	void setSmall() { _small = true; }
+	bool isSmall() { return _small; }
 	bool isOverTime();
 	bool isCompleteObtained();
+
 
 	Sun() {}
 	~Sun() {}

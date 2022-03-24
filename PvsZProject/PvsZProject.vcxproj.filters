@@ -130,6 +130,21 @@
     <ClCompile Include="InvisibleRect.cpp">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClCompile>
+    <ClCompile Include="Puffshroom.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="MushroomBullet.cpp">
+      <Filter>MainGame\Object\Bullet\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="Grave.cpp">
+      <Filter>MainGame\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Sunshroom.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="Scaredyshroom.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -278,6 +293,21 @@
     </ClInclude>
     <ClInclude Include="InvisibleRect.h">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="Puffshroom.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="MushroomBullet.h">
+      <Filter>MainGame\Object\Bullet\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="Grave.h">
+      <Filter>MainGame\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Sunshroom.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="Scaredyshroom.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

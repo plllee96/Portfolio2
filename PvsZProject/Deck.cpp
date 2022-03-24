@@ -2,12 +2,17 @@
 #include "Deck.h"
 
 HRESULT Deck::init(void) {
-	addCard(PlantType::PEASHOOTER, 100, 10.0f);
-	addCard(PlantType::SUNFLOWER, 50, 10.0f);
+	//addCard(PlantType::PEASHOOTER, 100, 10.0f);
+	//addCard(PlantType::SUNFLOWER, 50, 10.0f);
 	addCard(PlantType::WALLNUT, 50, 10.0f);
-	addCard(PlantType::CHERRYBOMB, 150, 30.0f);
-	addCard(PlantType::POTATOMINE, 25, 10.0f);
-	addCard(PlantType::CHOMPER, 150, 30.0f);
+	//addCard(PlantType::CHERRYBOMB, 150, 30.0f);
+	//addCard(PlantType::POTATOMINE, 25, 10.0f);
+	//addCard(PlantType::CHOMPER, 150, 30.0f);
+	addCard(PlantType::PUFFSHROOM, 0, 10.0f);
+	addCard(PlantType::SUNSHROOM, 25, 10.0f);
+	addCard(PlantType::FUMESHROOM, 75, 10.0f);
+	addCard(PlantType::SCAREDYSHROOM, 25, 10.0f);
+	addCard(PlantType::GRAVEBUSTER, 75, 20.0f);
 	return S_OK;
 }
 
