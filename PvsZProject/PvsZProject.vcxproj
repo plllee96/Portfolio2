@@ -158,9 +158,11 @@
     <ClCompile Include="Chomper.cpp" />
     <ClCompile Include="Deck.cpp" />
     <ClCompile Include="FontManager.cpp" />
+    <ClCompile Include="FumeShroom.cpp" />
+    <ClCompile Include="FumeshroomBullet.cpp" />
     <ClCompile Include="GameNode.cpp" />
     <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="Grave.cpp" />
+    <ClCompile Include="Gravebuster.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="Inventory.cpp" />
@@ -213,9 +215,11 @@
     <ClInclude Include="CommonMacroFunction.h" />
     <ClInclude Include="Deck.h" />
     <ClInclude Include="FontManager.h" />
+    <ClInclude Include="FumeShroom.h" />
+    <ClInclude Include="FumeshroomBullet.h" />
     <ClInclude Include="GameNode.h" />
     <ClInclude Include="GameScene.h" />
-    <ClInclude Include="Grave.h" />
+    <ClInclude Include="Gravebuster.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="Inventory.h" />

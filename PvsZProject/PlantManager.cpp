@@ -13,6 +13,10 @@ void PlantManager::update(void) {
 	for (; _viPlant != _vPlant.end(); ++_viPlant) {
 		(*_viPlant)->update();
 		if (!(*_viPlant)->isActive()) {
+			//GRAVEBUSTER老 版快 贸府
+			if ((*_viPlant)->getType() == PlantType::GRAVEBUSTER) {
+				removeObstacle(_viPlant);
+			}
 			removePlant(_viPlant);
 			break;
 		}
@@ -39,6 +43,8 @@ void PlantManager::addPlant(PlantType type, POINT location) {
 		case PlantType::PUFFSHROOM: temp = new Puffshroom; break;
 		case PlantType::SUNSHROOM: temp = new Sunshroom; break;
 		case PlantType::SCAREDYSHROOM: temp = new Scaredyshroom; break;
+		case PlantType::FUMESHROOM: temp = new FumeShroom; break;
+		case PlantType::GRAVEBUSTER: temp = new Gravebuster; break;
 		default: temp = new Plant;
 	}
 	temp->init(type, location);
@@ -56,6 +62,11 @@ void PlantManager::removePlant(viPlant iter) {
 	_tile->setPlant(temp, false);
 	(*iter)->release();
 	_vPlant.erase(iter);
+}
+
+void PlantManager::removeObstacle(viPlant iter) {
+	int temp = (*iter)->getLocation().x + _tile->getColumn() * (*iter)->getLocation().y;
+	_tile->setObstacle(temp, false);
 }
 
 generateTypeContainer PlantManager::isGeneratePlant() {

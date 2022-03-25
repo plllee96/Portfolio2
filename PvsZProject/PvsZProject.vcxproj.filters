@@ -136,14 +136,20 @@
     <ClCompile Include="MushroomBullet.cpp">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClCompile>
-    <ClCompile Include="Grave.cpp">
-      <Filter>MainGame\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Sunshroom.cpp">
       <Filter>MainGame\Object\Plant\Plants</Filter>
     </ClCompile>
     <ClCompile Include="Scaredyshroom.cpp">
       <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="Gravebuster.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="FumeShroom.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="FumeshroomBullet.cpp">
+      <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -300,14 +306,20 @@
     <ClInclude Include="MushroomBullet.h">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClInclude>
-    <ClInclude Include="Grave.h">
-      <Filter>MainGame\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Sunshroom.h">
       <Filter>MainGame\Object\Plant\Plants</Filter>
     </ClInclude>
     <ClInclude Include="Scaredyshroom.h">
       <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="Gravebuster.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="FumeShroom.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="FumeshroomBullet.h">
+      <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

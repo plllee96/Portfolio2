@@ -174,22 +174,32 @@ void GameScene::mouseControl() {
 		case CursorSelect::PLANT: {
 			int tempIndex = _tile->selectTile();
 			if (tempIndex != -1 && _selectedPlant != PlantType::NONE) {
-				if (!_tile->getTile(tempIndex).hasPlant && !_tile->getTile(tempIndex).hasObstacle) {
-					if (_tile->getTile(tempIndex).isWater) {
+				if (!_tile->getTile(tempIndex).hasPlant) {
+					if (_tile->getTile(tempIndex).hasObstacle) {
+						if (_selectedPlant == PlantType::GRAVEBUSTER) {
+							_tile->setPlant(tempIndex, true);
+							_pm->addPlant(_deck->getPlant(_selectedPlantIndex), _tile->getLocation(tempIndex));
+							_deck->getCard(_selectedPlantIndex)->startCoolTime();
+							_sun -= _deck->getCard(_selectedPlantIndex)->getPrice();
+						}
+					}
+					else if (_tile->getTile(tempIndex).isWater) {
 						//Lilypad만 설치 가능
 						if (_selectedPlant == PlantType::LILYPAD) {
 							//설치
 						}
-						//Lilypad가 설치되어 있는 타일인 경우에만 설치
-						else if (true) {
+						
+						else if (true) {	//Lilypad가 설치되어 있는 타일인 경우에만 설치
 
 						}
 					}
 					else {
-						_tile->setPlant(tempIndex, true);
-						_pm->addPlant(_deck->getPlant(_selectedPlantIndex), _tile->getLocation(tempIndex));
-						_deck->getCard(_selectedPlantIndex)->startCoolTime();
-						_sun -= _deck->getCard(_selectedPlantIndex)->getPrice();
+						if (_selectedPlant != PlantType::GRAVEBUSTER) {
+							_tile->setPlant(tempIndex, true);
+							_pm->addPlant(_deck->getPlant(_selectedPlantIndex), _tile->getLocation(tempIndex));
+							_deck->getCard(_selectedPlantIndex)->startCoolTime();
+							_sun -= _deck->getCard(_selectedPlantIndex)->getPrice();
+						}
 					}
 				}
 			}

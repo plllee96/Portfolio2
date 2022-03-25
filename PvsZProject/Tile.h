@@ -7,17 +7,22 @@ const int tileWidth = 52;
 const int firstMapTileHeight = 63;
 const int secondMapTileHeight = 52;
 
+enum class ObstacleType {TOMB, HOLE};
 struct SingleTile {
 	RECT rc;
 	int x;
 	int y;
+	int tombType;
 	bool hasPlant;
 	bool hasObstacle;
 	bool hasLilypad;
 	bool isWater;
 };
+
 class Tile : public GameNode {
 private:
+	Image* _image;
+
 	int _row;
 	int _column;
 	vector<SingleTile> _vTile;
@@ -40,5 +45,6 @@ public:
 	int getRow() { return _row; }
 	int getColumn() { return _column; }
 
+	void setNightObstacle(int num);
 };
 

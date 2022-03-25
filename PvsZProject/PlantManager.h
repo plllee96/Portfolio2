@@ -13,6 +13,8 @@
 #include "Puffshroom.h"
 #include "Sunshroom.h"
 #include "Scaredyshroom.h"
+#include "Gravebuster.h"
+#include "FumeShroom.h"
 #pragma endregion
 
 struct generateTypeContainer {
@@ -41,6 +43,7 @@ public:
 	Plant* getPlant(int index) { return _vPlant[index]; }
 	void removePlant(int index);
 	void removePlant(viPlant iter);
+	void removeObstacle(viPlant iter);
 
 	generateTypeContainer isGeneratePlant();
 	void setTileMemory(Tile* tile) { _tile = tile; }

@@ -37,6 +37,7 @@ void BulletManager::addBullet(BulletType type, int x, int y, int line) {
 		case BulletType::POTATO_EXPLODE: temp = new PotatoExplode; break;
 		case BulletType::MUSHROOM_BULLET: temp = new MushroomBullet; break;
 		case BulletType::INVISIBLE_RECT: temp = new InvisibleRect; break;
+		case BulletType::FUMESHROOM_BULLET: temp = new FumeshroomBullet; break;
 		default: temp = new Bullet;
 	}
 	temp->init(type, x, y, line);
