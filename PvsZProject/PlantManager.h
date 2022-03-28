@@ -15,6 +15,12 @@
 #include "Scaredyshroom.h"
 #include "Gravebuster.h"
 #include "FumeShroom.h"
+#include "Lilypad.h"
+#include "Cabbagepult.h"
+#include "Cactus.h"
+#include "Jalapeno.h"
+#include "Threepeater.h"
+#include "TwinSunflower.h"
 #pragma endregion
 
 struct generateTypeContainer {
@@ -31,6 +37,8 @@ private:
 	typedef vector<Plant*>::iterator viPlant;
 	vPlant _vPlant;
 	viPlant _viPlant;
+	int _stageNum;
+	int _currentTile;
 
 	Tile* _tile;
 public:
@@ -47,5 +55,6 @@ public:
 
 	generateTypeContainer isGeneratePlant();
 	void setTileMemory(Tile* tile) { _tile = tile; }
+	void setStage(int num);
 };
 

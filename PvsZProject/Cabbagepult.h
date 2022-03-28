@@ -1,0 +1,29 @@
+#pragma once
+#include "Plant.h"
+
+enum class CabbageStatus { WAIT, SHOT };
+class Cabbagepult : public Plant {
+private:
+	CabbageStatus _status;
+
+	float _shotCount;
+	float _shotCooltime;
+	bool _alreadyShot;
+
+	RECT _recogZombieRC;
+
+public:
+	virtual HRESULT init(PlantType type, POINT location);
+	virtual void release(void);
+	virtual void update(void);
+	virtual void render(void);
+
+	virtual void act();
+	void fire(bool fire);
+
+	virtual void recognizeObject(ObserveData observer);
+
+	void setFrame();
+	void updateFrame();
+};
+

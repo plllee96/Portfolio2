@@ -6,6 +6,7 @@
 #include "Bullet.h"
 
 HRESULT ObserverManager::init(void) {
+	_tempRC = { 0,0,0,0 };
 	return S_OK;
 }
 
@@ -68,11 +69,23 @@ void ObserverManager::manageRect() {
 
 			//Collide Plant's RecognizeRect & Zombie -> Plant Attack
 			if ((*observer.type) == ObservedType::PLANT && (*observerCompare.type) == ObservedType::ZOMBIE) {
+				bool isRecognize;
+				if ((*observer.plantType) == PlantType::THREEPEATER) {
+					isRecognize = (*observer.line == *observerCompare.line || *observer.line == *observerCompare.line - 1 || *observer.line == *observerCompare.line + 1);
+				}
+				else isRecognize = *observer.line == *observerCompare.line;
+
 				RECT collisionRc;
-				if (IntersectRect(&collisionRc, observer.recognizeRc, observerCompare.rc) && *observer.line == *observerCompare.line) {
+				if (IntersectRect(&collisionRc, observer.recognizeRc, observerCompare.rc) && isRecognize) {
 					(*_viObserver)->recognizeObject(observerCompare);
+
+					bool emptyRC = (_tempRC.left == 0 && _tempRC.right == 0 && _tempRC.top == 0 && _tempRC.bottom == 0);
+					if ((*observer.plantType) == PlantType::CABBAGEPULT && emptyRC) {
+						_tempRC = (*observerCompare.rc);
+					}
 					continue;
-				}				
+				}
+				
 			}
 			
 			//Collide Zombie & Plant -> Zombie Attack, Plant HP Down
@@ -124,7 +137,11 @@ void ObserverManager::manageBullet() {
 
 			if ((*observer.type) == BulletObservedType::OBJECT && (*observerCompare.type == BulletObservedType::BULLETMANAGER)) {
 				if (*observer.fire) {
-					(*_viBulletObserverCompare)->fireObject(observer);
+					if ((*observer.plantType) == PlantType::CABBAGEPULT) {
+						(*_viBulletObserverCompare)->fireObject(observer, _tempRC);
+						_tempRC = { 0,0,0,0 };
+					}
+					else (*_viBulletObserverCompare)->fireObject(observer);
 				}
 			}
 		}

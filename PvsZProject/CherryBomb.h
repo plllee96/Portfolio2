@@ -9,9 +9,6 @@ public:
 	virtual void update(void);
 	virtual void render(void);
 
-	virtual BulletObserveData getFireUpdate();
-	virtual void fireObject(BulletObserveData observer);
-
 	void updateFrame();
 };
 

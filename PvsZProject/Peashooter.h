@@ -20,9 +20,7 @@ public:
 	void fire(bool fire);
 
 	virtual void recognizeObject(ObserveData observer);
-	
-	virtual BulletObserveData getFireUpdate();
-	virtual void fireObject(BulletObserveData observer);
+
 
 	void setFrame();
 	void updateFrame();

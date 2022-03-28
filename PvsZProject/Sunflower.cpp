@@ -4,7 +4,7 @@
 HRESULT Sunflower::init(PlantType type, POINT location) {
 	Plant::init(type, location);
 	_image = IMAGEMANAGER->addFrameImage("Sunflower", "Resources/Images/Plants/Sunflower.bmp", 464, 128, 8, 2, true, RGB(255, 0, 255));
-	_rc = _recognizeRc = RectMake(startX + _location.x * tileWidth, startY + _location.y * firstMapTileHeight, tileWidth, firstMapTileHeight);
+	_rc = _recognizeRc = RectMake(startX + _location.x * tileWidth, startY + _location.y * _tileHeight, tileWidth, _tileHeight);
 	_status = SunflowerStatus::WAIT;
 
 	_generateCooltime = 10.0f;

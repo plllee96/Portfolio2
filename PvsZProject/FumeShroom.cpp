@@ -4,8 +4,8 @@
 HRESULT FumeShroom::init(PlantType type, POINT location) {
 	Plant::init(type, location);
 	_image = IMAGEMANAGER->addFrameImage("FumeShroom", "Resources/Images/Plants/FumeShroom.bmp", 376, 156, 4, 2, true, RGB(255, 0, 255));
-	_rc = RectMake(startX + _location.x * tileWidth, startY + _location.y * firstMapTileHeight, tileWidth, firstMapTileHeight);
-	_recognizeRc = RectMake(startX + _location.x * tileWidth + (tileWidth / 2), startY + _location.y * firstMapTileHeight, tileWidth*5, firstMapTileHeight);
+	_rc = RectMake(startX + _location.x * tileWidth, startY + _location.y * _tileHeight, tileWidth, _tileHeight);
+	_recognizeRc = RectMake(startX + _location.x * tileWidth + (tileWidth / 2), startY + _location.y * _tileHeight, tileWidth*5, _tileHeight);
 	_status = FumeshroomStatus::WAIT;
 	_bulletType = BulletType::FUMESHROOM_BULLET;
 
@@ -57,21 +57,6 @@ void FumeShroom::recognizeObject(ObserveData observer) {
 		_shotCount = TIMEMANAGER->getWorldTime();
 	}
 }
-
-BulletObserveData FumeShroom::getFireUpdate() {
-	BulletObserveData temp;
-	temp.type = &_bulletObType;
-	temp.bulletType = &_bulletType;
-	temp.x = &_fireX;
-	temp.y = &_fireY;
-	temp.fire = &_fire;
-	temp.line = &_line;
-	return temp;
-}
-
-void FumeShroom::fireObject(BulletObserveData observer) {
-}
-
 void FumeShroom::setFrame() {
 	switch (_status) {
 		case FumeshroomStatus::WAIT: {

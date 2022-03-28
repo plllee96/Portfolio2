@@ -4,7 +4,7 @@
 HRESULT Sunshroom::init(PlantType type, POINT location) {
 	Plant::init(type, location);
 	_image = IMAGEMANAGER->addFrameImage("SunShroom", "Resources/Images/Plants/SunShroom.bmp", 240, 100, 5, 2, true, RGB(255, 0, 255));
-	_rc = _recognizeRc = RectMake(startX + _location.x * tileWidth, startY + _location.y * firstMapTileHeight, tileWidth, firstMapTileHeight);
+	_rc = _recognizeRc = RectMake(startX + _location.x * tileWidth, startY + _location.y * _tileHeight, tileWidth, _tileHeight);
 	_status = SunshroomStatus::WAIT;
 
 	_generateCooltime = 10.0f;

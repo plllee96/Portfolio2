@@ -12,7 +12,7 @@ HRESULT GameScene::init(void) {
 
 	////////////////////////////////
 	//loadStage();
-	_stageNum = 1;
+	_stageNum = 2;
 	switch (_stageNum) {
 		case 0: _background = IMAGEMANAGER->addImage("Stage1", "Resources/Images/Backgrounds/Stage1.bmp", 894, 384, false, RGB(255, 0, 255)); break;
 		case 1: _background = IMAGEMANAGER->addImage("Stage2", "Resources/Images/Backgrounds/Stage2.bmp", 894, 384, false, RGB(255, 0, 255)); break;
@@ -46,13 +46,16 @@ HRESULT GameScene::init(void) {
 
 	_zm = new ZombieManager;
 	_zm->init();
+	_zm->setStage(_stageNum);
 
 	_bm = new BulletManager;
 	_bm->init();
+	_bm->setStage(_stageNum);
 
 	_pm = new PlantManager;
 	_pm->init();
 	_pm->setTileMemory(_tile);
+	_pm->setStage(_stageNum);
 
 	_deck = new Deck;
 	_deck->init();
@@ -184,17 +187,23 @@ void GameScene::mouseControl() {
 						}
 					}
 					else if (_tile->getTile(tempIndex).isWater) {
-						//Lilypad만 설치 가능
 						if (_selectedPlant == PlantType::LILYPAD) {
-							//설치
+							_tile->setPlant(tempIndex, false);
+							_tile->setLilypad(tempIndex, true);
+							_pm->addPlant(_deck->getPlant(_selectedPlantIndex), _tile->getLocation(tempIndex));
+							_deck->getCard(_selectedPlantIndex)->startCoolTime();
+							_sun -= _deck->getCard(_selectedPlantIndex)->getPrice();
 						}
 						
-						else if (true) {	//Lilypad가 설치되어 있는 타일인 경우에만 설치
-
+						else if (_tile->getTile(tempIndex).hasLilypad) {	//Lilypad가 설치되어 있는 타일인 경우에만 설치
+							_tile->setPlant(tempIndex, true);
+							_pm->addPlant(_deck->getPlant(_selectedPlantIndex), _tile->getLocation(tempIndex));
+							_deck->getCard(_selectedPlantIndex)->startCoolTime();
+							_sun -= _deck->getCard(_selectedPlantIndex)->getPrice();
 						}
 					}
 					else {
-						if (_selectedPlant != PlantType::GRAVEBUSTER) {
+						if (_selectedPlant != PlantType::GRAVEBUSTER && _selectedPlant != PlantType::LILYPAD) {
 							_tile->setPlant(tempIndex, true);
 							_pm->addPlant(_deck->getPlant(_selectedPlantIndex), _tile->getLocation(tempIndex));
 							_deck->getCard(_selectedPlantIndex)->startCoolTime();
@@ -273,7 +282,7 @@ void GameScene::zombieControl() {
 
 	if (_zombieCount + _zombieCooltime < TIMEMANAGER->getWorldTime()) {
 		_zombieCount = TIMEMANAGER->getWorldTime();
-		_zm->addZombie(ZombieType::ZOMBIE, RND->getInt(5));	//이후  getInt숫자를 maxTiileAmount로 바꿀것
+		_zm->addZombie(ZombieType::ZOMBIE, RND->getInt(_tile->getRow()));
 	}
 	
 }

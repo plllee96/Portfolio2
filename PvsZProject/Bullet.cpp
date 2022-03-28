@@ -13,6 +13,7 @@ HRESULT Bullet::init(BulletType type, int x, int y, int line) {
 	_line = line;
 	_hitActive = true;
 	_active = true;
+	_locate = 0;
 
 	return S_OK;
 }

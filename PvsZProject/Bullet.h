@@ -16,7 +16,11 @@ protected:
 	bool _hitActive;			//true : damage Zombie, false : ignore
 	bool _active;			//false : remove Bullet
 
+	int _locate;
+
 	ObservedType _obType;
+
+	RECT _zombieRc;
 
 public:
 	virtual HRESULT init(BulletType type, int x, int y, int line);
@@ -30,5 +34,9 @@ public:
 
 	BulletType getType() { return _type; }
 	bool isActive() { return _active; }
+
+	void setLocate(int locate) { _locate = locate; }
+
+	void setZombieRc(RECT rc) { _zombieRc = rc; }
 };
 

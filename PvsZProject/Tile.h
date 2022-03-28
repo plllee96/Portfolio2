@@ -5,7 +5,7 @@ const int startX = 64;
 const int startY = 51;
 const int tileWidth = 52;
 const int firstMapTileHeight = 63;
-const int secondMapTileHeight = 52;
+const int secondMapTileHeight = 55;
 
 enum class ObstacleType {TOMB, HOLE};
 struct SingleTile {

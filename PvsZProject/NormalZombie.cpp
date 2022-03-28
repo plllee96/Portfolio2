@@ -5,7 +5,7 @@ HRESULT NormalZombie::init(ZombieType type, int line) {
 	Zombie::init(type, line);
 	_image = IMAGEMANAGER->addFrameImage("NormalZombie", "Resources/Images/Zombies/Zombie.bmp", 910, 700, 13, 7, true, RGB(255, 0, 255));
 	_x = WINSIZE_X;
-	_rc = _recognizeRc = RectMake(_x, startY + _line * firstMapTileHeight - fixY, _image->getFrameWidth(), _image->getFrameHeight());
+	_rc = _recognizeRc = RectMake(_x, startY + _line * _tileHeight - fixY, _image->getFrameWidth(), _image->getFrameHeight());
 	_hp = 10.0f;
 	_status = NormalZombieStatus::WALK;
 
@@ -22,7 +22,7 @@ void NormalZombie::update(void) {
 	setFrame();
 	updateFrame();
 	attack();
-	_rc = _recognizeRc = RectMake(_x, startY + _line * firstMapTileHeight - fixY + 40, _image->getFrameWidth(), _image->getFrameHeight() - 60);
+	_rc = _recognizeRc = RectMake(_x, startY + _line * _tileHeight - fixY + 40, _image->getFrameWidth(), _image->getFrameHeight() - 60);
 }
 
 void NormalZombie::render(void) {

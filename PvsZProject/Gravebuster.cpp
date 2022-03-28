@@ -4,7 +4,7 @@
 HRESULT Gravebuster::init(PlantType type, POINT location) {
 	Plant::init(type, location);
 	_image = IMAGEMANAGER->addFrameImage("Gravebuster", "Resources/Images/Plants/GraveBuster.bmp", 312, 76, 4, 1, true, RGB(255, 0, 255));
-	_startRc = _rc = _recognizeRc = RectMake(startX + _location.x * tileWidth, startY + _location.y * firstMapTileHeight, tileWidth, firstMapTileHeight);
+	_startRc = _rc = _recognizeRc = RectMake(startX + _location.x * tileWidth, startY + _location.y * _tileHeight, tileWidth, _tileHeight);
 
 	_frame.maxFrameX = 4;
 	_frame.coolTime = 0.25f;

@@ -151,6 +151,36 @@
     <ClCompile Include="FumeshroomBullet.cpp">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClCompile>
+    <ClCompile Include="TubeZombie.cpp">
+      <Filter>MainGame\Object\Zombie\Zombies</Filter>
+    </ClCompile>
+    <ClCompile Include="Lilypad.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="TwinSunflower.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="Cabbagepult.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="Cactus.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="Jalapeno.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="Threepeater.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="JalapenoExplode.cpp">
+      <Filter>MainGame\Object\Bullet\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreepeaterBullet.cpp">
+      <Filter>MainGame\Object\Bullet\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="CabbagepultBullet.cpp">
+      <Filter>MainGame\Object\Bullet\Bullets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -319,6 +349,36 @@
       <Filter>MainGame\Object\Plant\Plants</Filter>
     </ClInclude>
     <ClInclude Include="FumeshroomBullet.h">
+      <Filter>MainGame\Object\Bullet\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="TubeZombie.h">
+      <Filter>MainGame\Object\Zombie\Zombies</Filter>
+    </ClInclude>
+    <ClInclude Include="Lilypad.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="TwinSunflower.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="Cabbagepult.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="Cactus.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="Jalapeno.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="Threepeater.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="JalapenoExplode.h">
+      <Filter>MainGame\Object\Bullet\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreepeaterBullet.h">
+      <Filter>MainGame\Object\Bullet\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="CabbagepultBullet.h">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClInclude>
   </ItemGroup>

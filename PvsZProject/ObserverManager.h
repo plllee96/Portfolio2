@@ -12,6 +12,7 @@ private:
 
 	typedef vector<BulletObserver*> vBulletObserver;
 	typedef vector<BulletObserver*>::iterator viBulletObserver;
+
 private:
 	vObserver _vObserver;
 	viObserver _viObserver;
@@ -21,6 +22,7 @@ private:
 	viBulletObserver _viBulletObserver;
 	viBulletObserver _viBulletObserverCompare;
 
+	RECT _tempRC;
 public:
 	HRESULT init(void);
 	void release(void);

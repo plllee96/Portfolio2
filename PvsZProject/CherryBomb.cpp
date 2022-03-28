@@ -4,7 +4,7 @@
 HRESULT CherryBomb::init(PlantType type, POINT location) {
 	Plant::init(type, location);
 	_image = IMAGEMANAGER->addFrameImage("CherryBomb", "Resources/Images/Plants/CherryBomb.bmp", 600, 76, 6, 1, true, RGB(255, 0, 255));
-	_rc = _recognizeRc = RectMake(startX + _location.x * tileWidth - 25, startY + _location.y * firstMapTileHeight, tileWidth, firstMapTileHeight);
+	_rc = _recognizeRc = RectMake(startX + _location.x * tileWidth - 25, startY + _location.y * _tileHeight, tileWidth, _tileHeight);
 
 	_bulletType = BulletType::CHERRY_EXPLODE;
 
@@ -28,21 +28,6 @@ void CherryBomb::update(void) {
 
 void CherryBomb::render(void) {
 	_image->frameRender(getMemDC(), _rc.left, _rc.top, _frame.currentFrameX, _frame.currentFrameY);
-}
-
-BulletObserveData CherryBomb::getFireUpdate() {
-	BulletObserveData temp;
-	temp.type = &_bulletObType;
-	temp.bulletType = &_bulletType;
-	temp.x = &_fireX;
-	temp.y = &_fireY;
-	temp.fire = &_fire;
-	temp.line = &_line;
-	return temp;
-}
-
-void CherryBomb::fireObject(BulletObserveData observer) {
-
 }
 
 void CherryBomb::updateFrame() {

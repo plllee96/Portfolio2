@@ -8,6 +8,9 @@
 #include "PotatoExplode.h"
 #include "MushroomBullet.h"
 #include "FumeshroomBullet.h"
+#include "JalapenoExplode.h"
+#include "ThreepeaterBullet.h"
+#include "CabbagepultBullet.h"
 
 #include "InvisibleRect.h"
 #pragma endregion
@@ -22,6 +25,8 @@ private:
 
 	BulletObservedType _bulletObType;
 
+	int _stageNum;
+
 public:
 	HRESULT init(void);
 	void release(void);
@@ -29,10 +34,14 @@ public:
 	void render(void);
 
 	void addBullet(BulletType type, int x, int y, int line);
+	void addBullet(BulletType type, int x, int y, int line, RECT rc);
 	void removeBullet(viBullet iter);
 
 	virtual BulletObserveData getFireUpdate();
 	virtual void fireObject(BulletObserveData observer);
+	virtual void fireObject(BulletObserveData observer, RECT rc);
+
+	void setStage(int num) { _stageNum = num; }
 
 };
 

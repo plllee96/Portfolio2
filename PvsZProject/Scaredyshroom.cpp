@@ -4,9 +4,9 @@
 HRESULT Scaredyshroom::init(PlantType type, POINT location) {
 	Plant::init(type, location);
 	_image = IMAGEMANAGER->addFrameImage("ScaredyShroom", "Resources/Images/Plants/ScaredyShroom.bmp", 232, 198, 4, 3, true, RGB(255, 0, 255));
-	_rc = RectMake(startX + _location.x * tileWidth - 10, startY + _location.y * firstMapTileHeight - 5, tileWidth, firstMapTileHeight);
-	_recognizeRc = RectMake(startX + _location.x * tileWidth + (tileWidth / 2), startY + _location.y * firstMapTileHeight + 10, WINSIZE_X, firstMapTileHeight - 20);
-	_scaredRect = RectMake(startX + _location.x * tileWidth + (tileWidth / 2), startY + _location.y * firstMapTileHeight + 10, tileWidth * 1.2 , firstMapTileHeight - 20);
+	_rc = RectMake(startX + _location.x * tileWidth - 10, startY + _location.y * _tileHeight - 5, tileWidth, _tileHeight);
+	_recognizeRc = RectMake(startX + _location.x * tileWidth + (tileWidth / 2), startY + _location.y * _tileHeight + 10, WINSIZE_X, _tileHeight - 20);
+	_scaredRect = RectMake(startX + _location.x * tileWidth + (tileWidth / 2), startY + _location.y * _tileHeight + 10, tileWidth * 1.2 , _tileHeight - 20);
 
 	
 	_status = ScaredyshroomStatus::WAIT;
@@ -66,21 +66,6 @@ void Scaredyshroom::recognizeObject(ObserveData observer) {
 		_shotCount = TIMEMANAGER->getWorldTime();
 	}
 }
-
-BulletObserveData Scaredyshroom::getFireUpdate() {
-	BulletObserveData temp;
-	temp.type = &_bulletObType;
-	temp.bulletType = &_bulletType;
-	temp.x = &_fireX;
-	temp.y = &_fireY;
-	temp.fire = &_fire;
-	temp.line = &_line;
-	return temp;
-}
-
-void Scaredyshroom::fireObject(BulletObserveData observer) {
-}
-
 void Scaredyshroom::setFrame() {
 	switch (_status) {
 		case ScaredyshroomStatus::WAIT: {

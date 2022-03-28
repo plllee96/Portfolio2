@@ -17,9 +17,6 @@ public:
 
 	void recognizeObject(ObserveData observer);
 
-	BulletObserveData getFireUpdate();
-	void fireObject(BulletObserveData observer);
-
 	void setFrame();
 	void updateFrame();
 };

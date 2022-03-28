@@ -3,7 +3,6 @@
 
 HRESULT Tile::init(int stageNum) {
 	_image = IMAGEMANAGER->addFrameImage("Tomb", "Resources/Images/Objects/Tomb.bmp", 512, 80, 8, 1, true, RGB(255, 0, 255));
-
 	if (_vTile.size() != 0) _vTile.clear();
 	_column = 9;
 	switch (stageNum) {
@@ -19,10 +18,13 @@ HRESULT Tile::init(int stageNum) {
 		temp.x = i % _column;
 		temp.y = i / _column;
 		if (_row == 5) temp.rc = RectMake(startX + (i%_column) * tileWidth, startY + (i/_column) * firstMapTileHeight, tileWidth, firstMapTileHeight);
-		else temp.rc = RectMake(startX + (i%_column) * tileWidth, startY + (i / _column) * firstMapTileHeight, tileWidth, firstMapTileHeight);
+		else temp.rc = RectMake(startX + (i%_column) * tileWidth, startY + (i / _column) * secondMapTileHeight, tileWidth, secondMapTileHeight);
 		temp.hasPlant = false;
 		temp.hasObstacle = false;
 		temp.isWater = false;
+		if (_row == 6) {
+			if ((i / _column) == 2 || (i / _column) == 3) temp.isWater = true;
+		}
 		temp.hasLilypad = false;
 		temp.tombType = RND->getInt(8);
 		_vTile.push_back(temp);

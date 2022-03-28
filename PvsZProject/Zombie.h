@@ -28,6 +28,8 @@ protected:
 	bool _active;
 	bool _attack;
 
+	int _tileHeight;
+
 	//Observer Variable
 	ObservedType _obType;
 
@@ -46,5 +48,7 @@ public:
 
 	virtual int getLine() { return _line; }
 	virtual bool isActive() { return _active; }
+
+	void setTileHeight(int tileHeight) { _tileHeight = tileHeight; }
 };
 

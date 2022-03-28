@@ -4,6 +4,7 @@
 
 #pragma region ZOMBIES
 #include "NormalZombie.h"
+#include "TubeZombie.h"
 #pragma endregion
 
 class ZombieManager : public GameNode {
@@ -13,6 +14,9 @@ private:
 
 	vZombie _vZombie;
 	viZombie _viZombie;
+
+	int _stageNum;
+	int _tileHeight;
 
 public:
 	HRESULT init(void);
@@ -24,5 +28,6 @@ public:
 	Zombie* getZombie(int index) { return _vZombie[index]; }
 	void removeZombie(int index);
 	void removeZombie(viZombie iter);
+	void setStage(int stageNum);
 };
 

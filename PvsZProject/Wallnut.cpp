@@ -4,7 +4,7 @@
 HRESULT Wallnut::init(PlantType type, POINT location) {
 	Plant::init(type, location);
 	_image = IMAGEMANAGER->addFrameImage("Wallnut", "Resources/Images/Plants/Wallnut.bmp", 270, 192, 5, 3, true, RGB(255, 0, 255));
-	_rc = _recognizeRc = RectMake(startX + _location.x * tileWidth, startY + _location.y * firstMapTileHeight, tileWidth, firstMapTileHeight);
+	_rc = _recognizeRc = RectMake(startX + _location.x * tileWidth, startY + _location.y * _tileHeight, tileWidth, _tileHeight);
 
 	_hp = 72.0f;
 

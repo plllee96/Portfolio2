@@ -4,8 +4,8 @@
 HRESULT Chomper::init(PlantType type, POINT location) {
 	Plant::init(type, location);
 	_image = IMAGEMANAGER->addFrameImage("Chomper", "Resources/Images/Plants/Chomper.bmp", 990, 220, 9, 2, true, RGB(255, 0, 255));
-	_rc = RectMake(startX + _location.x * tileWidth, startY + _location.y * firstMapTileHeight, tileWidth, firstMapTileHeight);
-	_recognizeRc = RectMake(startX + _location.x * tileWidth, startY + _location.y * firstMapTileHeight, tileWidth*2, firstMapTileHeight);
+	_rc = RectMake(startX + _location.x * tileWidth, startY + _location.y * _tileHeight, tileWidth, _tileHeight);
+	_recognizeRc = RectMake(startX + _location.x * tileWidth, startY + _location.y * _tileHeight, tileWidth*2, _tileHeight);
 	_status = ChomperStatus::WAIT;
 	_bulletType = BulletType::INVISIBLE_RECT;
 
@@ -42,20 +42,6 @@ void Chomper::recognizeObject(ObserveData observer) {
 		_attackCount = TIMEMANAGER->getWorldTime();
 		_frame.currentFrameX = 0;
 	}
-}
-
-BulletObserveData Chomper::getFireUpdate() {
-	BulletObserveData temp;
-	temp.type = &_bulletObType;
-	temp.bulletType = &_bulletType;
-	temp.x = &_fireX;
-	temp.y = &_fireY;
-	temp.fire = &_fire;
-	temp.line = &_line;
-	return temp;
-}
-
-void Chomper::fireObject(BulletObserveData observer) {
 }
 
 void Chomper::setFrame() {

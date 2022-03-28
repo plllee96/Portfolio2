@@ -40,6 +40,7 @@ protected:
 	int fixFireX;
 	int fixFireY;
 
+	int _tileHeight;
 public:
 	virtual HRESULT init(PlantType type, POINT location);
 	virtual void release(void);
@@ -50,8 +51,9 @@ public:
 	virtual void collideObject(ObserveData obData);
 	virtual void recognizeObject(ObserveData observer);
 
-	virtual BulletObserveData getFireUpdate();
+	BulletObserveData getFireUpdate();
 	virtual void fireObject(BulletObserveData observer);
+	virtual void fireObject(BulletObserveData observer, RECT rc);
 
 	virtual void act();
 	
@@ -60,5 +62,6 @@ public:
 	PlantType getType() { return _type; }
 	virtual RECT getRect() { return _rc; }
 	bool isActive() { return _active; }
+	void setTileHeight(int tileHeight) { _tileHeight = tileHeight; }
 };
 

@@ -15,6 +15,7 @@ void PeashooterBullet::release(void) {
 }
 
 void PeashooterBullet::update(void) {
+	if (_x > WINSIZE_X) _active = false;
 	_x += 2;
 	_rc = _recognizeRc = RectMake(_x, _y + 15, _image->getFrameWidth(), _image->getFrameHeight() - 10);
 }

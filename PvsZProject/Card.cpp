@@ -79,7 +79,20 @@ void Card::initCardImage() {
 	case PlantType::GRAVEBUSTER: _cardImage = IMAGEMANAGER->addFrameImage(
 		"GraveBuster_Icon", "Resources/Images/Plants/Icon/GraveBuster_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
 
-		
+	case PlantType::LILYPAD:  _cardImage = IMAGEMANAGER->addFrameImage(
+		"Lilypad_Icon", "Resources/Images/Plants/Icon/Lilypad_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
+	case PlantType::CABBAGEPULT:  _cardImage = IMAGEMANAGER->addFrameImage(
+		"Cabbagepult_Icon", "Resources/Images/Plants/Icon/Cabbagepult_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
+	case PlantType::JALAPENO:  _cardImage = IMAGEMANAGER->addFrameImage(
+		"Jalapeno_Icon", "Resources/Images/Plants/Icon/Jalapeno_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
+	case PlantType::CACTUS:  _cardImage = IMAGEMANAGER->addFrameImage(
+		"Cactus_Icon", "Resources/Images/Plants/Icon/Cactus_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
+	case PlantType::THREEPEATER:  _cardImage = IMAGEMANAGER->addFrameImage(
+		"Threepeater_Icon", "Resources/Images/Plants/Icon/Threepeater_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
+
+
+	case PlantType::TWINSUNFLOWER: _cardImage = IMAGEMANAGER->addFrameImage(
+		"TwinSunflower_Icon", "Resources/Images/Plants/Icon/TwinSunflower_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
 	//아이콘 제작 후 전부 추가할 것
 	}
 }

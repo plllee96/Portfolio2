@@ -1,6 +1,7 @@
 #pragma once
 #include "Stdafx.h"
 #include "BulletType.h"
+#include "PlantType.h"
 
 //=====================================
 //	## Rect Collide Observer ##
@@ -14,6 +15,7 @@ enum class DamageType {NONE, EXPLODE, EXTINCT};
 typedef struct tagObservedInfo {
 	ObservedType* type;
 	DamageType* damageType;
+	PlantType* plantType;
 	RECT* rc;
 	RECT* recognizeRc;
 	float* damage;
@@ -23,6 +25,7 @@ typedef struct tagObservedInfo {
 	tagObservedInfo() {
 		type = nullptr;
 		damageType = nullptr;
+		plantType = nullptr;
 		rc = nullptr;
 		recognizeRc = nullptr;
 		damage = nullptr;
@@ -49,6 +52,7 @@ enum class BulletObservedType {OBJECT, BULLETMANAGER};
 typedef struct tagBulletObserverInfo {
 	BulletObservedType* type;
 	BulletType* bulletType;
+	PlantType* plantType;
 	bool* fire;
 	int* line;
 	int* x;
@@ -59,4 +63,5 @@ class BulletObserver {
 public:
 	virtual BulletObserveData getFireUpdate() = 0;
 	virtual void fireObject(BulletObserveData observer) = 0;
+	virtual void fireObject(BulletObserveData observer, RECT rc) = 0;
 };

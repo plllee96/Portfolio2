@@ -43,6 +43,7 @@ void Plant::render(void) {
 
 ObserveData Plant::getRectUpdate() {
 	ObserveData temp;
+	temp.plantType = &_type;
 	temp.rc = &_rc;
 	temp.recognizeRc = &_recognizeRc;
 	temp.type = &_obType;
@@ -64,6 +65,7 @@ BulletObserveData Plant::getFireUpdate() {
 	BulletObserveData temp;
 	temp.type = &_bulletObType;
 	temp.bulletType = &_bulletType;
+	temp.plantType = &_type;
 	temp.x = &_fireX;
 	temp.y = &_fireY;
 	temp.fire = &_fire;
@@ -73,6 +75,10 @@ BulletObserveData Plant::getFireUpdate() {
 }
 
 void Plant::fireObject(BulletObserveData observer) {
+	// ! Do Nothing
+}
+
+void Plant::fireObject(BulletObserveData observer, RECT rc) {
 	// ! Do Nothing
 }
 

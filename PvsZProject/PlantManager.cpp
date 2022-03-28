@@ -13,7 +13,6 @@ void PlantManager::update(void) {
 	for (; _viPlant != _vPlant.end(); ++_viPlant) {
 		(*_viPlant)->update();
 		if (!(*_viPlant)->isActive()) {
-			//GRAVEBUSTER老 版快 贸府
 			if ((*_viPlant)->getType() == PlantType::GRAVEBUSTER) {
 				removeObstacle(_viPlant);
 			}
@@ -24,9 +23,15 @@ void PlantManager::update(void) {
 }
 
 void PlantManager::render(void) {
-	_viPlant = _vPlant.begin();
-	for (; _viPlant != _vPlant.end(); ++_viPlant) {
-		(*_viPlant)->render();
+	int row;
+	if (_stageNum == 0 || _stageNum == 1) row = 5;
+	else row = 6;
+
+	for (int i = 0; i < row; i++) {
+		_viPlant = _vPlant.begin();
+		for (; _viPlant != _vPlant.end(); ++_viPlant) {
+			if ((*_viPlant)->getLine() == i) (*_viPlant)->render();
+		}
 	}
 }
 
@@ -45,8 +50,17 @@ void PlantManager::addPlant(PlantType type, POINT location) {
 		case PlantType::SCAREDYSHROOM: temp = new Scaredyshroom; break;
 		case PlantType::FUMESHROOM: temp = new FumeShroom; break;
 		case PlantType::GRAVEBUSTER: temp = new Gravebuster; break;
+
+		case PlantType::LILYPAD: temp = new Lilypad; break;
+		case PlantType::CABBAGEPULT: temp = new Cabbagepult; break;
+		case PlantType::CACTUS: temp = new Cactus; break;
+		case PlantType::JALAPENO: temp = new Jalapeno; break;
+		case PlantType::THREEPEATER: temp = new Threepeater; break;		
+
+		case PlantType::TWINSUNFLOWER: temp = new TwinSunflower; break;
 		default: temp = new Plant;
 	}
+	temp->setTileHeight(_currentTile);
 	temp->init(type, location);
 	_vPlant.push_back(temp);
 
@@ -119,4 +133,10 @@ generateTypeContainer PlantManager::isGeneratePlant() {
 	tempContainer.y = 0;
 	tempContainer.isSmallSun = false;
 	return tempContainer;
+}
+
+void PlantManager::setStage(int num) {
+	_stageNum = num;
+	if (_stageNum == 0 || _stageNum == 1) _currentTile = 63;
+	else _currentTile = 55;
 }

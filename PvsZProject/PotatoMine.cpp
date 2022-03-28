@@ -4,7 +4,7 @@
 HRESULT PotatoMine::init(PlantType type, POINT location) {
 	Plant::init(type, location);
 	_image = IMAGEMANAGER->addFrameImage("PotatoMine", "Resources/Images/Plants/PotatoMine.bmp", 180, 180, 3, 3, true, RGB(255, 0, 255));
-	_rc = _recognizeRc = RectMake(startX + _location.x * tileWidth - 3, startY + _location.y * firstMapTileHeight, tileWidth, firstMapTileHeight);
+	_rc = _recognizeRc = RectMake(startX + _location.x * tileWidth - 3, startY + _location.y * _tileHeight, tileWidth, _tileHeight);
 
 	_bulletType = BulletType::POTATO_EXPLODE;
 
@@ -44,20 +44,6 @@ void PotatoMine::recognizeObject(ObserveData observer) {
 	if (_status == PotatoStatus::WAIT) {
 		_fire = true;
 	}
-}
-
-BulletObserveData PotatoMine::getFireUpdate() {
-	BulletObserveData temp;
-	temp.type = &_bulletObType;
-	temp.bulletType = &_bulletType;
-	temp.x = &_fireX;
-	temp.y = &_fireY;
-	temp.fire = &_fire;
-	temp.line = &_line;
-	return temp;
-}
-
-void PotatoMine::fireObject(BulletObserveData observer) {
 }
 
 void PotatoMine::setFrame() {
