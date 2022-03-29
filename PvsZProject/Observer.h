@@ -8,7 +8,7 @@
 //=====================================
 
 enum class ObservedType {
-	PLANT, ZOMBIE, BULLET
+	PLANT, ZOMBIE, BULLET, MOWER
 };
 enum class DamageType {NONE, EXPLODE, EXTINCT};
 

@@ -4,7 +4,7 @@
 
 const int firstDeckCardX = 120;
 const int firstDeckCardY = 0;
-const int firstInventoryCardX = 50;
+const int firstInventoryCardX = 30;
 const int firstInventoryCardY = 80;
 
 enum class CardLocation {DECK, INVENTORY};
@@ -35,6 +35,8 @@ public:
 	float getCurrentCoolTime() { return _startCoolTime; }
 	float getMaxCoolTime() { return _maxCoolTime; }
 	bool isActive() { return _active; }
+
+	void reloadCard(int index);
 	void setActive(bool active) { _active = active; }
 	void startCoolTime();
 

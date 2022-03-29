@@ -19,6 +19,7 @@ private:
 	//Image
 	Image* _background;
 	Image* _sunIcon;
+	Image* _playGameButton;
 
 	//Game Controller
 	int _stageNum;
@@ -31,20 +32,39 @@ private:
 
 	//Object & Class
 	NumberImage* _sunNum;
-	Progressbar* _progressbar;
+	Progressbar* _progressbar; 
+
 	Deck* _deck;
 	Inventory* _inventory;
+
+	Tile* _tile;
 	PlantManager* _pm;
 	ZombieManager* _zm;
 	BulletManager* _bm;
-	Tile* _tile;
 
 	vector<Sun*> _vSun;
 	vector<Sun*>::iterator _viSun;
 
+	//Camera Variable
+	float _cameraCount;
+	float _cameraMoveRightDelay;
+	float _cameraMoveLeftDelay;
+	bool _cameraRight;
+	bool _cameraLeft;
+	float _cameraMoveSpeed;
+
+	//Setting Variable
+	float _startWaitCool;
+	float _cameraSpeed;
+	bool _ready;
+
 	//Game Variable
 	PlantType _selectedPlant;
 	int _selectedPlantIndex;
+
+	RECT _startbuttonRc;
+
+	int _maxSlot;
 
 	int _sun;
 	float _sunCount;
@@ -61,9 +81,14 @@ public:
 	void update(void);
 	void render(void);
 
+	//Camera
+	void moveCamera();
+
 	//set, load
+	void settingGame();
 	void setStageNum(int stageNum) { _stageNum = stageNum; }
 	void loadStage();
+	void settingMouseControl();
 
 	//play game
 	void playGame();

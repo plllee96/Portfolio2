@@ -16,6 +16,9 @@ HRESULT Card::init(PlantType type, CardLocation location, int price, float maxCo
 	if (_location == CardLocation::DECK) {
 		_rc = RectMake(firstDeckCardX + _index * _cardImage->getFrameWidth(), firstDeckCardY, _cardImage->getFrameWidth(), _cardImage->getFrameHeight());
 	}
+	else if (_location == CardLocation::INVENTORY) {
+		_rc = RectMake(firstInventoryCardX +  (_index % 8) * 50, firstInventoryCardY+(_index / 8) * 50, _cardImage->getFrameWidth(), _cardImage->getFrameHeight());
+	}
 	
 	return S_OK;
 }
@@ -45,10 +48,10 @@ void Card::render(void) {
 	else if (_location == CardLocation::INVENTORY) {
 		//세로 위치 수정 필요
 		if (_active) {
-			_cardImage->frameRender(getMemDC(), firstInventoryCardX + _index * _cardImage->getFrameWidth(), firstInventoryCardY, 0, 0);
+			_cardImage->frameRender(getMemDC(), firstInventoryCardX + (_index%8) * 50, firstInventoryCardY + (_index / 8) * 50, 0, 0);
 		}
 		else {
-			_cardImage->frameRender(getMemDC(), firstInventoryCardX + _index * _cardImage->getFrameWidth(), firstInventoryCardY, 1, 0);
+			_cardImage->frameRender(getMemDC(), firstInventoryCardX + (_index % 8) * 50, firstInventoryCardY + (_index / 8) * 50, 1, 0);
 		}
 	}
 }
@@ -99,6 +102,17 @@ void Card::initCardImage() {
 
 void Card::disableRender() {
 	_cardImage->frameRender(getMemDC(), firstDeckCardX + _index * _cardImage->getFrameWidth(), firstDeckCardY, 1, 0);
+}
+
+void Card::reloadCard(int index) {
+	_index = index;
+
+	if (_location == CardLocation::DECK) {
+		_rc = RectMake(firstDeckCardX + _index * _cardImage->getFrameWidth(), firstDeckCardY, _cardImage->getFrameWidth(), _cardImage->getFrameHeight());
+	}
+	else if (_location == CardLocation::INVENTORY) {
+		_rc = RectMake(firstInventoryCardX + (_index % 8) * 50, firstInventoryCardY + (_index / 8) * 50, _cardImage->getFrameWidth(), _cardImage->getFrameHeight());
+	}
 }
 
 void Card::startCoolTime() {

@@ -54,7 +54,6 @@ void Scaredyshroom::fire(bool fire) {
 }
 
 void Scaredyshroom::recognizeObject(ObserveData observer) {
-	//Scraed 범위 설정
 	RECT temp;
 	if (IntersectRect(&temp, &_scaredRect, observer.rc)) {
 		_status = ScaredyshroomStatus::SCARED;

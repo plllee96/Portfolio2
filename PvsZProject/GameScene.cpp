@@ -2,17 +2,23 @@
 #include "GameScene.h"
 
 HRESULT GameScene::init(void) {
-	_camera = RectMake(100, 0, WINSIZE_X, WINSIZE_Y);		//tempCameraPosition
+	_camera = RectMake(0, 0, WINSIZE_X, WINSIZE_Y);		//tempCameraPosition
 	_sunIcon = IMAGEMANAGER->addImage("SunIcon", "Resources/Images/Objects/SunIcon.bmp", 32, 32, true, RGB(255, 0, 255));
-
-	_status = GameStatus::PLAY;
+	_playGameButton = IMAGEMANAGER->addImage("Playbutton", "Resources/Images/Objects/playButton.bmp", 75, 47, true, RGB(255,0,255));
+	_status = GameStatus::SETTING;
 	_cursor = CursorSelect::NONE;
 	_selectedPlant = PlantType::NONE; 
 	_selectedPlantIndex = -1;
 
+	_inventory = new Inventory;
+	_inventory->init();
+
+	_deck = new Deck;
+	_deck->init();
+
 	////////////////////////////////
-	//loadStage();
-	_stageNum = 2;
+	loadStage();
+
 	switch (_stageNum) {
 		case 0: _background = IMAGEMANAGER->addImage("Stage1", "Resources/Images/Backgrounds/Stage1.bmp", 894, 384, false, RGB(255, 0, 255)); break;
 		case 1: _background = IMAGEMANAGER->addImage("Stage2", "Resources/Images/Backgrounds/Stage2.bmp", 894, 384, false, RGB(255, 0, 255)); break;
@@ -20,14 +26,11 @@ HRESULT GameScene::init(void) {
 		case 3: break;
 		default : _background = IMAGEMANAGER->addImage("Stage1", "Resources/Images/Backgrounds/Stage1.bmp", 894, 384, false, RGB(255, 0, 255));
 	}
-	
-	//debug
-	_stageTimer = 180.0f;
-	_stageWaveTimer.push_back(90.0f);
-	_stageWaveTimer.push_back(179.9f);
-	///////////////////////////////
 
-	_sun = 1000;
+	//init Game Variable
+	_startbuttonRc = RectMake(460, 220, _playGameButton->getWidth(), _playGameButton->getHeight());
+
+	_sun = 5000;
 	_sunCount = TIMEMANAGER->getWorldTime();
 	if (_stageNum == 0 || _stageNum == 2) _sunCooltime = 7.0f;
 	else _sunCooltime = 9999.0f;
@@ -36,6 +39,14 @@ HRESULT GameScene::init(void) {
 
 	_zombieCount = TIMEMANAGER->getWorldTime();
 	_zombieCooltime = 10.0f;
+
+	//init Camera Variable
+	_cameraCount = TIMEMANAGER->getWorldTime();
+	_cameraMoveSpeed = 0.0f;
+	_cameraMoveRightDelay = 2.0f;
+	_cameraMoveLeftDelay = 1.0f;
+	_cameraRight = true;
+	_cameraLeft = false;
 
 	//init Class
 	_tile = new Tile;
@@ -57,9 +68,6 @@ HRESULT GameScene::init(void) {
 	_pm->setTileMemory(_tile);
 	_pm->setStage(_stageNum);
 
-	_deck = new Deck;
-	_deck->init();
-
 	return S_OK;
 }
 
@@ -69,12 +77,8 @@ void GameScene::release(void) {
 void GameScene::update(void) {
 	switch (_status) {
 	case GameStatus::SETTING: {
-		/*
-		Ready 버튼을 눌렀을 경우 && (Deck이 maxDeck 개수와 같을 경우
-			1. 인벤토리 랜더링 중지
-			2. 카메라 이동(if 시작위치가 아님 : 이동, 시작위치에 도착 : GameStatus::PLAY
-			//_status = GameStatus::PLAY;
-		*/
+		moveCamera();
+		settingGame();
 	}break;
 	case GameStatus::PLAY: {
 		//Ready, Set, Plant! 화면 선행
@@ -99,36 +103,133 @@ void GameScene::render(void) {
 	//cout << _ptMouse.x << "," << _ptMouse.y << endl;
 	_background->render(getMemDC(), 0, 0, _camera.left, _camera.top, 548, 384);
 
-	//debug
-	_tile->render();
-
 	//render Object
-	_pm->render();
-	_zm->render();
-	_bm->render();
+	if (_status == GameStatus::PLAY) {
+		_tile->render();
+		_pm->render();
+		_zm->render();
+		_bm->render();
+	}
 
 	//render UI
-	_sunIcon->render(getMemDC(), 70, 0);
-	_sunNum->render(_sun);
+	if (_status == GameStatus::PLAY) {
+		_sunIcon->render(getMemDC(), 70, 0);
+		_sunNum->render(_sun);
+	}
+
 
 	if (_progressbar) _progressbar->render();
 	for (Sun* iter : _vSun) {
 		iter->render();
 	}
 
-	if(_cursor == CursorSelect::NONE) _deck->render(_sun);
+	if(_status == GameStatus::SETTING && !_cameraRight && !_cameraLeft) _inventory->render();
+	if(_cursor == CursorSelect::NONE && !_cameraRight) _deck->render(_sun);
 	else _deck->disableRender();
+
+	if (_status == GameStatus::SETTING && !(_cameraLeft || _cameraRight)) {
+		_playGameButton->render(getMemDC(), _startbuttonRc.left, _startbuttonRc.top);
+	}
 
 	if (_cursor == CursorSelect::PLANT) {
 		printSelectedPlant();
 	}
 }
 
+void GameScene::moveCamera() {
+	if (_cameraRight) {
+		if (_cameraMoveSpeed > 2.0f) _cameraMoveSpeed = 2.0f;
+		else _cameraMoveSpeed += 0.05f;
+
+		if (_cameraMoveRightDelay + _cameraCount < TIMEMANAGER->getWorldTime()) {
+			_camera.left += _cameraMoveSpeed;
+			_camera.right += _cameraMoveSpeed;
+		}
+
+		if (_camera.left >= 350) {
+			_camera.left = 350;
+			_camera.right = 350 + WINSIZE_X;
+			_cameraRight = false;
+			_cameraMoveSpeed = 0.0f;
+		}
+	}
+
+	//Active only Start Game (Setting -> Play)
+	if (_cameraLeft) {
+		if (_cameraMoveSpeed > 2.0f) _cameraMoveSpeed = 2.0f;
+		else _cameraMoveSpeed += 0.05f;
+
+		if (_cameraMoveLeftDelay + _cameraCount < TIMEMANAGER->getWorldTime()) {
+			_camera.left -= _cameraMoveSpeed;
+			_camera.right -= _cameraMoveSpeed;
+		}
+
+		if (_camera.left <= 100) {
+			_camera.left = 100;
+			_camera.right = 100 + WINSIZE_X;
+			_cameraLeft = false;
+
+			
+			_status = GameStatus::PLAY;
+			_sunCount = TIMEMANAGER->getWorldTime();
+			_zombieCount = TIMEMANAGER->getWorldTime();
+		}
+	}
+}
+
+
+
 //===============================================================
 // Set, Load
 //===============================================================
 void GameScene::loadStage() {
-	//	파일 받아서 로드
+	//	이후 파일에서 데이터를 받아서 로드하는 것으로 바꿀 것
+	_stageNum = 2;
+
+	_maxSlot = 6;
+	_deck->setMaxSlot(6);
+	
+	for (int i = 1; i < 16; i++) {
+		_inventory->addCard(static_cast<PlantType>(i));
+	}
+
+	_stageTimer = 180.0f;
+	_stageWaveTimer.push_back(90.0f);
+	_stageWaveTimer.push_back(179.9f);
+}
+
+void GameScene::settingGame() {
+	settingMouseControl();
+	_inventory->update();
+}
+
+void GameScene::settingMouseControl() {
+	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) {
+		//Click Inventory to Add Card
+		int selectedIndex = _inventory->selectCard();
+		if (selectedIndex != -1 && _inventory->getCard(selectedIndex)->isActive() &&
+			_deck->getCurrentSlot() < _maxSlot) {
+			_deck->addCard(
+				_inventory->getCard(selectedIndex)->getPlantType(),
+				_inventory->getPrice(_inventory->getCard(selectedIndex)->getPlantType()),
+				_inventory->getCooltime(_inventory->getCard(selectedIndex)->getPlantType())
+			);
+			_inventory->activeCard(selectedIndex, false);
+		}
+
+		//Click Deck to Remove Card
+		int selectedDeckIndex = _deck->selectCard();
+		if (selectedDeckIndex != -1) {
+			_inventory->activeCard(_inventory->getIndex(_deck->getCard(selectedDeckIndex)->getPlantType()), true);
+			_deck->removeCard(selectedDeckIndex);
+		}
+
+		if (PtInRect(&_startbuttonRc, _ptMouse) && _deck->getCurrentSlot() == _maxSlot) {
+			_cameraLeft = true;
+		}
+	}
+
+
 }
 
 //===============================================================
@@ -278,13 +379,30 @@ void GameScene::sunControl() {
 }
 
 void GameScene::zombieControl() {
-	//wave시간이 될 경우 8초 후 대량 스폰
-
-	if (_zombieCount + _zombieCooltime < TIMEMANAGER->getWorldTime()) {
-		_zombieCount = TIMEMANAGER->getWorldTime();
-		_zm->addZombie(ZombieType::ZOMBIE, RND->getInt(_tile->getRow()));
-	}
+	float _runningTime = TIMEMANAGER->getWorldTime() - _progressbar->getStartTime();
 	
+	if (_progressbar->isEndWave()) return;
+	if (_runningTime < 15.0f) return;
+
+	else if (_runningTime >= 15.0f && _runningTime < 45.0f) {
+		
+		if (_zombieCount + _zombieCooltime < TIMEMANAGER->getWorldTime()) {
+			cout << "일반좀비 생성 (" << _runningTime << ")" << endl;
+			_zombieCount = TIMEMANAGER->getWorldTime();
+			_zm->addZombie(ZombieType::ZOMBIE, RND->getInt(_tile->getRow()));
+		}
+	}
+	else {
+		if (_zombieCount + _zombieCooltime < TIMEMANAGER->getWorldTime()) {
+			cout << "랜덤좀비 생성 (" << _runningTime << ")" << endl;
+			_zombieCount = TIMEMANAGER->getWorldTime();
+			_zm->addZombie(ZombieType::ZOMBIE, RND->getInt(_tile->getRow()));	//이후 ZombieType부분 무작위로 수정
+		}
+	}
+	if (_runningTime >= 30.0f) {
+		_zombieCooltime -= 0.001f;
+		if (_zombieCooltime < 7.0f) _zombieCooltime = 7.0f;
+	}
 }
 
 //===============================================================

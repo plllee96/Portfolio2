@@ -26,6 +26,8 @@ public:
 	void render(void);
 
 	bool isHugeWaveTime();
+	bool isFinalWave();
 	bool isEndWave();
+	float getStartTime() { return _startTime; }
 };
 
