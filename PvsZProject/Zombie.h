@@ -49,6 +49,11 @@ public:
 	virtual int getLine() { return _line; }
 	virtual bool isActive() { return _active; }
 
+	ZombieType getType() { return _type; }
+
+	int getX() { return _x; }
+	void setX(int x) { _x = x; }
+
 	void setTileHeight(int tileHeight) { _tileHeight = tileHeight; }
 };
 

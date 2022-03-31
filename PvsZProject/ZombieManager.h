@@ -4,6 +4,7 @@
 
 #pragma region ZOMBIES
 #include "NormalZombie.h"
+#include "CornheadZombie.h"
 #include "TubeZombie.h"
 #pragma endregion
 
@@ -25,9 +26,11 @@ public:
 	void render(void);
 
 	void addZombie(ZombieType type, int line);
+	void addZombie(int line, int x);
 	Zombie* getZombie(int index) { return _vZombie[index]; }
 	void removeZombie(int index);
 	void removeZombie(viZombie iter);
 	void setStage(int stageNum);
+	int getZombieAmount() { return _vZombie.size(); }
 };
 

@@ -50,6 +50,10 @@ bool Progressbar::isHugeWaveTime() {
 	return false;
 }
 
+bool Progressbar::isFinalWave() {
+	return false;
+}
+
 bool Progressbar::isEndWave() {
 	if (_currentTime >= _startTime + _maxTime) return true;
 	else return false;

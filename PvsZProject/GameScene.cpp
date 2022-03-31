@@ -381,20 +381,24 @@ void GameScene::sunControl() {
 void GameScene::zombieControl() {
 	float _runningTime = TIMEMANAGER->getWorldTime() - _progressbar->getStartTime();
 	
-	if (_progressbar->isEndWave()) return;
+
+	if (_progressbar->isEndWave()) {
+		if (_zm->getZombieAmount() == 0) {
+			cout << "클리어" << endl;
+		}
+		return;
+	}
 	if (_runningTime < 15.0f) return;
 
 	else if (_runningTime >= 15.0f && _runningTime < 45.0f) {
-		
 		if (_zombieCount + _zombieCooltime < TIMEMANAGER->getWorldTime()) {
-			cout << "일반좀비 생성 (" << _runningTime << ")" << endl;
 			_zombieCount = TIMEMANAGER->getWorldTime();
-			_zm->addZombie(ZombieType::ZOMBIE, RND->getInt(_tile->getRow()));
+			//_zm->addZombie(ZombieType::ZOMBIE, RND->getInt(_tile->getRow()));
+			_zm->addZombie(ZombieType::CORNHEAD_ZOMBIE, 1);
 		}
 	}
 	else {
 		if (_zombieCount + _zombieCooltime < TIMEMANAGER->getWorldTime()) {
-			cout << "랜덤좀비 생성 (" << _runningTime << ")" << endl;
 			_zombieCount = TIMEMANAGER->getWorldTime();
 			_zm->addZombie(ZombieType::ZOMBIE, RND->getInt(_tile->getRow()));	//이후 ZombieType부분 무작위로 수정
 		}
@@ -402,6 +406,12 @@ void GameScene::zombieControl() {
 	if (_runningTime >= 30.0f) {
 		_zombieCooltime -= 0.001f;
 		if (_zombieCooltime < 7.0f) _zombieCooltime = 7.0f;
+	}
+
+	if (_progressbar->isHugeWaveTime()) {
+		for (int i = 0; i < _tile->getRow(); i++) {
+			_zm->addZombie(ZombieType::ZOMBIE, i);
+		}
 	}
 }
 

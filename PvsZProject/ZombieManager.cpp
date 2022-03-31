@@ -14,7 +14,16 @@ void ZombieManager::update(void) {
 		(*_viZombie)->update();
 
 		if (!(*_viZombie)->isActive()) {
-			removeZombie(_viZombie);
+			if ((*_viZombie)->getType() == ZombieType::CORNHEAD_ZOMBIE || (*_viZombie)->getType() == ZombieType::BUCKETHEAD_ZOMBIE) {
+				int tempLine = (*_viZombie)->getLine();
+				int tempX = (*_viZombie)->getX();
+				removeZombie(_viZombie);
+				addZombie(tempLine, tempX);
+				break;
+			}
+			else {
+				removeZombie(_viZombie);
+			}
 			break;
 		}
 	}
@@ -56,6 +65,7 @@ void ZombieManager::addZombie(ZombieType type, int line) {
 	else {
 		switch (type) {
 			case ZombieType::ZOMBIE: temp = new NormalZombie; break;
+			case ZombieType::CORNHEAD_ZOMBIE: temp = new CornheadZombie; break;
 				//add ZombieType Here
 
 			default: temp = new Zombie;
@@ -63,6 +73,15 @@ void ZombieManager::addZombie(ZombieType type, int line) {
 	}
 	temp->setTileHeight(_tileHeight);
 	temp->init(type, line);
+	_vZombie.push_back(temp);
+}
+
+void ZombieManager::addZombie(int line, int x) {
+	// ! Only NormalZombie
+	Zombie* temp = new NormalZombie;
+	temp->setTileHeight(_tileHeight);
+	temp->init(ZombieType::ZOMBIE, line);
+	temp->setX(x);
 	_vZombie.push_back(temp);
 }
 

@@ -181,6 +181,18 @@
     <ClCompile Include="CabbagepultBullet.cpp">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClCompile>
+    <ClCompile Include="BucketheadZombie.cpp">
+      <Filter>MainGame\Object\Zombie\Zombies</Filter>
+    </ClCompile>
+    <ClCompile Include="CornheadZombie.cpp">
+      <Filter>MainGame\Object\Zombie\Zombies</Filter>
+    </ClCompile>
+    <ClCompile Include="NewspaperZombie.cpp">
+      <Filter>MainGame\Object\Zombie\Zombies</Filter>
+    </ClCompile>
+    <ClCompile Include="PoleZombie.cpp">
+      <Filter>MainGame\Object\Zombie\Zombies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -380,6 +392,18 @@
     </ClInclude>
     <ClInclude Include="CabbagepultBullet.h">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="BucketheadZombie.h">
+      <Filter>MainGame\Object\Zombie\Zombies</Filter>
+    </ClInclude>
+    <ClInclude Include="CornheadZombie.h">
+      <Filter>MainGame\Object\Zombie\Zombies</Filter>
+    </ClInclude>
+    <ClInclude Include="NewspaperZombie.h">
+      <Filter>MainGame\Object\Zombie\Zombies</Filter>
+    </ClInclude>
+    <ClInclude Include="PoleZombie.h">
+      <Filter>MainGame\Object\Zombie\Zombies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
