@@ -2,13 +2,28 @@
 #include "GameScene.h"
 
 HRESULT GameScene::init(void) {
+	//Init UI Image
 	_camera = RectMake(0, 0, WINSIZE_X, WINSIZE_Y);		//tempCameraPosition
 	_sunIcon = IMAGEMANAGER->addImage("SunIcon", "Resources/Images/Objects/SunIcon.bmp", 32, 32, true, RGB(255, 0, 255));
 	_playGameButton = IMAGEMANAGER->addImage("Playbutton", "Resources/Images/Objects/playButton.bmp", 75, 47, true, RGB(255,0,255));
+	_shopButton = IMAGEMANAGER->addImage("Shopbutton", "Resources/Images/Objects/shopButton.bmp", 75, 49, true, RGB(255, 0, 255));
+	_selectedPlantIcon = IMAGEMANAGER->addFrameImage("PlantIcon", "Resources/Images/Objects/PlantIcon.bmp", 1292, 80, 17, 1, true, RGB(255, 0, 255));
+	
+	//Init SceneChanger
+	_whiteChanger = IMAGEMANAGER->addImage("whiteChanger", "Resources/Images/Backgrounds/WhiteSceneChanger.bmp", 548, 384, false, RGB(255, 0, 255));
+	_blackChanger = IMAGEMANAGER->addImage("blackChanger", "Resources/Images/Backgrounds/BlackSceneChanger.bmp", 548, 384, false, RGB(255, 0, 255));
+	_whiteAlpha = 0;
+	_blackAlpha = 255;
+	_goingToClear = false;
+	_goingToShop = false;
+
+
 	_status = GameStatus::SETTING;
 	_cursor = CursorSelect::NONE;
 	_selectedPlant = PlantType::NONE; 
 	_selectedPlantIndex = -1;
+
+	_zombieType.clear();
 
 	_inventory = new Inventory;
 	_inventory->init();
@@ -16,8 +31,11 @@ HRESULT GameScene::init(void) {
 	_deck = new Deck;
 	_deck->init();
 
-	////////////////////////////////
+	// ==============================================
 	loadStage();
+	// ==============================================
+	// ! Add in-Game data after loadStage() Function
+
 
 	switch (_stageNum) {
 		case 0: _background = IMAGEMANAGER->addImage("Stage1", "Resources/Images/Backgrounds/Stage1.bmp", 894, 384, false, RGB(255, 0, 255)); break;
@@ -29,6 +47,7 @@ HRESULT GameScene::init(void) {
 
 	//init Game Variable
 	_startbuttonRc = RectMake(460, 220, _playGameButton->getWidth(), _playGameButton->getHeight());
+	_shopbuttonRc = RectMake(460, 165, _shopButton->getWidth(), _shopButton->getHeight());
 
 	_sun = 5000;
 	_sunCount = TIMEMANAGER->getWorldTime();
@@ -55,6 +74,9 @@ HRESULT GameScene::init(void) {
 	_sunNum = new NumberImage;
 	_sunNum->init(&_sunNumX, &_sunNumY);
 
+	_zl = new ZombieList;
+	_zl->init(_zombieType, &_camera);
+
 	_zm = new ZombieManager;
 	_zm->init();
 	_zm->setStage(_stageNum);
@@ -75,8 +97,11 @@ void GameScene::release(void) {
 }
 
 void GameScene::update(void) {
+	sceneChangerControl();
+
 	switch (_status) {
 	case GameStatus::SETTING: {
+		_zl->update();
 		moveCamera();
 		settingGame();
 	}break;
@@ -100,10 +125,13 @@ void GameScene::update(void) {
 }
 
 void GameScene::render(void) {
-	//cout << _ptMouse.x << "," << _ptMouse.y << endl;
+	//render Background
 	_background->render(getMemDC(), 0, 0, _camera.left, _camera.top, 548, 384);
 
 	//render Object
+	if (_status == GameStatus::SETTING) {
+		_zl->render();
+	}
 	if (_status == GameStatus::PLAY) {
 		_tile->render();
 		_pm->render();
@@ -129,11 +157,17 @@ void GameScene::render(void) {
 
 	if (_status == GameStatus::SETTING && !(_cameraLeft || _cameraRight)) {
 		_playGameButton->render(getMemDC(), _startbuttonRc.left, _startbuttonRc.top);
+		_shopButton->render(getMemDC(), _shopbuttonRc.left, _shopbuttonRc.top);
 	}
 
 	if (_cursor == CursorSelect::PLANT) {
 		printSelectedPlant();
 	}
+
+	//render ScreenImage
+	if (_whiteAlpha > 0) _whiteChanger->alphaRender(getMemDC(), _whiteAlpha);
+	if (_blackAlpha > 0) _blackChanger->alphaRender(getMemDC(), _blackAlpha);
+
 }
 
 void GameScene::moveCamera() {
@@ -177,6 +211,21 @@ void GameScene::moveCamera() {
 	}
 }
 
+void GameScene::sceneChangerControl() {
+	if (!_goingToClear && !_goingToShop) _blackAlpha -= 2;
+	if (_blackAlpha < 0) _blackAlpha = 0;
+
+	if (_goingToShop) {
+		if (_blackAlpha > 253) SCENEMANAGER->changeScene("Shop");
+		else _blackAlpha += 2;
+	}
+
+	if (_goingToClear) {
+		if (_whiteAlpha > 253) SCENEMANAGER->changeScene("Clear");
+		else _whiteAlpha += 2;
+	}
+}
+
 
 
 //===============================================================
@@ -196,6 +245,10 @@ void GameScene::loadStage() {
 	_stageTimer = 180.0f;
 	_stageWaveTimer.push_back(90.0f);
 	_stageWaveTimer.push_back(179.9f);
+
+	_zombieType.push_back(0);
+	_zombieType.push_back(1);
+	_zombieType.push_back(2);
 }
 
 void GameScene::settingGame() {
@@ -224,8 +277,14 @@ void GameScene::settingMouseControl() {
 			_deck->removeCard(selectedDeckIndex);
 		}
 
+		//Click Start Button to Play Game
 		if (PtInRect(&_startbuttonRc, _ptMouse) && _deck->getCurrentSlot() == _maxSlot) {
 			_cameraLeft = true;
+		}
+
+		//Click Shop Button to move Shop
+		if (PtInRect(&_shopbuttonRc, _ptMouse)) {
+			_goingToShop = true;
 		}
 	}
 
@@ -384,7 +443,7 @@ void GameScene::zombieControl() {
 
 	if (_progressbar->isEndWave()) {
 		if (_zm->getZombieAmount() == 0) {
-			cout << "클리어" << endl;
+			cout << _zm->getLastZombiePosition().x << "," << _zm->getLastZombiePosition().y << endl;
 		}
 		return;
 	}
@@ -393,14 +452,14 @@ void GameScene::zombieControl() {
 	else if (_runningTime >= 15.0f && _runningTime < 45.0f) {
 		if (_zombieCount + _zombieCooltime < TIMEMANAGER->getWorldTime()) {
 			_zombieCount = TIMEMANAGER->getWorldTime();
-			//_zm->addZombie(ZombieType::ZOMBIE, RND->getInt(_tile->getRow()));
-			_zm->addZombie(ZombieType::CORNHEAD_ZOMBIE, 1);
+			_zm->addZombie(ZombieType::ZOMBIE, RND->getInt(_tile->getRow()));
 		}
 	}
 	else {
 		if (_zombieCount + _zombieCooltime < TIMEMANAGER->getWorldTime()) {
+			ZombieType tempType = static_cast<ZombieType>(_zombieType[RND->getInt(_zombieType.size())]);
 			_zombieCount = TIMEMANAGER->getWorldTime();
-			_zm->addZombie(ZombieType::ZOMBIE, RND->getInt(_tile->getRow()));	//이후 ZombieType부분 무작위로 수정
+			_zm->addZombie(tempType, RND->getInt(_tile->getRow()));	//이후 ZombieType부분 무작위로 수정
 		}
 	}
 	if (_runningTime >= 30.0f) {
@@ -410,7 +469,8 @@ void GameScene::zombieControl() {
 
 	if (_progressbar->isHugeWaveTime()) {
 		for (int i = 0; i < _tile->getRow(); i++) {
-			_zm->addZombie(ZombieType::ZOMBIE, i);
+			ZombieType tempType = static_cast<ZombieType>(_zombieType[RND->getInt(_zombieType.size())]);
+			_zm->addZombie(tempType, i);
 		}
 	}
 }
@@ -419,14 +479,7 @@ void GameScene::zombieControl() {
 // Render
 //===============================================================
 void GameScene::printSelectedPlant() {
-	switch (_selectedPlant) {
-		//이후에 plant render로 바꿀 것
-		case PlantType::PEASHOOTER: break;
-		case PlantType::SUNFLOWER: break;
-		case PlantType::WALLNUT: break;
-		case PlantType::CHERRYBOMB: break;
-		default: break;
-	}
+	_selectedPlantIcon->frameRender(getMemDC(), _ptMouse.x - _selectedPlantIcon->getFrameWidth()/2, _ptMouse.y - _selectedPlantIcon->getFrameHeight() / 2, static_cast<int>(_selectedPlant), 0);
 }
 
 

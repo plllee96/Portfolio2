@@ -193,6 +193,21 @@
     <ClCompile Include="PoleZombie.cpp">
       <Filter>MainGame\Object\Zombie\Zombies</Filter>
     </ClCompile>
+    <ClCompile Include="ZombieList.cpp">
+      <Filter>MainGame\Object\Zombie</Filter>
+    </ClCompile>
+    <ClCompile Include="ShopScene.cpp">
+      <Filter>MainGame\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearScene.cpp">
+      <Filter>MainGame\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Reward.cpp">
+      <Filter>MainGame\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ShopItem.cpp">
+      <Filter>MainGame\Object\ShopItem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -405,6 +420,24 @@
     <ClInclude Include="PoleZombie.h">
       <Filter>MainGame\Object\Zombie\Zombies</Filter>
     </ClInclude>
+    <ClInclude Include="ZombieList.h">
+      <Filter>MainGame\Object\Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="ShopScene.h">
+      <Filter>MainGame\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearScene.h">
+      <Filter>MainGame\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Reward.h">
+      <Filter>MainGame\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ShopItem.h">
+      <Filter>MainGame\Object\ShopItem</Filter>
+    </ClInclude>
+    <ClInclude Include="ShopItemName.h">
+      <Filter>MainGame\Object\ShopItem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="API Framework">
@@ -478,6 +511,9 @@
     </Filter>
     <Filter Include="MainGame\Object\Bullet\Bullets">
       <UniqueIdentifier>{e27ac1f6-f16d-43a9-9621-1e42ddf540bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Object\ShopItem">
+      <UniqueIdentifier>{ea675bb3-8ba8-496c-b4f7-3fa2fb19bb16}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

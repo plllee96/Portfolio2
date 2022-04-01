@@ -2,13 +2,18 @@
 #include "MainGame.h"
 #include "TitleScene.h"
 #include "GameScene.h"
+#include "ShopScene.h"
+#include "ClearScene.h"
 
 HRESULT MainGame::init(void) {
 	GameNode::init(true);
 	SCENEMANAGER->addScene("Title", new TitleScene);
 	SCENEMANAGER->addScene("Game", new GameScene);
+	SCENEMANAGER->addScene("Shop", new ShopScene);
+	SCENEMANAGER->addScene("Clear", new ClearScene);
 
-	SCENEMANAGER->changeScene("Game");
+
+	SCENEMANAGER->changeScene("Shop");
 	return S_OK;
 }
 

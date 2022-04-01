@@ -53,6 +53,7 @@ public:
 
 	int getX() { return _x; }
 	void setX(int x) { _x = x; }
+	int getY() { return  _line * _tileHeight; }
 
 	void setTileHeight(int tileHeight) { _tileHeight = tileHeight; }
 };

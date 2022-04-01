@@ -5,6 +5,7 @@
 #pragma region ZOMBIES
 #include "NormalZombie.h"
 #include "CornheadZombie.h"
+#include "BucketheadZombie.h"
 #include "TubeZombie.h"
 #pragma endregion
 
@@ -19,6 +20,8 @@ private:
 	int _stageNum;
 	int _tileHeight;
 
+	POINT _lastZombiePosition;
+
 public:
 	HRESULT init(void);
 	void release(void);
@@ -32,5 +35,6 @@ public:
 	void removeZombie(viZombie iter);
 	void setStage(int stageNum);
 	int getZombieAmount() { return _vZombie.size(); }
+	POINT getLastZombiePosition() { return _lastZombiePosition; }
 };
 

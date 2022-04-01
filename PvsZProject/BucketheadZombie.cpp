@@ -3,10 +3,10 @@
 
 HRESULT BucketheadZombie::init(ZombieType type, int line) {
 	Zombie::init(type, line);
-	_image = IMAGEMANAGER->addFrameImage("CornheadZombie", "Resources/Images/Zombies/CornheadZombie.bmp", 490, 550, 7, 5, true, RGB(255, 0, 255));
+	_image = IMAGEMANAGER->addFrameImage("BucketheadZombie", "Resources/Images/Zombies/BucketheadZombie.bmp", 476, 530, 7, 5, true, RGB(255, 0, 255));
 	_x = WINSIZE_X;
 	_rc = _recognizeRc = RectMake(_x, startY + _line * _tileHeight - fixY, _image->getFrameWidth(), _image->getFrameHeight());
-	_hp = 14.0f;
+	_hp = 28.0f;
 	_status = BucketheadZombieStatus::WALK;
 
 	return S_OK;
@@ -26,7 +26,7 @@ void BucketheadZombie::update(void) {
 }
 
 void BucketheadZombie::render(void) {
-	_image->frameRender(getMemDC(), _rc.left - 12, _rc.top - 60, _frame.currentFrameX, _frame.currentFrameY);
+	_image->frameRender(getMemDC(), _rc.left - 15, _rc.top - 55, _frame.currentFrameX, _frame.currentFrameY);
 }
 
 void BucketheadZombie::act() {

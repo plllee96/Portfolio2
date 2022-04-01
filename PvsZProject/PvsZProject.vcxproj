@@ -160,6 +160,7 @@
     <ClCompile Include="CherryBomb.cpp" />
     <ClCompile Include="CherryExplode.cpp" />
     <ClCompile Include="Chomper.cpp" />
+    <ClCompile Include="ClearScene.cpp" />
     <ClCompile Include="CornheadZombie.cpp" />
     <ClCompile Include="Deck.cpp" />
     <ClCompile Include="FontManager.cpp" />
@@ -191,8 +192,11 @@
     <ClCompile Include="PotatoMine.cpp" />
     <ClCompile Include="Progressbar.cpp" />
     <ClCompile Include="Puffshroom.cpp" />
+    <ClCompile Include="Reward.cpp" />
     <ClCompile Include="Scaredyshroom.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="ShopItem.cpp" />
+    <ClCompile Include="ShopScene.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -215,6 +219,7 @@
     <ClCompile Include="Wallnut.cpp" />
     <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="Zombie.cpp" />
+    <ClCompile Include="ZombieList.cpp" />
     <ClCompile Include="ZombieManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -230,6 +235,7 @@
     <ClInclude Include="CherryBomb.h" />
     <ClInclude Include="CherryExplode.h" />
     <ClInclude Include="Chomper.h" />
+    <ClInclude Include="ClearScene.h" />
     <ClInclude Include="CommonMacroFunction.h" />
     <ClInclude Include="CornheadZombie.h" />
     <ClInclude Include="Deck.h" />
@@ -265,8 +271,12 @@
     <ClInclude Include="Progressbar.h" />
     <ClInclude Include="Puffshroom.h" />
     <ClInclude Include="RandomFunction.h" />
+    <ClInclude Include="Reward.h" />
     <ClInclude Include="Scaredyshroom.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="ShopItem.h" />
+    <ClInclude Include="ShopItemName.h" />
+    <ClInclude Include="ShopScene.h" />
     <ClInclude Include="SingletonBase.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Stdafx.h" />
@@ -286,6 +296,7 @@
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Wallnut.h" />
     <ClInclude Include="Zombie.h" />
+    <ClInclude Include="ZombieList.h" />
     <ClInclude Include="ZombieManager.h" />
     <ClInclude Include="ZombieType.h" />
   </ItemGroup>

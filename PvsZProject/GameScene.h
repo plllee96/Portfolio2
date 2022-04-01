@@ -2,6 +2,7 @@
 #include "GameNode.h"
 #include "PlantType.h"
 #include "PlantManager.h"
+#include "ZombieList.h"
 #include "ZombieManager.h"
 #include "BulletManager.h"
 #include "Inventory.h"
@@ -20,6 +21,9 @@ private:
 	Image* _background;
 	Image* _sunIcon;
 	Image* _playGameButton;
+	Image* _shopButton;
+	Image* _selectedPlantIcon;
+
 
 	//Game Controller
 	int _stageNum;
@@ -40,6 +44,7 @@ private:
 	Tile* _tile;
 	PlantManager* _pm;
 	ZombieManager* _zm;
+	ZombieList* _zl;
 	BulletManager* _bm;
 
 	vector<Sun*> _vSun;
@@ -63,6 +68,7 @@ private:
 	int _selectedPlantIndex;
 
 	RECT _startbuttonRc;
+	RECT _shopbuttonRc;
 
 	int _maxSlot;
 
@@ -72,8 +78,18 @@ private:
 	float _sunNumX;
 	float _sunNumY;
 
+	vector<int> _zombieType;
 	float _zombieCount;
 	float _zombieCooltime;
+
+	//sceneChange
+	Image* _whiteChanger;
+	Image* _blackChanger;
+	int _whiteAlpha;
+	int _blackAlpha;
+
+	bool _goingToClear;	//Active SceneChanger when true
+	bool _goingToShop;
 
 public:
 	HRESULT init(void);
@@ -81,8 +97,9 @@ public:
 	void update(void);
 	void render(void);
 
-	//Camera
+	//Camera & Scene
 	void moveCamera();
+	void sceneChangerControl();
 
 	//set, load
 	void settingGame();
