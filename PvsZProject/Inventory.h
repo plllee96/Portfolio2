@@ -23,5 +23,7 @@ public:
 
 	int getPrice(PlantType type);
 	float getCooltime(PlantType type);
+
+	int getSize() { return _vCard.size(); }
 };
 

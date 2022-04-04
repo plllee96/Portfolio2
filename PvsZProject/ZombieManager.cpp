@@ -15,7 +15,7 @@ void ZombieManager::update(void) {
 
 		if (!(*_viZombie)->isActive()) {
 			if (((*_viZombie)->getType() == ZombieType::CORNHEAD_ZOMBIE || (*_viZombie)->getType() == ZombieType::BUCKETHEAD_ZOMBIE)
-				&& ((_stageNum == 2 || _stageNum == 3) && !((*_viZombie)->getLine() == 2 || (*_viZombie)->getLine() == 3))) {
+				&& ((_stageNum == 0 || _stageNum == 1) || ((_stageNum == 2 || _stageNum == 3) && !((*_viZombie)->getLine() == 2 || (*_viZombie)->getLine() == 3)))) {
 				int tempLine = (*_viZombie)->getLine();
 				int tempX = (*_viZombie)->getX();
 				removeZombie(_viZombie);

@@ -70,8 +70,26 @@ void ShopScene::mouseControl() {
 				if (_money.money >= (*_viItem)->getPrice()) {
 					_money.money -= (*_viItem)->getPrice();
 					(*_viItem)->setSoldout(true);
-					//파일에 구매한 아이템 추가
 
+					if ((*_viItem)->getType() == ItemName::SLOT) {
+						vector<string> vData = TEXTDATAMANAGER->load("data.txt");
+						int newSlot = atoi(vData[1].c_str()) + 1; 
+
+						char temp[32];
+						vData[1] = _itoa((int)newSlot, temp, 10);
+						vData[2] = _itoa((int)_money.money, temp, 10);
+
+						TEXTDATAMANAGER->save("data.txt", vData);
+					}
+					if ((*_viItem)->getType() == ItemName::TWIN_SUNFLOWER) {
+						vector<string> vData = TEXTDATAMANAGER->load("data.txt");
+
+						char temp[32];
+						vData[2] = _itoa((int)_money.money, temp, 10);
+						vData.push_back(_itoa((int)16, temp, 10));
+
+						TEXTDATAMANAGER->save("data.txt", vData);
+					}
 					break;
 				}
 			}
@@ -80,11 +98,10 @@ void ShopScene::mouseControl() {
 }
 
 void ShopScene::loadShop() {
-	//나중에 파일 읽어오기로 변경 (PlayData에서 가져옴)
-	_money.money = 1000;
+	vector<string> vData = TEXTDATAMANAGER->load("data.txt");
+	_money.money = atoi(vData[2].c_str());
 
 
-	//나중에 파일 읽어오기로 바꾸기(ShopData에서 가져옴)
 	for (int i = 0; i < 5; i++) {
 		ShopItem* item = new ShopItem;
 

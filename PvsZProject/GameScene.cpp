@@ -49,6 +49,7 @@ HRESULT GameScene::init(void) {
 	_startbuttonRc = RectMake(460, 220, _playGameButton->getWidth(), _playGameButton->getHeight());
 	_shopbuttonRc = RectMake(460, 165, _shopButton->getWidth(), _shopButton->getHeight());
 
+	_sun = 100;
 	_sun = 5000;
 	_sunCount = TIMEMANAGER->getWorldTime();
 	if (_stageNum == 0 || _stageNum == 2) _sunCooltime = 7.0f;
@@ -89,6 +90,9 @@ HRESULT GameScene::init(void) {
 	_pm->init();
 	_pm->setTileMemory(_tile);
 	_pm->setStage(_stageNum);
+
+	_reward = new Reward;
+	_reward->init(_stageNum);
 
 	return S_OK;
 }
@@ -138,6 +142,8 @@ void GameScene::render(void) {
 		_zm->render();
 		_bm->render();
 	}
+	
+	if (_reward->isShow()) _reward->render();
 
 	//render UI
 	if (_status == GameStatus::PLAY) {
@@ -232,23 +238,56 @@ void GameScene::sceneChangerControl() {
 // Set, Load
 //===============================================================
 void GameScene::loadStage() {
-	//	이후 파일에서 데이터를 받아서 로드하는 것으로 바꿀 것
-	_stageNum = 2;
+	vector<string> vData = TEXTDATAMANAGER->load("data.txt");
 
-	_maxSlot = 6;
-	_deck->setMaxSlot(6);
+	_stageNum = atoi(vData[0].c_str());
+
+	_maxSlot = atoi(vData[1].c_str());
+	_deck->setMaxSlot(_maxSlot);
 	
-	for (int i = 1; i < 16; i++) {
-		_inventory->addCard(static_cast<PlantType>(i));
+	for (int i = 3; i < vData.size(); i++) {
+		int tempPlantNum = atoi(vData[i].c_str());
+		_inventory->addCard(static_cast<PlantType>(tempPlantNum));
 	}
 
-	_stageTimer = 180.0f;
-	_stageWaveTimer.push_back(90.0f);
-	_stageWaveTimer.push_back(179.9f);
 
-	_zombieType.push_back(0);
-	_zombieType.push_back(1);
-	_zombieType.push_back(2);
+	switch (_stageNum) {
+		case 0: {
+			//_stageTimer = 120.0f;
+			//_stageWaveTimer.push_back(119.9f);
+
+			_stageTimer = 40.0f;
+			_stageWaveTimer.push_back(39.9f);
+
+			_zombieType.push_back(0);
+			_zombieType.push_back(1);
+		} break;
+		case 1: {
+			_stageTimer = 120.0f;
+			_stageWaveTimer.push_back(119.9f);
+
+			_zombieType.push_back(0);
+			_zombieType.push_back(1);
+			_zombieType.push_back(2);
+		} break;
+		case 2: {
+			_stageTimer = 180.0f;
+			_stageWaveTimer.push_back(90.0f);
+			_stageWaveTimer.push_back(179.9f);
+
+			_zombieType.push_back(0);
+			_zombieType.push_back(1);
+			_zombieType.push_back(2);
+		} break;
+		default: {
+			_stageTimer = 120.0f;
+			_stageWaveTimer.push_back(119.9f);
+
+			_zombieType.push_back(0);
+			_zombieType.push_back(1);
+		} break;
+	}
+
 }
 
 void GameScene::settingGame() {
@@ -257,6 +296,8 @@ void GameScene::settingGame() {
 }
 
 void GameScene::settingMouseControl() {
+
+
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) {
 		//Click Inventory to Add Card
 		int selectedIndex = _inventory->selectCard();
@@ -307,6 +348,8 @@ void GameScene::playGame() {
 	_deck->update();
 	_tile->update();
 	_sunNum->update();
+
+	if (_reward->isShow()) _reward->update();
 }
 
 void GameScene::mouseControl() {
@@ -331,7 +374,10 @@ void GameScene::mouseControl() {
 				}
 			}
 
-			//Select Shovel
+			//Select Reward
+			if (PtInRect(&_reward->getRect(), _ptMouse) && _reward->isShow() && _reward->getStatus() == RewardStatus::GENERATE) {
+				_reward->setObtain();
+			}
 
 		} break;
 		case CursorSelect::PLANT: {
@@ -355,7 +401,7 @@ void GameScene::mouseControl() {
 							_sun -= _deck->getCard(_selectedPlantIndex)->getPrice();
 						}
 						
-						else if (_tile->getTile(tempIndex).hasLilypad) {	//Lilypad가 설치되어 있는 타일인 경우에만 설치
+						else if (_tile->getTile(tempIndex).hasLilypad) {	
 							_tile->setPlant(tempIndex, true);
 							_pm->addPlant(_deck->getPlant(_selectedPlantIndex), _tile->getLocation(tempIndex));
 							_deck->getCard(_selectedPlantIndex)->startCoolTime();
@@ -380,7 +426,6 @@ void GameScene::mouseControl() {
 			int tempIndex = _tile->selectTile();
 			if (tempIndex != -1 && _selectedPlant != PlantType::NONE) {
 				if (_tile->getTile(tempIndex).hasPlant) {
-					//_pm에 _selectedPlant 제거
 					_tile->setPlant(tempIndex, false);
 				}
 			}
@@ -443,7 +488,7 @@ void GameScene::zombieControl() {
 
 	if (_progressbar->isEndWave()) {
 		if (_zm->getZombieAmount() == 0) {
-			cout << _zm->getLastZombiePosition().x << "," << _zm->getLastZombiePosition().y << endl;
+			_reward->spawnReward(true, _zm->getLastZombiePosition().x, _zm->getLastZombiePosition().y);
 		}
 		return;
 	}
@@ -459,7 +504,7 @@ void GameScene::zombieControl() {
 		if (_zombieCount + _zombieCooltime < TIMEMANAGER->getWorldTime()) {
 			ZombieType tempType = static_cast<ZombieType>(_zombieType[RND->getInt(_zombieType.size())]);
 			_zombieCount = TIMEMANAGER->getWorldTime();
-			_zm->addZombie(tempType, RND->getInt(_tile->getRow()));	//이후 ZombieType부분 무작위로 수정
+			_zm->addZombie(tempType, RND->getInt(_tile->getRow()));
 		}
 	}
 	if (_runningTime >= 30.0f) {

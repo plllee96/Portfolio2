@@ -11,6 +11,7 @@
 #include "Tile.h"
 #include "Progressbar.h"
 #include "NumberImage.h"
+#include "Reward.h"
 
 enum class GameStatus {SETTING, PLAY, PAUSE, CLEAR};
 enum class CursorSelect {NONE, PLANT, SHOVEL};
@@ -26,6 +27,7 @@ private:
 
 
 	//Game Controller
+	int _money;
 	int _stageNum;
 	float _stageTimer;
 	vector<float> _stageWaveTimer;
@@ -37,6 +39,7 @@ private:
 	//Object & Class
 	NumberImage* _sunNum;
 	Progressbar* _progressbar; 
+	Reward* _reward;
 
 	Deck* _deck;
 	Inventory* _inventory;

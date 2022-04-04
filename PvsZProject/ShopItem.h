@@ -29,5 +29,6 @@ public:
 	bool isSoldout() { return _soldout; }
 	void setSoldout(bool soldout) { _soldout = soldout; }
 	int getPrice() { return _price; }
+	ItemName getType() { return _itemName; }
 };
 

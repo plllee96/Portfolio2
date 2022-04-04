@@ -13,7 +13,7 @@ HRESULT MainGame::init(void) {
 	SCENEMANAGER->addScene("Clear", new ClearScene);
 
 
-	SCENEMANAGER->changeScene("Shop");
+	SCENEMANAGER->changeScene("Title");
 	return S_OK;
 }
 
