@@ -37,10 +37,10 @@ void Reward::update() {
 			}
 		} break;
 		case RewardStatus::OBTAIN: {
-			if (_x < WINSIZE_X / 2) _x++;
-			else if (_x > WINSIZE_X / 2) _x--;
-			if (_y < WINSIZE_Y / 2) _y++;
-			else if (_y > WINSIZE_Y / 2) _y--;
+			if (_x < WINSIZE_X / 2) _x+= 0.3;
+			else if (_x > WINSIZE_X / 2) _x-= 0.3;
+			if (_y < WINSIZE_Y / 2) _y+= 0.3;
+			else if (_y > WINSIZE_Y / 2) _y-= 0.3;
 		}
 	}
 

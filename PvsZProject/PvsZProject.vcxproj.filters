@@ -208,6 +208,9 @@
     <ClCompile Include="ShopItem.cpp">
       <Filter>MainGame\Object\ShopItem</Filter>
     </ClCompile>
+    <ClCompile Include="LetterImage.cpp">
+      <Filter>MainGame\Object\NumberImage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -437,6 +440,9 @@
     </ClInclude>
     <ClInclude Include="ShopItemName.h">
       <Filter>MainGame\Object\ShopItem</Filter>
+    </ClInclude>
+    <ClInclude Include="LetterImage.h">
+      <Filter>MainGame\Object\NumberImage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

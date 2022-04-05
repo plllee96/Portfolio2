@@ -8,6 +8,9 @@ HRESULT GameScene::init(void) {
 	_playGameButton = IMAGEMANAGER->addImage("Playbutton", "Resources/Images/Objects/playButton.bmp", 75, 47, true, RGB(255,0,255));
 	_shopButton = IMAGEMANAGER->addImage("Shopbutton", "Resources/Images/Objects/shopButton.bmp", 75, 49, true, RGB(255, 0, 255));
 	_selectedPlantIcon = IMAGEMANAGER->addFrameImage("PlantIcon", "Resources/Images/Objects/PlantIcon.bmp", 1292, 80, 17, 1, true, RGB(255, 0, 255));
+	_readyLetter = IMAGEMANAGER->addFrameImage("ReadyLetter", "Resources/Images/Objects/ReadySetPlant.bmp", 1176, 141, 3, 1, true, RGB(255, 0, 255));
+	_waveLetter = IMAGEMANAGER->addImage("WaveLetter", "Resources/Images/Objects/WaveText.bmp", 548, 23, true, RGB(255, 0, 255));
+	
 	
 	//Init SceneChanger
 	_whiteChanger = IMAGEMANAGER->addImage("whiteChanger", "Resources/Images/Backgrounds/WhiteSceneChanger.bmp", 548, 384, false, RGB(255, 0, 255));
@@ -68,6 +71,13 @@ HRESULT GameScene::init(void) {
 	_cameraRight = true;
 	_cameraLeft = false;
 
+	//init EffectVariable
+	_readyTextShow = false;
+	_readyCount = 0.8f;
+	_readyFrame = 0;
+	_waveTextShow = false;
+
+
 	//init Class
 	_tile = new Tile;
 	_tile->init(_stageNum);
@@ -108,6 +118,7 @@ void GameScene::update(void) {
 		_zl->update();
 		moveCamera();
 		settingGame();
+		if (_readyTextShow) updateReadyText();
 	}break;
 	case GameStatus::PLAY: {
 		//Ready, Set, Plant! 화면 선행
@@ -135,6 +146,7 @@ void GameScene::render(void) {
 	//render Object
 	if (_status == GameStatus::SETTING) {
 		_zl->render();
+		if (_readyTextShow) _readyLetter->frameRender(getMemDC(), 100, 120, _readyFrame, 0);
 	}
 	if (_status == GameStatus::PLAY) {
 		_tile->render();
@@ -151,23 +163,26 @@ void GameScene::render(void) {
 		_sunNum->render(_sun);
 	}
 
-
 	if (_progressbar) _progressbar->render();
 	for (Sun* iter : _vSun) {
 		iter->render();
 	}
 
-	if(_status == GameStatus::SETTING && !_cameraRight && !_cameraLeft) _inventory->render();
+	if(_status == GameStatus::SETTING && !_cameraRight && !_cameraLeft && !_readyTextShow) _inventory->render();
 	if(_cursor == CursorSelect::NONE && !_cameraRight) _deck->render(_sun);
 	else _deck->disableRender();
 
-	if (_status == GameStatus::SETTING && !(_cameraLeft || _cameraRight)) {
+	if (_status == GameStatus::SETTING && !(_cameraLeft || _cameraRight) && !_readyTextShow) {
 		_playGameButton->render(getMemDC(), _startbuttonRc.left, _startbuttonRc.top);
 		_shopButton->render(getMemDC(), _shopbuttonRc.left, _shopbuttonRc.top);
 	}
 
 	if (_cursor == CursorSelect::PLANT) {
 		printSelectedPlant();
+	}
+
+	if (_status == GameStatus::PLAY && _waveTextShow) {
+		_waveLetter->render(getMemDC(), 0, 190);
 	}
 
 	//render ScreenImage
@@ -209,10 +224,9 @@ void GameScene::moveCamera() {
 			_camera.right = 100 + WINSIZE_X;
 			_cameraLeft = false;
 
-			
-			_status = GameStatus::PLAY;
-			_sunCount = TIMEMANAGER->getWorldTime();
-			_zombieCount = TIMEMANAGER->getWorldTime();
+			_readyTextShow = true;
+			_readyTime = TIMEMANAGER->getWorldTime();
+
 		}
 	}
 }
@@ -330,6 +344,20 @@ void GameScene::settingMouseControl() {
 	}
 
 
+}
+
+void GameScene::updateReadyText() {
+	if (_readyTime + _readyCount < TIMEMANAGER->getWorldTime()) {
+		if (_readyFrame != 2) {
+			_readyTime = TIMEMANAGER->getWorldTime();
+			_readyFrame++;
+		}
+		else if (_readyFrame == 2) {
+			_status = GameStatus::PLAY;
+			_sunCount = TIMEMANAGER->getWorldTime();
+			_zombieCount = TIMEMANAGER->getWorldTime();
+		}
+	}
 }
 
 //===============================================================
@@ -518,6 +546,8 @@ void GameScene::zombieControl() {
 			_zm->addZombie(tempType, i);
 		}
 	}
+
+	_waveTextShow = _progressbar->isAnounceTime();
 }
 
 //===============================================================

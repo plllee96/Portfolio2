@@ -3,6 +3,10 @@
 
 HRESULT TitleScene::init(void) {
 	_image = IMAGEMANAGER->addImage("Title", "Resources/Images/Backgrounds/Title.bmp", 548, 821, false, RGB(255, 0, 255));
+	_buttonImage = IMAGEMANAGER->addImage("TitleButton", "Resources/Images/Objects/TitleButton.bmp", 220, 236, true, RGB(255, 0, 255));
+	_sceneChanger = IMAGEMANAGER->addImage("blackChanger", "Resources/Images/Backgrounds/BlackSceneChanger.bmp", 548, 384, false, RGB(255, 0, 255));
+	_sceneAlpha = 0;
+	_sceneChange = false;
 	_camera = RectMake(0, 0, WINSIZE_X, WINSIZE_Y);
 	_waitCount = TIMEMANAGER->getWorldTime();
 	initFirstData();
@@ -16,6 +20,15 @@ HRESULT TitleScene::init(void) {
 		data.push_back(_itoa((int)_firstData.inventory[i], temp, 10));
 	}
 	TEXTDATAMANAGER->save("data.txt", data);
+
+	_nameLength = MAX_LENGTH;
+	_userName[MAX_LENGTH] = { 0, };
+	INT nError = GetUserName(_userName, &_nameLength);
+
+	_userNameImage = new LetterImage;
+	_userNameImage->init(_nameLength, _userName);
+
+	_buttonPosition = { 280, 460 };
 	
 	return S_OK;
 }
@@ -28,13 +41,25 @@ void TitleScene::update(void) {
 		_camera.top -= 1;
 		_camera.bottom -= 1;
 	}
-	if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) {
-		SCENEMANAGER->changeScene("Game");
+
+	RECT temp = RectMake(_camera.left + _buttonPosition.x, _camera.top + _buttonPosition.y, _buttonImage->getWidth(), _buttonImage->getHeight());
+	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) {
+		if (PtInRect(&temp, _ptMouse)) {
+			_sceneChange = true;
+		}
 	}
+
+	if (_sceneChange) _sceneAlpha += 4;
+	if (_sceneAlpha > 250) SCENEMANAGER->changeScene("Game");
 }
 
 void TitleScene::render(void) {
 	_image->render(getMemDC(), _camera.left, _camera.top);
+	_buttonImage->render(getMemDC(), _camera.left + _buttonPosition.x, _camera.top + _buttonPosition.y);
+
+	_userNameImage->render(_camera.left + 70, _camera.top + 465);
+
+	if (_sceneAlpha != 0) _sceneChanger->alphaRender(getMemDC(), _sceneAlpha);
 }
 
 void TitleScene::initFirstData() {

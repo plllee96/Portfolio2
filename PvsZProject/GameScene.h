@@ -24,6 +24,8 @@ private:
 	Image* _playGameButton;
 	Image* _shopButton;
 	Image* _selectedPlantIcon;
+	Image* _readyLetter;
+	Image* _waveLetter;
 
 
 	//Game Controller
@@ -60,6 +62,14 @@ private:
 	bool _cameraRight;
 	bool _cameraLeft;
 	float _cameraMoveSpeed;
+
+	//Effect Variable
+	bool _readyTextShow;
+	float _readyTime;
+	float _readyCount;
+	int _readyFrame;
+
+	bool _waveTextShow;
 
 	//Setting Variable
 	float _startWaitCool;
@@ -109,6 +119,7 @@ public:
 	void setStageNum(int stageNum) { _stageNum = stageNum; }
 	void loadStage();
 	void settingMouseControl();
+	void updateReadyText();
 
 	//play game
 	void playGame();

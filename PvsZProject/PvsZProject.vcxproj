@@ -176,6 +176,7 @@
     <ClCompile Include="Jalapeno.cpp" />
     <ClCompile Include="JalapenoExplode.cpp" />
     <ClCompile Include="KeyManager.cpp" />
+    <ClCompile Include="LetterImage.cpp" />
     <ClCompile Include="Lilypad.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="MushroomBullet.cpp" />
@@ -252,6 +253,7 @@
     <ClInclude Include="Jalapeno.h" />
     <ClInclude Include="JalapenoExplode.h" />
     <ClInclude Include="KeyManager.h" />
+    <ClInclude Include="LetterImage.h" />
     <ClInclude Include="Lilypad.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="MushroomBullet.h" />

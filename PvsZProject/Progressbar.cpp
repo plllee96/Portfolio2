@@ -50,6 +50,16 @@ bool Progressbar::isHugeWaveTime() {
 	return false;
 }
 
+bool Progressbar::isAnounceTime() {
+	for (int i = 0; i < _flagTime.size(); i++) {
+		if (_currentTime > _startTime + _flagTime[i].first - 5.0f && _currentTime < _startTime + _flagTime[i].first - 0.5f) {
+			return true;
+		}
+		else continue;
+	}
+	return false;
+}
+
 bool Progressbar::isFinalWave() {
 	return false;
 }
