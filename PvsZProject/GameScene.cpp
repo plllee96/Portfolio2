@@ -71,12 +71,15 @@ HRESULT GameScene::init(void) {
 	_cameraRight = true;
 	_cameraLeft = false;
 
-	//init EffectVariable
+	//init Event Variable
 	_readyTextShow = false;
 	_readyCount = 0.8f;
 	_readyFrame = 0;
+
 	_waveTextShow = false;
 
+	_clickReward = false;
+	_clickRewardCount = 7.0f;
 
 	//init Class
 	_tile = new Tile;
@@ -244,6 +247,10 @@ void GameScene::sceneChangerControl() {
 		if (_whiteAlpha > 253) SCENEMANAGER->changeScene("Clear");
 		else _whiteAlpha += 2;
 	}
+
+	if (_clickReward && _clickRewardTime + _clickRewardCount < TIMEMANAGER->getWorldTime()) {
+		_goingToClear = true;
+	}
 }
 
 
@@ -378,6 +385,7 @@ void GameScene::playGame() {
 	_sunNum->update();
 
 	if (_reward->isShow()) _reward->update();
+
 }
 
 void GameScene::mouseControl() {
@@ -405,6 +413,8 @@ void GameScene::mouseControl() {
 			//Select Reward
 			if (PtInRect(&_reward->getRect(), _ptMouse) && _reward->isShow() && _reward->getStatus() == RewardStatus::GENERATE) {
 				_reward->setObtain();
+				_clickReward = true;
+				_clickRewardTime = TIMEMANAGER->getWorldTime();
 			}
 
 		} break;

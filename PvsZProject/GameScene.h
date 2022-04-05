@@ -63,13 +63,17 @@ private:
 	bool _cameraLeft;
 	float _cameraMoveSpeed;
 
-	//Effect Variable
+	//Event Variable
 	bool _readyTextShow;
 	float _readyTime;
 	float _readyCount;
 	int _readyFrame;
 
 	bool _waveTextShow;
+
+	bool _clickReward;
+	float _clickRewardTime;
+	float _clickRewardCount;
 
 	//Setting Variable
 	float _startWaitCool;
