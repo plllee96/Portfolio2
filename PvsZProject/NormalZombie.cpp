@@ -42,6 +42,8 @@ void NormalZombie::act() {
 		}
 		else _status = NormalZombieStatus::DEAD;
 	}
+
+
 }
 
 void NormalZombie::attack() {
@@ -61,6 +63,15 @@ void NormalZombie::attack() {
 void NormalZombie::collideObject(ObserveData obData) {
 	if (*obData.type == ObservedType::BULLET && *obData.hitActive) {
 		_hp -= *obData.damage;
+
+		if (_hp <= 5.0f && _hp > 0.0f && !_armAlreadyFall) {
+			_armFall = true;
+			_armAlreadyFall = true;
+		}
+		else if (_hp <= 0.0f && _hp > -10.0f && !_headAlreadyFall) {
+			_headFall = true;
+			_headAlreadyFall = true;
+		}
 	}
 }
 

@@ -211,6 +211,21 @@
     <ClCompile Include="LetterImage.cpp">
       <Filter>MainGame\Object\NumberImage</Filter>
     </ClCompile>
+    <ClCompile Include="MinigameScene.cpp">
+      <Filter>MainGame\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>MainGame\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>MainGame\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="ArmEffect.cpp">
+      <Filter>MainGame\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectEffect.cpp">
+      <Filter>MainGame\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -444,6 +459,21 @@
     <ClInclude Include="LetterImage.h">
       <Filter>MainGame\Object\NumberImage</Filter>
     </ClInclude>
+    <ClInclude Include="MinigameScene.h">
+      <Filter>MainGame\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>MainGame\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>MainGame\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="ArmEffect.h">
+      <Filter>MainGame\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectEffect.h">
+      <Filter>MainGame\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="API Framework">
@@ -520,6 +550,9 @@
     </Filter>
     <Filter Include="MainGame\Object\ShopItem">
       <UniqueIdentifier>{ea675bb3-8ba8-496c-b4f7-3fa2fb19bb16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Effect">
+      <UniqueIdentifier>{69432c41-ef85-4afd-a8c5-cb52f30639a9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

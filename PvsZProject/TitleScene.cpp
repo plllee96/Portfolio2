@@ -7,6 +7,8 @@ HRESULT TitleScene::init(void) {
 	_sceneChanger = IMAGEMANAGER->addImage("blackChanger", "Resources/Images/Backgrounds/BlackSceneChanger.bmp", 548, 384, false, RGB(255, 0, 255));
 	_sceneAlpha = 0;
 	_sceneChange = false;
+	_goingMinigame = false;
+
 	_camera = RectMake(0, 0, WINSIZE_X, WINSIZE_Y);
 	_waitCount = TIMEMANAGER->getWorldTime();
 	initFirstData();
@@ -42,15 +44,23 @@ void TitleScene::update(void) {
 		_camera.bottom -= 1;
 	}
 
-	RECT temp = RectMake(_camera.left + _buttonPosition.x, _camera.top + _buttonPosition.y, _buttonImage->getWidth(), _buttonImage->getHeight());
+	RECT temp = RectMake(_camera.left + _buttonPosition.x, _camera.top + _buttonPosition.y, _buttonImage->getWidth(), _buttonImage->getHeight() / 3);
+	RECT temp2 = RectMake(_camera.left + _buttonPosition.x, _camera.top + _buttonPosition.y + _buttonImage->getHeight() / 3 * 2, _buttonImage->getWidth(), _buttonImage->getHeight() / 3);
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) {
 		if (PtInRect(&temp, _ptMouse)) {
+			_sceneChange = true;
+		}
+		else if (PtInRect(&temp2, _ptMouse)) {
+			_goingMinigame = true;
 			_sceneChange = true;
 		}
 	}
 
 	if (_sceneChange) _sceneAlpha += 4;
-	if (_sceneAlpha > 250) SCENEMANAGER->changeScene("Game");
+	if (_sceneAlpha > 250) {
+		if (_goingMinigame) SCENEMANAGER->changeScene("Minigame");
+		else SCENEMANAGER->changeScene("Game");
+	}
 }
 
 void TitleScene::render(void) {
@@ -64,9 +74,15 @@ void TitleScene::render(void) {
 
 void TitleScene::initFirstData() {
 	_firstData.stage = 0;
+//	_firstData.stage = 2;
 	_firstData.slot = 6;
-	_firstData.money = 1000;
+	_firstData.money = 0;
 	for (int i = 1; i <= 6; i++) {
+		_firstData.inventory.push_back(i);
+	}
+
+	//debug
+	for (int i = 7; i <= 16; i++) {
 		_firstData.inventory.push_back(i);
 	}
 }

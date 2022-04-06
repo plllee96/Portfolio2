@@ -8,6 +8,12 @@ HRESULT BulletManager::init(void) {
 }
 
 void BulletManager::release(void) {
+	_viBullet = _vBullet.begin();
+	for (; _viBullet != _vBullet.end(); ++_viBullet) {
+		(*_viBullet)->release();
+	}
+	_vBullet.clear();
+
 	OBSERVERMANAGER->removeBulletObserver(this);
 }
 

@@ -1,18 +1,22 @@
 #pragma once
 #include "GameNode.h"
 #include "Zombie.h"
+#include "EffectManager.h"
 
 #pragma region ZOMBIES
 #include "NormalZombie.h"
 #include "CornheadZombie.h"
 #include "BucketheadZombie.h"
 #include "TubeZombie.h"
+#include "PoleZombie.h"
 #pragma endregion
 
 class ZombieManager : public GameNode {
 private:
 	typedef vector<Zombie*> vZombie;
 	typedef vector<Zombie*>::iterator viZombie;
+
+	EffectManager* _em;
 
 	vZombie _vZombie;
 	viZombie _viZombie;

@@ -20,6 +20,7 @@ HRESULT GameNode::init(bool managerInit) {
 		SCENEMANAGER->init();
 		SOUNDMANAGER->init();
 		OBSERVERMANAGER->init();
+
 	}
 		return S_OK;
 }

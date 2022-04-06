@@ -2,6 +2,8 @@
 #include "Progressbar.h"
 
 HRESULT Progressbar::init(float maxTime, vector<float> flagTime) {
+	_flagTime.clear();
+
 	_frameImage = IMAGEMANAGER->addImage("Progress", "Resources/Images/Objects/Progress.bmp", 233, 19, true, RGB(255, 0, 255));
 	_gaugeImage = IMAGEMANAGER->addImage("Progressbar", "Resources/Images/Objects/Progressbar.bmp", 221, 7, false, RGB(255, 0, 255));
 	_gaugeHeadImage = IMAGEMANAGER->addImage("ProgressHead", "Resources/Images/Objects/ProgressHead.bmp", 15, 17, true, RGB(255, 0, 255));

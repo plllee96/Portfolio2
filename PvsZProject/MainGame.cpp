@@ -4,6 +4,7 @@
 #include "GameScene.h"
 #include "ShopScene.h"
 #include "ClearScene.h"
+#include "MinigameScene.h"
 
 HRESULT MainGame::init(void) {
 	GameNode::init(true);
@@ -11,7 +12,7 @@ HRESULT MainGame::init(void) {
 	SCENEMANAGER->addScene("Game", new GameScene);
 	SCENEMANAGER->addScene("Shop", new ShopScene);
 	SCENEMANAGER->addScene("Clear", new ClearScene);
-
+	SCENEMANAGER->addScene("Minigame", new MinigameScene);
 
 	SCENEMANAGER->changeScene("Title");
 	return S_OK;
@@ -25,14 +26,13 @@ void MainGame::release(void) {
 void MainGame::update(void) {
 	GameNode::update();
 	SCENEMANAGER->update();
-
 }
 
 void MainGame::render() {
 	PatBlt(getMemDC(), 0, 0, WINSIZE_X, WINSIZE_Y, BLACKNESS);
 	//=============================================
 	SCENEMANAGER->render();
-
+	OBSERVERMANAGER->render();
 	//=============================================
 	TIMEMANAGER->render(getMemDC());
 	this->getBackBuffer()->render(getHDC());

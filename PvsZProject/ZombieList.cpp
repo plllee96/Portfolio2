@@ -19,6 +19,9 @@ HRESULT ZombieList::init(vector<int> list, RECT* camera) {
 			case ZombieType::BUCKETHEAD_ZOMBIE: {
 				tempList.image = IMAGEMANAGER->addFrameImage("BucketheadZombie", "Resources/Images/Zombies/BucketheadZombie.bmp", 476, 530, 7, 5, true, RGB(255, 0, 255));
 			} break;
+			case ZombieType::POLE_ZOMBIE: {
+				tempList.image = IMAGEMANAGER->addFrameImage("PoleZombie", "Resources/Images/Zombies/PoleZombie.bmp", 1312, 1440, 8, 10, true, RGB(255, 0, 255));
+			} break;
 			default: {
 				tempList.image = IMAGEMANAGER->addFrameImage("NormalZombie", "Resources/Images/Zombies/Zombie.bmp", 910, 700, 13, 7, true, RGB(255, 0, 255));
 			} break;

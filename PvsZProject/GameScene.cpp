@@ -20,13 +20,18 @@ HRESULT GameScene::init(void) {
 	_goingToClear = false;
 	_goingToShop = false;
 
-
+	if (_progressbar) {
+		_progressbar->clearProgressbar();
+		_progressbar = nullptr;
+		delete _progressbar;
+	}
 	_status = GameStatus::SETTING;
 	_cursor = CursorSelect::NONE;
 	_selectedPlant = PlantType::NONE; 
 	_selectedPlantIndex = -1;
 
 	_zombieType.clear();
+	_stageWaveTimer.clear();
 
 	_inventory = new Inventory;
 	_inventory->init();
@@ -52,6 +57,7 @@ HRESULT GameScene::init(void) {
 	_startbuttonRc = RectMake(460, 220, _playGameButton->getWidth(), _playGameButton->getHeight());
 	_shopbuttonRc = RectMake(460, 165, _shopButton->getWidth(), _shopButton->getHeight());
 
+	_vSun.clear();
 	_sun = 100;
 	_sun = 5000;
 	_sunCount = TIMEMANAGER->getWorldTime();
@@ -124,7 +130,6 @@ void GameScene::update(void) {
 		if (_readyTextShow) updateReadyText();
 	}break;
 	case GameStatus::PLAY: {
-		//Ready, Set, Plant! 화면 선행
 		if (!_progressbar) {
 			_progressbar = new Progressbar;
 			_progressbar->init(_stageTimer, _stageWaveTimer);
@@ -166,7 +171,7 @@ void GameScene::render(void) {
 		_sunNum->render(_sun);
 	}
 
-	if (_progressbar) _progressbar->render();
+	if (_progressbar && _status == GameStatus::PLAY) _progressbar->render();
 	for (Sun* iter : _vSun) {
 		iter->render();
 	}
@@ -244,7 +249,13 @@ void GameScene::sceneChangerControl() {
 	}
 
 	if (_goingToClear) {
-		if (_whiteAlpha > 253) SCENEMANAGER->changeScene("Clear");
+		if (_whiteAlpha > 253) {
+			//pm, zm, bm 초기화
+			_pm->release();
+			_zm->release();
+			_bm->release();
+			SCENEMANAGER->changeScene("Clear");
+		}
 		else _whiteAlpha += 2;
 	}
 
@@ -274,11 +285,11 @@ void GameScene::loadStage() {
 
 	switch (_stageNum) {
 		case 0: {
-			//_stageTimer = 120.0f;
-			//_stageWaveTimer.push_back(119.9f);
+			_stageTimer = 120.0f;
+			_stageWaveTimer.push_back(119.9f);
 
-			_stageTimer = 40.0f;
-			_stageWaveTimer.push_back(39.9f);
+			//_stageTimer = 40.0f;
+			//_stageWaveTimer.push_back(39.9f);
 
 			_zombieType.push_back(0);
 			_zombieType.push_back(1);
@@ -286,6 +297,9 @@ void GameScene::loadStage() {
 		case 1: {
 			_stageTimer = 120.0f;
 			_stageWaveTimer.push_back(119.9f);
+
+			//_stageTimer = 45.0f;
+			//_stageWaveTimer.push_back(44.9f);
 
 			_zombieType.push_back(0);
 			_zombieType.push_back(1);
@@ -299,6 +313,7 @@ void GameScene::loadStage() {
 			_zombieType.push_back(0);
 			_zombieType.push_back(1);
 			_zombieType.push_back(2);
+			_zombieType.push_back(5);
 		} break;
 		default: {
 			_stageTimer = 120.0f;
@@ -361,6 +376,9 @@ void GameScene::updateReadyText() {
 		}
 		else if (_readyFrame == 2) {
 			_status = GameStatus::PLAY;
+			_progressbar = new Progressbar;
+			_progressbar->init(_stageTimer, _stageWaveTimer);
+
 			_sunCount = TIMEMANAGER->getWorldTime();
 			_zombieCount = TIMEMANAGER->getWorldTime();
 		}

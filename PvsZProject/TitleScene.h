@@ -17,6 +17,7 @@ private:
 	Image* _sceneChanger;
 	int _sceneAlpha;
 	bool _sceneChange;
+	bool _goingMinigame;
 
 	char _text[32];
 	firstData _firstData;

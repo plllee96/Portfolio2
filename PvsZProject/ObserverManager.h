@@ -1,9 +1,11 @@
 #pragma once
+
 #include "Observer.h"
 #include "SingletonBase.h"
 
 class Plant;
 class Zombie;
+class EffectManager;
 
 class ObserverManager : public SingletonBase<ObserverManager> {
 private:
@@ -14,6 +16,8 @@ private:
 	typedef vector<BulletObserver*>::iterator viBulletObserver;
 
 private:
+	EffectManager* _em;
+
 	vObserver _vObserver;
 	viObserver _viObserver;
 	viObserver _viObserverCompare;

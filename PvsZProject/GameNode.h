@@ -2,6 +2,7 @@
 #include "Image.h"
 
 static Image* _backBuffer = IMAGEMANAGER->addImage("backBuffer", WINSIZE_X, WINSIZE_Y);
+
 class GameNode {
 private:
 	HDC _hdc;

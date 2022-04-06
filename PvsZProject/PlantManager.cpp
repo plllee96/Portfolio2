@@ -6,6 +6,13 @@ HRESULT PlantManager::init(void) {
 }
 
 void PlantManager::release(void) {
+	_viPlant = _vPlant.begin();
+	for (; _viPlant != _vPlant.end(); ++_viPlant) {
+		int temp = (*_viPlant)->getLocation().x + _tile->getColumn() * (*_viPlant)->getLocation().y;
+		_tile->setPlant(temp, false);
+		(*_viPlant)->release();
+	}
+	_vPlant.clear();
 }
 
 void PlantManager::update(void) {

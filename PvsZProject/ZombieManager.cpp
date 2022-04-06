@@ -2,16 +2,30 @@
 #include "ZombieManager.h"
 
 HRESULT ZombieManager::init(void) {
+	_em = new EffectManager;
+	_em->init();
 	return S_OK;
 }
 
 void ZombieManager::release(void) {
+	_em->release();
 }
 
 void ZombieManager::update(void) {
+	_em->update();
+
 	_viZombie = _vZombie.begin();
 	for (; _viZombie != _vZombie.end(); ++_viZombie) {
 		(*_viZombie)->update();
+
+		if ((*_viZombie)->isArmFall()) {
+			_em->createArm("Arm", (*_viZombie)->getX() + 22, (*_viZombie)->getY() + 65);
+			(*_viZombie)->setArmFall(false);
+		}
+		if ((*_viZombie)->isHeadFall()) {
+			_em->createObject("Head", (*_viZombie)->getX() + 22, (*_viZombie)->getY() + 25);
+			(*_viZombie)->setHeadFall(false);
+		}
 
 		if (!(*_viZombie)->isActive()) {
 			if (((*_viZombie)->getType() == ZombieType::CORNHEAD_ZOMBIE || (*_viZombie)->getType() == ZombieType::BUCKETHEAD_ZOMBIE)
@@ -57,6 +71,8 @@ void ZombieManager::render(void) {
 	for (; _viZombie != _vZombie.end(); ++_viZombie) {
 		if ((*_viZombie)->getLine() == 5) (*_viZombie)->render();
 	}
+
+	_em->render();
 }
 
 void ZombieManager::addZombie(ZombieType type, int line) {
@@ -70,6 +86,7 @@ void ZombieManager::addZombie(ZombieType type, int line) {
 			case ZombieType::ZOMBIE: temp = new NormalZombie; break;
 			case ZombieType::CORNHEAD_ZOMBIE: temp = new CornheadZombie; break;
 			case ZombieType::BUCKETHEAD_ZOMBIE: temp = new BucketheadZombie; break;
+			case ZombieType::POLE_ZOMBIE: temp = new PoleZombie; break;
 				//add ZombieType Here
 
 			default: temp = new Zombie;

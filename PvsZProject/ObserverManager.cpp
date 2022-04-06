@@ -4,8 +4,12 @@
 #include "Plant.h"
 #include "Zombie.h"
 #include "Bullet.h"
+#include "EffectManager.h"
 
 HRESULT ObserverManager::init(void) {
+	_em = new EffectManager;
+	_em->init();
+
 	_tempRC = { 0,0,0,0 };
 	return S_OK;
 }
@@ -17,9 +21,11 @@ void ObserverManager::release(void) {
 void ObserverManager::update(void) {
 	manageRect();
 	manageBullet();
+	_em->update();
 }
 
 void ObserverManager::render(void) {
+	_em->render();
 }
 
 void ObserverManager::registerObserver(Observer * observer) {
@@ -64,7 +70,6 @@ void ObserverManager::manageRect() {
 			observerCompare = (*_viObserverCompare)->getRectUpdate();
 
 			//Compare observer & observerCompare
-
 			if ((*observer.type) == (*observerCompare.type)) continue;
 
 			//Collide Plant's RecognizeRect & Zombie -> Plant Attack
@@ -85,9 +90,9 @@ void ObserverManager::manageRect() {
 					}
 					continue;
 				}
-				
+
 			}
-			
+
 			//Collide Zombie & Plant -> Zombie Attack, Plant HP Down
 			if ((*observer.type) == ObservedType::ZOMBIE && (*observerCompare.type) == ObservedType::PLANT) {
 				RECT collisionRc;
@@ -104,6 +109,13 @@ void ObserverManager::manageRect() {
 				if (IntersectRect(&collisionRc, observer.rc, observerCompare.rc)) {
 					(*_viObserver)->collideObject(observerCompare);
 					(*_viObserverCompare)->collideObject(observer);
+
+					if ((*observer.bulletType) == BulletType::PEASHOOTER_BULLET || (*observer.bulletType) == BulletType::THREEPEATER_BULLET) {
+						_em->createEffect("Peashooter_Bullet_Hit", 0.08f, observer.rc->left + 35, observer.rc->top - 12);
+					}
+					else if ((*observer.bulletType) == BulletType::MUSHROOM_BULLET) {
+						_em->createEffect("Puffshroom_Bullet_Hit", 0.08f, observer.rc->left + 35, observer.rc->top);
+					}
 					continue;
 				}
 			}

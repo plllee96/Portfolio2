@@ -24,7 +24,7 @@ void PotatoExplode::update(void) {
 		_frame += 1;
 		_count = TIMEMANAGER->getWorldTime();
 	}
-	if (_frame > _image->getMaxFrameX()) {
+	if (_frame >= _image->getMaxFrameX()) {
 		_active = false;
 	}
 

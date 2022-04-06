@@ -16,6 +16,7 @@ typedef struct tagObservedInfo {
 	ObservedType* type;
 	DamageType* damageType;
 	PlantType* plantType;
+	BulletType* bulletType;
 	RECT* rc;
 	RECT* recognizeRc;
 	float* damage;

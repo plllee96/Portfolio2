@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="ArmEffect.cpp" />
     <ClCompile Include="BucketheadZombie.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletManager.cpp" />
@@ -163,6 +164,8 @@
     <ClCompile Include="ClearScene.cpp" />
     <ClCompile Include="CornheadZombie.cpp" />
     <ClCompile Include="Deck.cpp" />
+    <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="FumeShroom.cpp" />
     <ClCompile Include="FumeshroomBullet.cpp" />
@@ -179,10 +182,12 @@
     <ClCompile Include="LetterImage.cpp" />
     <ClCompile Include="Lilypad.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="MinigameScene.cpp" />
     <ClCompile Include="MushroomBullet.cpp" />
     <ClCompile Include="NewspaperZombie.cpp" />
     <ClCompile Include="NormalZombie.cpp" />
     <ClCompile Include="NumberImage.cpp" />
+    <ClCompile Include="ObjectEffect.cpp" />
     <ClCompile Include="ObserverManager.cpp" />
     <ClCompile Include="Peashooter.cpp" />
     <ClCompile Include="PeashooterBullet.cpp" />
@@ -225,6 +230,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="ArmEffect.h" />
     <ClInclude Include="BucketheadZombie.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletManager.h" />
@@ -240,6 +246,8 @@
     <ClInclude Include="CommonMacroFunction.h" />
     <ClInclude Include="CornheadZombie.h" />
     <ClInclude Include="Deck.h" />
+    <ClInclude Include="Effect.h" />
+    <ClInclude Include="EffectManager.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="FumeShroom.h" />
     <ClInclude Include="FumeshroomBullet.h" />
@@ -256,10 +264,12 @@
     <ClInclude Include="LetterImage.h" />
     <ClInclude Include="Lilypad.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="MinigameScene.h" />
     <ClInclude Include="MushroomBullet.h" />
     <ClInclude Include="NewspaperZombie.h" />
     <ClInclude Include="NormalZombie.h" />
     <ClInclude Include="NumberImage.h" />
+    <ClInclude Include="ObjectEffect.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="ObserverManager.h" />
     <ClInclude Include="Peashooter.h" />

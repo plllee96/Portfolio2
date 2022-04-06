@@ -13,6 +13,13 @@ HRESULT Zombie::init(ZombieType type, int line) {
 	_active = true;
 	_attack = false;
 
+	_armFall = false;
+	_armAlreadyFall = false;
+	_headFall = false;
+	_headAlreadyFall = false;
+	_objectFall = false;
+	_objectAlreadyFall = false;
+
 	//init Frame
 	_frame.maxFrameX = 1;
 	_frame.currentFrameX = 0;

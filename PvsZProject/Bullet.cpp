@@ -31,6 +31,7 @@ void Bullet::render(void) {
 ObserveData Bullet::getRectUpdate() {
 	ObserveData temp;
 	temp.type = &_obType;
+	temp.bulletType = &_type;
 	temp.damageType = &_damageType;
 	temp.rc = &_rc;
 	temp.recognizeRc = &_recognizeRc;

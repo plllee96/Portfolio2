@@ -28,6 +28,13 @@ protected:
 	bool _active;
 	bool _attack;
 
+	bool _armFall;
+	bool _armAlreadyFall;
+	bool _headFall;
+	bool _headAlreadyFall;
+	bool _objectFall;
+	bool _objectAlreadyFall;
+
 	int _tileHeight;
 
 	//Observer Variable
@@ -48,6 +55,12 @@ public:
 
 	virtual int getLine() { return _line; }
 	virtual bool isActive() { return _active; }
+	virtual bool isArmFall() { return _armFall; }
+	virtual void setArmFall(bool fall) { _armFall = fall; }
+	virtual bool isHeadFall() { return _headFall; }
+	virtual void setHeadFall(bool fall) { _headFall = fall; }
+	virtual bool isObjectFall() { return _objectFall; }
+	virtual void setObjectFall(bool fall) { _objectFall = fall; }
 
 	ZombieType getType() { return _type; }
 

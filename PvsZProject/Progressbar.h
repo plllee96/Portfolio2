@@ -30,5 +30,7 @@ public:
 	bool isFinalWave();
 	bool isEndWave();
 	float getStartTime() { return _startTime; }
+
+	void clearProgressbar() { _flagTime.clear(); }
 };
 
