@@ -8,7 +8,7 @@ HRESULT TitleScene::init(void) {
 	_sceneAlpha = 0;
 	_sceneChange = false;
 	_goingMinigame = false;
-
+	
 	_camera = RectMake(0, 0, WINSIZE_X, WINSIZE_Y);
 	_waitCount = TIMEMANAGER->getWorldTime();
 	initFirstData();
@@ -31,6 +31,8 @@ HRESULT TitleScene::init(void) {
 	_userNameImage->init(_nameLength, _userName);
 
 	_buttonPosition = { 280, 460 };
+
+	SOUNDMANAGER->play("Title", 1.0f);
 	
 	return S_OK;
 }
@@ -58,6 +60,7 @@ void TitleScene::update(void) {
 
 	if (_sceneChange) _sceneAlpha += 4;
 	if (_sceneAlpha > 250) {
+		SOUNDMANAGER->stop("Title");
 		if (_goingMinigame) SCENEMANAGER->changeScene("Minigame");
 		else SCENEMANAGER->changeScene("Game");
 	}
@@ -74,15 +77,10 @@ void TitleScene::render(void) {
 
 void TitleScene::initFirstData() {
 	_firstData.stage = 0;
-//	_firstData.stage = 2;
 	_firstData.slot = 6;
 	_firstData.money = 0;
 	for (int i = 1; i <= 6; i++) {
 		_firstData.inventory.push_back(i);
 	}
 
-	//debug
-	for (int i = 7; i <= 16; i++) {
-		_firstData.inventory.push_back(i);
-	}
 }

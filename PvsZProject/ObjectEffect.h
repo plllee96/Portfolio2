@@ -1,7 +1,7 @@
 #pragma once
 #include "GameNode.h"
 
-const float maintainTime = 2.0f;
+const float maintainTime = 1.6f;
 
 class ObjectEffect : public GameNode {
 private:

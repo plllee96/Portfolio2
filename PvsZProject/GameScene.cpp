@@ -2,6 +2,7 @@
 #include "GameScene.h"
 
 HRESULT GameScene::init(void) {
+	
 	//Init UI Image
 	_camera = RectMake(0, 0, WINSIZE_X, WINSIZE_Y);		//tempCameraPosition
 	_sunIcon = IMAGEMANAGER->addImage("SunIcon", "Resources/Images/Objects/SunIcon.bmp", 32, 32, true, RGB(255, 0, 255));
@@ -19,6 +20,7 @@ HRESULT GameScene::init(void) {
 	_blackAlpha = 255;
 	_goingToClear = false;
 	_goingToShop = false;
+
 
 	if (_progressbar) {
 		_progressbar->clearProgressbar();
@@ -79,7 +81,7 @@ HRESULT GameScene::init(void) {
 
 	//init Event Variable
 	_readyTextShow = false;
-	_readyCount = 0.8f;
+	_readyCount = 0.6f;
 	_readyFrame = 0;
 
 	_waveTextShow = false;
@@ -112,6 +114,8 @@ HRESULT GameScene::init(void) {
 
 	_reward = new Reward;
 	_reward->init(_stageNum);
+
+	SOUNDMANAGER->play("Setting", 1.0f);
 
 	return S_OK;
 }
@@ -233,6 +237,7 @@ void GameScene::moveCamera() {
 			_cameraLeft = false;
 
 			_readyTextShow = true;
+			SOUNDMANAGER->play("ReadySetPlant", 1.0f);
 			_readyTime = TIMEMANAGER->getWorldTime();
 
 		}
@@ -254,6 +259,9 @@ void GameScene::sceneChangerControl() {
 			_pm->release();
 			_zm->release();
 			_bm->release();
+			SOUNDMANAGER->stop("Stage1");
+			SOUNDMANAGER->stop("Stage2");
+			SOUNDMANAGER->stop("Stage3");
 			SCENEMANAGER->changeScene("Clear");
 		}
 		else _whiteAlpha += 2;
@@ -375,6 +383,12 @@ void GameScene::updateReadyText() {
 			_readyFrame++;
 		}
 		else if (_readyFrame == 2) {
+			SOUNDMANAGER->stop("Setting");
+			switch (_stageNum) {
+				case 0: SOUNDMANAGER->play("Stage1", 1.0f); break;
+				case 1: SOUNDMANAGER->play("Stage2", 1.0f); break;
+				case 2: SOUNDMANAGER->play("Stage3", 1.0f); break;
+			}
 			_status = GameStatus::PLAY;
 			_progressbar = new Progressbar;
 			_progressbar->init(_stageTimer, _stageWaveTimer);
@@ -415,6 +429,7 @@ void GameScene::mouseControl() {
 			if (_selectedPlantIndex != -1 && _deck->getCard(_selectedPlantIndex)->isActive() && _deck->getCard(_selectedPlantIndex)->getPrice() <= _sun) {
 				_selectedPlant = _deck->getPlant(_selectedPlantIndex);
 				_cursor = CursorSelect::PLANT;
+				SOUNDMANAGER->play("SelectPlant", 1.0f);
 				break;
 			}
 
@@ -424,6 +439,7 @@ void GameScene::mouseControl() {
 				if (PtInRect(&(*_viSun)->getRect(), _ptMouse)) {
 					((*_viSun)->isSmall()) ? _sun += 15 : _sun += 25;
 					(*_viSun)->setType(SunType::GAIN);
+					SOUNDMANAGER->play("Sun", 1.0f);
 					break;
 				}
 			}
@@ -446,6 +462,7 @@ void GameScene::mouseControl() {
 							_pm->addPlant(_deck->getPlant(_selectedPlantIndex), _tile->getLocation(tempIndex));
 							_deck->getCard(_selectedPlantIndex)->startCoolTime();
 							_sun -= _deck->getCard(_selectedPlantIndex)->getPrice();
+							SOUNDMANAGER->play("Plant", 1.0f);
 						}
 					}
 					else if (_tile->getTile(tempIndex).isWater) {
@@ -455,6 +472,7 @@ void GameScene::mouseControl() {
 							_pm->addPlant(_deck->getPlant(_selectedPlantIndex), _tile->getLocation(tempIndex));
 							_deck->getCard(_selectedPlantIndex)->startCoolTime();
 							_sun -= _deck->getCard(_selectedPlantIndex)->getPrice();
+							SOUNDMANAGER->play("Plant", 1.0f);
 						}
 						
 						else if (_tile->getTile(tempIndex).hasLilypad) {	
@@ -462,6 +480,7 @@ void GameScene::mouseControl() {
 							_pm->addPlant(_deck->getPlant(_selectedPlantIndex), _tile->getLocation(tempIndex));
 							_deck->getCard(_selectedPlantIndex)->startCoolTime();
 							_sun -= _deck->getCard(_selectedPlantIndex)->getPrice();
+							SOUNDMANAGER->play("Plant", 1.0f);
 						}
 					}
 					else {
@@ -470,6 +489,7 @@ void GameScene::mouseControl() {
 							_pm->addPlant(_deck->getPlant(_selectedPlantIndex), _tile->getLocation(tempIndex));
 							_deck->getCard(_selectedPlantIndex)->startCoolTime();
 							_sun -= _deck->getCard(_selectedPlantIndex)->getPrice();
+							SOUNDMANAGER->play("Plant", 1.0f);
 						}
 					}
 				}

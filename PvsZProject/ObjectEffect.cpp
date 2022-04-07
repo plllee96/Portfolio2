@@ -10,9 +10,9 @@ HRESULT ObjectEffect::init(const char * imageName, int x, int y) {
 	_x = x;
 	_y = y;
 	_isActive = true;
-	_y + RND->getFromFloatTo(30.0f, 50.0f);
+	_targetY = _y + RND->getFromFloatTo(30.0f, 50.0f);
 	_xspeed = RND->getFromFloatTo(0.0f, 1.5f);
-	_gravity = RND->getFromFloatTo(2.0f, 3.0f);
+	_gravity = RND->getFromFloatTo(0.5f, 1.5f);
 	_timer = TIMEMANAGER->getWorldTime();
 	return S_OK;
 }

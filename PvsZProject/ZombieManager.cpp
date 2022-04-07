@@ -23,7 +23,7 @@ void ZombieManager::update(void) {
 			(*_viZombie)->setArmFall(false);
 		}
 		if ((*_viZombie)->isHeadFall()) {
-			_em->createObject("Head", (*_viZombie)->getX() + 22, (*_viZombie)->getY() + 25);
+			_em->createObject("Head", (*_viZombie)->getX() + 2, (*_viZombie)->getY() + 25);
 			(*_viZombie)->setHeadFall(false);
 		}
 

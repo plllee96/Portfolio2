@@ -109,7 +109,7 @@ void ObserverManager::manageRect() {
 				if (IntersectRect(&collisionRc, observer.rc, observerCompare.rc)) {
 					(*_viObserver)->collideObject(observerCompare);
 					(*_viObserverCompare)->collideObject(observer);
-
+					SOUNDMANAGER->play("Hit", 1.0f);
 					if ((*observer.bulletType) == BulletType::PEASHOOTER_BULLET || (*observer.bulletType) == BulletType::THREEPEATER_BULLET) {
 						_em->createEffect("Peashooter_Bullet_Hit", 0.08f, observer.rc->left + 35, observer.rc->top - 12);
 					}

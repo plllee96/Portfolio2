@@ -59,13 +59,13 @@ void BulletManager::addBullet(BulletType type, int x, int y, int line) {
 	else {
 		Bullet* temp;
 		switch (type) {
-			case BulletType::PEASHOOTER_BULLET: temp = new PeashooterBullet; break;
-			case BulletType::CHERRY_EXPLODE: temp = new CherryExplode; break;
-			case BulletType::POTATO_EXPLODE: temp = new PotatoExplode; break;
-			case BulletType::MUSHROOM_BULLET: temp = new MushroomBullet; break;
+			case BulletType::PEASHOOTER_BULLET: temp = new PeashooterBullet; SOUNDMANAGER->play("Peashooter", 1.0f);  break;
+			case BulletType::CHERRY_EXPLODE: temp = new CherryExplode; SOUNDMANAGER->play("Explode", 1.0f);  break;
+			case BulletType::POTATO_EXPLODE: temp = new PotatoExplode; SOUNDMANAGER->play("Explode", 1.0f);  break;
+			case BulletType::MUSHROOM_BULLET: temp = new MushroomBullet; SOUNDMANAGER->play("Puff", 1.0f); break;
 			case BulletType::INVISIBLE_RECT: temp = new InvisibleRect; break;
 			case BulletType::FUMESHROOM_BULLET: temp = new FumeshroomBullet; break;
-			case BulletType::JALAPENO_EXPLODE: temp = new JalapenoExplode; break;
+			case BulletType::JALAPENO_EXPLODE: temp = new JalapenoExplode; SOUNDMANAGER->play("Explode", 1.0f);  break;
 			case BulletType::CABBAGEPULT_BULLET: temp = new CabbagepultBullet; break;
 			default: temp = new Bullet;
 		}

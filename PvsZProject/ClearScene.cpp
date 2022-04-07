@@ -24,6 +24,8 @@ HRESULT ClearScene::init(void) {
 		//stageNum에 해당되는 image addImage	(stageNum 클리어시 보상 이미지)
 	}
 
+	SOUNDMANAGER->play("Reward", 1.0f);
+
 	addReward();
 
 	return S_OK;
