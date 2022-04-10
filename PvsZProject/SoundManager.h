@@ -6,8 +6,8 @@ enum SOUNDKIND {
 };
 using namespace FMOD;
 
-constexpr auto soundBuffer = 10;
-constexpr auto extraSoundChannel = 5;
+constexpr auto soundBuffer = 50;
+constexpr auto extraSoundChannel = 30;
 constexpr auto totalSoundChannel = soundBuffer + extraSoundChannel;
 
 class SoundManager : public SingletonBase <SoundManager> {

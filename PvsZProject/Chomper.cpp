@@ -9,7 +9,7 @@ HRESULT Chomper::init(PlantType type, POINT location) {
 	_status = ChomperStatus::WAIT;
 	_bulletType = BulletType::INVISIBLE_RECT;
 
-	_attackCoolTime = 5.0f;
+	_attackCoolTime = 20.0f;
 	_alreadyAttack = false;
 
 	fixFireX = 45;

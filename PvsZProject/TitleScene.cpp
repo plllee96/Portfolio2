@@ -82,5 +82,8 @@ void TitleScene::initFirstData() {
 	for (int i = 1; i <= 6; i++) {
 		_firstData.inventory.push_back(i);
 	}
-
+	_firstData.money = 0;
+	for (int i = 7; i <= 16; i++) {
+		_firstData.inventory.push_back(i);
+	}
 }

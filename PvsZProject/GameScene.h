@@ -136,5 +136,6 @@ public:
 
 	//debug
 	string printPlantType(PlantType type);
+	void stopAllSound();
 };
 

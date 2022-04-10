@@ -1,6 +1,6 @@
 #pragma once
 #include "Plant.h"
-const float _potatoReadyTime = 5.0f;
+const float _potatoReadyTime = 15.0f;
 
 enum class PotatoStatus {LOAD, READY, WAIT};
 class PotatoMine : public Plant {

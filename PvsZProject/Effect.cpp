@@ -32,7 +32,10 @@ void Effect::updateFrame() {
 	if (_count + _delay < TIMEMANAGER->getWorldTime()) {
 		_count = TIMEMANAGER->getWorldTime();
 		_currentFrameX++;
-		if (_currentFrameX > _image->getMaxFrameX()) _isActive = false;
+		if (_currentFrameX > _image->getMaxFrameX()) {
+			_isActive = false;
+			SOUNDMANAGER->stop("Hit");
+		}
 	}
 }
 

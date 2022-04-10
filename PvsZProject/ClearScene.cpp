@@ -21,7 +21,6 @@ HRESULT ClearScene::init(void) {
 		case 0: _background = IMAGEMANAGER->addImage("Reward0", "Resources/Images/Backgrounds/reward_0.bmp", 548, 384, false, RGB(255, 0, 255)); break;
 		case 1: _background = IMAGEMANAGER->addImage("Reward1", "Resources/Images/Backgrounds/reward_1.bmp", 548, 384, false, RGB(255, 0, 255)); break;
 		case 2: _background = IMAGEMANAGER->addImage("Reward1", "Resources/Images/Backgrounds/reward_1.bmp", 548, 384, false, RGB(255, 0, 255)); break;
-		//stageNum에 해당되는 image addImage	(stageNum 클리어시 보상 이미지)
 	}
 
 	SOUNDMANAGER->play("Reward", 1.0f);
@@ -73,6 +72,7 @@ void ClearScene::sceneChanger() {
 
 	if (_goingMain || _goingNextStage) _blackAlpha += 2;
 	if (_blackAlpha > 254) {
+		SOUNDMANAGER->stop("Reward");
 		if (_goingMain) SCENEMANAGER->changeScene("Title");
 		if (_goingNextStage) SCENEMANAGER->changeScene("Game");
 	}

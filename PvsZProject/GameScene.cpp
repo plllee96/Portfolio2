@@ -249,7 +249,13 @@ void GameScene::sceneChangerControl() {
 	if (_blackAlpha < 0) _blackAlpha = 0;
 
 	if (_goingToShop) {
-		if (_blackAlpha > 253) SCENEMANAGER->changeScene("Shop");
+		if (_blackAlpha > 253) {
+			_pm->release();
+			_zm->release();
+			_bm->release();
+			stopAllSound();
+			SCENEMANAGER->changeScene("Shop");
+		}
 		else _blackAlpha += 2;
 	}
 
@@ -259,9 +265,8 @@ void GameScene::sceneChangerControl() {
 			_pm->release();
 			_zm->release();
 			_bm->release();
-			SOUNDMANAGER->stop("Stage1");
-			SOUNDMANAGER->stop("Stage2");
-			SOUNDMANAGER->stop("Stage3");
+			stopAllSound();
+			
 			SCENEMANAGER->changeScene("Clear");
 		}
 		else _whiteAlpha += 2;
@@ -383,7 +388,7 @@ void GameScene::updateReadyText() {
 			_readyFrame++;
 		}
 		else if (_readyFrame == 2) {
-			SOUNDMANAGER->stop("Setting");
+			stopAllSound();
 			switch (_stageNum) {
 				case 0: SOUNDMANAGER->play("Stage1", 1.0f); break;
 				case 1: SOUNDMANAGER->play("Stage2", 1.0f); break;
@@ -618,4 +623,22 @@ string GameScene::printPlantType(PlantType type) {
 		case PlantType::CHERRYBOMB: return "Ã¼¸®ÆøÅº";
 		default: return "";
 	}
+}
+
+void GameScene::stopAllSound() {
+	SOUNDMANAGER->stop("Title");
+	SOUNDMANAGER->stop("Setting");
+	SOUNDMANAGER->stop("Stage1");
+	SOUNDMANAGER->stop("Minigame");
+	SOUNDMANAGER->stop("Stage2");
+	SOUNDMANAGER->stop("Reward");
+	SOUNDMANAGER->stop("Stage3");
+	SOUNDMANAGER->stop("ReadySetPlant");
+	SOUNDMANAGER->stop("SelectPlant");
+	SOUNDMANAGER->stop("Plant");
+	SOUNDMANAGER->stop("Peashooter");
+	SOUNDMANAGER->stop("Puff");
+	SOUNDMANAGER->stop("Hit");
+	SOUNDMANAGER->stop("Explode");
+	SOUNDMANAGER->stop("Sun");
 }
