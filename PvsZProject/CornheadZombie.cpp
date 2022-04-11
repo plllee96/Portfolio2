@@ -58,6 +58,12 @@ void CornheadZombie::collideObject(ObserveData obData) {
 }
 
 void CornheadZombie::recognizeObject(ObserveData observer) {
+	if (*observer.plantType == PlantType::WALLNUTBOWLING ) {
+		if (*observer.hitActive) {
+			_hp -= 15.0f;
+			return;
+		}
+	}
 	if (_status == CornheadZombieStatus::WALK) {
 		_status = CornheadZombieStatus::ATTACK;
 		_frame.currentFrameX = 0;

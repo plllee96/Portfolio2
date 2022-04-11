@@ -25,6 +25,7 @@ protected:
 	PlantFrame _frame;
 	float _hp;
 	bool _active;
+	bool _hitActive;
 
 	//Bullet fire Variable
 	BulletType _bulletType;

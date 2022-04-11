@@ -19,6 +19,10 @@ HRESULT Card::init(PlantType type, CardLocation location, int price, float maxCo
 	else if (_location == CardLocation::INVENTORY) {
 		_rc = RectMake(firstInventoryCardX +  (_index % 8) * 50, firstInventoryCardY+(_index / 8) * 50, _cardImage->getFrameWidth(), _cardImage->getFrameHeight());
 	}
+	if (_location == CardLocation::BELT) {
+		_beltX = beltStartX;
+		_rc = RectMake(_beltX, firstDeckCardY, _cardImage->getFrameWidth(), _cardImage->getFrameHeight());
+	}
 	
 	return S_OK;
 }
@@ -31,6 +35,12 @@ void Card::update(void) {
 		_coolTimeImageHeight = _cardImage->getFrameHeight() * ((TIMEMANAGER->getWorldTime() - _startCoolTime) / _maxCoolTime);
 		if (_startCoolTime + _maxCoolTime <= TIMEMANAGER->getWorldTime()) {
 			_active = true;
+		}
+	}
+	if (_location == CardLocation::BELT) {
+		if (_beltX > firstDeckCardX + _index * _cardImage->getFrameWidth()) {
+			_beltX -= 0.3f;
+			_rc = RectMake(_beltX, firstDeckCardY, _cardImage->getFrameWidth(), _cardImage->getFrameHeight());
 		}
 	}
 }
@@ -46,13 +56,15 @@ void Card::render(void) {
 		}
 	}
 	else if (_location == CardLocation::INVENTORY) {
-		//세로 위치 수정 필요
 		if (_active) {
 			_cardImage->frameRender(getMemDC(), firstInventoryCardX + (_index%8) * 50, firstInventoryCardY + (_index / 8) * 50, 0, 0);
 		}
 		else {
 			_cardImage->frameRender(getMemDC(), firstInventoryCardX + (_index % 8) * 50, firstInventoryCardY + (_index / 8) * 50, 1, 0);
 		}
+	}
+	else if (_location == CardLocation::BELT) {
+		_cardImage->frameRender(getMemDC(), _beltX, firstDeckCardY, 0, 0);
 	}
 }
 
@@ -96,7 +108,12 @@ void Card::initCardImage() {
 
 	case PlantType::TWINSUNFLOWER: _cardImage = IMAGEMANAGER->addFrameImage(
 		"TwinSunflower_Icon", "Resources/Images/Plants/Icon/TwinSunflower_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
-	//아이콘 제작 후 전부 추가할 것
+	
+	case PlantType::WALLNUTBOWLING: _cardImage = IMAGEMANAGER->addFrameImage(
+		"WallnutBowling_Icon", "Resources/Images/Plants/Icon/WallnutBowling_Icon.bmp", 48, 44, 1, 1, true, RGB(255, 0, 255)); break;
+	case PlantType::EXPLODEBOWLING: _cardImage = IMAGEMANAGER->addFrameImage(
+		"ExplodeBowling_Icon", "Resources/Images/Plants/Icon/ExplodeBowling_Icon.bmp", 48, 44, 1, 1, true, RGB(255, 0, 255)); break;
+		//아이콘 제작 후 전부 추가할 것
 	}
 }
 

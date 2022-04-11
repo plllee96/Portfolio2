@@ -21,6 +21,8 @@
 #include "Jalapeno.h"
 #include "Threepeater.h"
 #include "TwinSunflower.h"
+#include "WallnutBowling.h"
+#include "ExplodeBowling.h"
 #pragma endregion
 
 struct generateTypeContainer {

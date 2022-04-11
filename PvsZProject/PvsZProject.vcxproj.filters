@@ -226,6 +226,15 @@
     <ClCompile Include="ObjectEffect.cpp">
       <Filter>MainGame\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="Belt.cpp">
+      <Filter>MainGame\Object\CardDeck</Filter>
+    </ClCompile>
+    <ClCompile Include="ExplodeBowling.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="WallnutBowling.cpp">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -473,6 +482,15 @@
     </ClInclude>
     <ClInclude Include="ObjectEffect.h">
       <Filter>MainGame\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Belt.h">
+      <Filter>MainGame\Object\CardDeck</Filter>
+    </ClInclude>
+    <ClInclude Include="ExplodeBowling.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="WallnutBowling.h">
+      <Filter>MainGame\Object\Plant\Plants</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

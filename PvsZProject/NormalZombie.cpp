@@ -76,6 +76,16 @@ void NormalZombie::collideObject(ObserveData obData) {
 }
 
 void NormalZombie::recognizeObject(ObserveData observer) {
+	if (*observer.plantType == PlantType::WALLNUTBOWLING) {
+		if (*observer.hitActive) {
+			_hp -= 10.0f;
+			if (!_headAlreadyFall) {
+				_headFall = true;
+				_headAlreadyFall = true;
+			}
+		}
+		return;
+	}
 	if (_status == NormalZombieStatus::WALK) {
 		_status = NormalZombieStatus::ATTACK;
 		_frame.currentFrameX = 0;

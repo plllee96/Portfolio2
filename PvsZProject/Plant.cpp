@@ -15,6 +15,7 @@ HRESULT Plant::init(PlantType type, POINT location) {
 	_line = location.y;
 	_hp = 5.0f;
 	_active = true;
+	_hitActive = true;
 
 	//init Frame
 	_frame.maxFrameX = 1;
@@ -48,6 +49,7 @@ ObserveData Plant::getRectUpdate() {
 	temp.recognizeRc = &_recognizeRc;
 	temp.type = &_obType;
 	temp.line = &_line;
+	temp.hitActive = &_hitActive;
 	return temp;
 }
 

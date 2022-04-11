@@ -58,6 +58,12 @@ void BucketheadZombie::collideObject(ObserveData obData) {
 }
 
 void BucketheadZombie::recognizeObject(ObserveData observer) {
+	if (*observer.plantType == PlantType::WALLNUTBOWLING) {
+		if (*observer.hitActive) {
+			_hp -= 25.0f;
+		}
+		return;
+	}
 	if (_status == BucketheadZombieStatus::WALK) {
 		_status = BucketheadZombieStatus::ATTACK;
 		_frame.currentFrameX = 0;

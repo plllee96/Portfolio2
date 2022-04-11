@@ -65,6 +65,8 @@ void PlantManager::addPlant(PlantType type, POINT location) {
 		case PlantType::THREEPEATER: temp = new Threepeater; break;		
 
 		case PlantType::TWINSUNFLOWER: temp = new TwinSunflower; break;
+		case PlantType::WALLNUTBOWLING: temp = new WallnutBowling; break;
+		case PlantType::EXPLODEBOWLING: temp = new ExplodeBowling; break;
 		default: temp = new Plant;
 	}
 	temp->setTileHeight(_currentTile);

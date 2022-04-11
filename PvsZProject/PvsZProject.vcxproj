@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="ArmEffect.cpp" />
+    <ClCompile Include="Belt.cpp" />
     <ClCompile Include="BucketheadZombie.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletManager.cpp" />
@@ -166,6 +167,7 @@
     <ClCompile Include="Deck.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectManager.cpp" />
+    <ClCompile Include="ExplodeBowling.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="FumeShroom.cpp" />
     <ClCompile Include="FumeshroomBullet.cpp" />
@@ -223,6 +225,7 @@
     <ClCompile Include="TwinSunflower.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Wallnut.cpp" />
+    <ClCompile Include="WallnutBowling.cpp" />
     <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="Zombie.cpp" />
     <ClCompile Include="ZombieList.cpp" />
@@ -231,6 +234,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="ArmEffect.h" />
+    <ClInclude Include="Belt.h" />
     <ClInclude Include="BucketheadZombie.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletManager.h" />
@@ -248,6 +252,7 @@
     <ClInclude Include="Deck.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectManager.h" />
+    <ClInclude Include="ExplodeBowling.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="FumeShroom.h" />
     <ClInclude Include="FumeshroomBullet.h" />
@@ -307,6 +312,7 @@
     <ClInclude Include="TwinSunflower.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Wallnut.h" />
+    <ClInclude Include="WallnutBowling.h" />
     <ClInclude Include="Zombie.h" />
     <ClInclude Include="ZombieList.h" />
     <ClInclude Include="ZombieManager.h" />

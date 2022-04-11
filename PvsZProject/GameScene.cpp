@@ -566,7 +566,6 @@ void GameScene::sunControl() {
 void GameScene::zombieControl() {
 	float _runningTime = TIMEMANAGER->getWorldTime() - _progressbar->getStartTime();
 	
-
 	if (_progressbar->isEndWave()) {
 		if (_zm->getZombieAmount() == 0) {
 			_reward->spawnReward(true, _zm->getLastZombiePosition().x, _zm->getLastZombiePosition().y);

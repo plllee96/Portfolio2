@@ -7,7 +7,9 @@ const int firstDeckCardY = 0;
 const int firstInventoryCardX = 30;
 const int firstInventoryCardY = 80;
 
-enum class CardLocation {DECK, INVENTORY};
+const int beltStartX = WINSIZE_X;
+
+enum class CardLocation {DECK, INVENTORY, BELT};
 class Card : public GameNode {
 private:
 	Image* _cardImage;
@@ -22,6 +24,7 @@ private:
 	float _coolTimeImageHeight;
 	bool _active;	//DECK : 선택가능여부, INVENTORY : 덱 삽입가능여부
 
+	float _beltX;
 public:
 	HRESULT init(PlantType type, CardLocation location, int price, float maxCoolTime, int index);
 	void release(void);

@@ -76,7 +76,7 @@ void TitleScene::render(void) {
 }
 
 void TitleScene::initFirstData() {
-	_firstData.stage = 0;
+	_firstData.stage = 2;
 	_firstData.slot = 6;
 	_firstData.money = 0;
 	for (int i = 1; i <= 6; i++) {
