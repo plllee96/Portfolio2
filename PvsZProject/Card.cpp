@@ -113,7 +113,19 @@ void Card::initCardImage() {
 		"WallnutBowling_Icon", "Resources/Images/Plants/Icon/WallnutBowling_Icon.bmp", 48, 44, 1, 1, true, RGB(255, 0, 255)); break;
 	case PlantType::EXPLODEBOWLING: _cardImage = IMAGEMANAGER->addFrameImage(
 		"ExplodeBowling_Icon", "Resources/Images/Plants/Icon/ExplodeBowling_Icon.bmp", 48, 44, 1, 1, true, RGB(255, 0, 255)); break;
-		//아이콘 제작 후 전부 추가할 것
+
+	case PlantType::DOOMSHROOM: _cardImage = IMAGEMANAGER->addFrameImage(
+		"Doomshroom_Icon", "Resources/Images/Plants/Icon/Doomshroom_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
+	case PlantType::SEASHROOM: _cardImage = IMAGEMANAGER->addFrameImage(
+		"Seashroom_Icon", "Resources/Images/Plants/Icon/Seashroom_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
+	case PlantType::BLOVER: _cardImage = IMAGEMANAGER->addFrameImage(
+		"Blover_Icon", "Resources/Images/Plants/Icon/Blover_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
+	case PlantType::PLANTERN: _cardImage = IMAGEMANAGER->addFrameImage(
+		"Plantern_Icon", "Resources/Images/Plants/Icon/Plantern_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
+	case PlantType::TORCHWOOD: _cardImage = IMAGEMANAGER->addFrameImage(
+		"Torchwood_Icon", "Resources/Images/Plants/Icon/Torchwood_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
+	case PlantType::SQUASH: _cardImage = IMAGEMANAGER->addFrameImage(
+		"Squash_Icon", "Resources/Images/Plants/Icon/Squash_Icon.bmp", 96, 44, 2, 1, true, RGB(255, 0, 255)); break;
 	}
 }
 

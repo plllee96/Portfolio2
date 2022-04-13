@@ -76,14 +76,21 @@ void TitleScene::render(void) {
 }
 
 void TitleScene::initFirstData() {
-	_firstData.stage = 2;
+	_firstData.stage = 3;
 	_firstData.slot = 6;
 	_firstData.money = 0;
 	for (int i = 1; i <= 6; i++) {
 		_firstData.inventory.push_back(i);
 	}
 	_firstData.money = 0;
+
+
+
+
 	for (int i = 7; i <= 16; i++) {
+		_firstData.inventory.push_back(i);
+	}
+	for (int i = 19; i <= 24; i++) {
 		_firstData.inventory.push_back(i);
 	}
 }

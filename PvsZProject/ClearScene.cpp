@@ -10,17 +10,28 @@ HRESULT ClearScene::init(void) {
 	_whiteAlpha = 254;
 	_blackAlpha = 0;
 
-	_nextStageRc = RectMake(40, 330, 215, 50);
-	_mainRc = RectMake(285, 330, 215, 50);
+
 
 	_vData = TEXTDATAMANAGER->load("data.txt");
 	_stageNum = atoi(_vData[0].c_str());
 	_money = atoi(_vData[2].c_str());
 
+	if (_stageNum == 3 || _stageNum == 4) {
+		_nextStageRc = RectMake(0, 0, 0, 0);
+		_mainRc = RectMake(150, 330, 215, 50);
+	}
+	else {
+		_nextStageRc = RectMake(40, 330, 215, 50);
+		_mainRc = RectMake(285, 330, 215, 50);
+	}
+
+
 	switch (_stageNum) {
 		case 0: _background = IMAGEMANAGER->addImage("Reward0", "Resources/Images/Backgrounds/reward_0.bmp", 548, 384, false, RGB(255, 0, 255)); break;
 		case 1: _background = IMAGEMANAGER->addImage("Reward1", "Resources/Images/Backgrounds/reward_1.bmp", 548, 384, false, RGB(255, 0, 255)); break;
-		case 2: _background = IMAGEMANAGER->addImage("Reward1", "Resources/Images/Backgrounds/reward_1.bmp", 548, 384, false, RGB(255, 0, 255)); break;
+		case 2: _background = IMAGEMANAGER->addImage("Reward2", "Resources/Images/Backgrounds/reward_2.bmp", 548, 384, false, RGB(255, 0, 255)); break;
+		case 3: _background = IMAGEMANAGER->addImage("Reward3", "Resources/Images/Backgrounds/reward_3.bmp", 548, 384, false, RGB(255, 0, 255)); break;
+		case 4: _background = IMAGEMANAGER->addImage("Reward4", "Resources/Images/Backgrounds/reward_4.bmp", 548, 384, false, RGB(255, 0, 255)); break;
 	}
 
 	SOUNDMANAGER->play("Reward", 1.0f);
@@ -62,7 +73,14 @@ void ClearScene::addReward() {
 			_vData.push_back(_itoa((int)14, temp, 10));
 			_vData.push_back(_itoa((int)15, temp, 10));
 		} break;
-		case 2: break;
+		case 2: {
+			_vData.push_back(_itoa((int)19, temp, 10));
+			_vData.push_back(_itoa((int)20, temp, 10));
+			_vData.push_back(_itoa((int)21, temp, 10));
+			_vData.push_back(_itoa((int)22, temp, 10));
+			_vData.push_back(_itoa((int)23, temp, 10));
+			_vData.push_back(_itoa((int)24, temp, 10));
+		} break;
 	}
 	TEXTDATAMANAGER->save("data.txt", _vData);
 }
@@ -89,6 +107,10 @@ void ClearScene::mouseControl() {
 		if (PtInRect(&_nextStageRc, _ptMouse)) {
 			char temp[32];
 			_vData[0] = _itoa((int)_stageNum + 1, temp, 10);
+			if (_stageNum == 1) {
+				int newSlot = atoi(_vData[1].c_str()) + 1;
+				_vData[1] = _itoa(newSlot, temp, 10);
+			}
 			_vData[2] = _itoa((int)_money + 500, temp, 10);
 			TEXTDATAMANAGER->save("data.txt", _vData);
 

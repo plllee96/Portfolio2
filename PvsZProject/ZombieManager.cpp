@@ -23,10 +23,30 @@ void ZombieManager::update(void) {
 			(*_viZombie)->setArmFall(false);
 		}
 		if ((*_viZombie)->isHeadFall()) {
-			_em->createObject("Head", (*_viZombie)->getX() + 2, (*_viZombie)->getY() + 25);
-			(*_viZombie)->setHeadFall(false);
-		}
+			switch ((*_viZombie)->getType()) {
+				case ZombieType::ZOMBIE: {
+					_em->createObject("Head", (*_viZombie)->getX() + 2, (*_viZombie)->getY() + 25);
+					(*_viZombie)->setHeadFall(false);
+				} break;
+				case ZombieType::POLE_ZOMBIE: {
+					_em->createObject("PoleZombieHead", (*_viZombie)->getX() + 2, (*_viZombie)->getY() + 25);
+					(*_viZombie)->setHeadFall(false);
+				} break;
+			}
 
+		}
+		if ((*_viZombie)->isObjectFall()) {
+			switch ((*_viZombie)->getType()) {
+				case ZombieType::CORNHEAD_ZOMBIE: {
+					_em->createObject("Corn", (*_viZombie)->getX() + 2, (*_viZombie)->getY() + 25);
+					(*_viZombie)->setObjectFall(false);
+				} break;
+				case ZombieType::BUCKETHEAD_ZOMBIE: {
+					_em->createObject("Bucket", (*_viZombie)->getX() + 2, (*_viZombie)->getY() + 25);
+					(*_viZombie)->setObjectFall(false);
+				} break;
+			}
+		}
 		if (!(*_viZombie)->isActive()) {
 			if (((*_viZombie)->getType() == ZombieType::CORNHEAD_ZOMBIE || (*_viZombie)->getType() == ZombieType::BUCKETHEAD_ZOMBIE)
 				&& ((_stageNum == 0 || _stageNum == 1) || ((_stageNum == 2 || _stageNum == 3) && !((*_viZombie)->getLine() == 2 || (*_viZombie)->getLine() == 3)))) {

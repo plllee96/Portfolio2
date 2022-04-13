@@ -5,7 +5,7 @@ HRESULT MinigameScene::init(void) {
 	//init Image & Class
 	_background = IMAGEMANAGER->addImage("Stage1", "Resources/Images/Backgrounds/Stage1.bmp", 894, 384, false, RGB(255, 0, 255));
 	_blackChanger = IMAGEMANAGER->addImage("blackChanger", "Resources/Images/Backgrounds/BlackSceneChanger.bmp", 548, 384, false, RGB(255, 0, 255));
-	_selectedPlantIcon = IMAGEMANAGER->addFrameImage("PlantIcon", "Resources/Images/Objects/PlantIcon.bmp", 1292, 80, 17, 1, true, RGB(255, 0, 255));
+	_selectedPlantIcon = IMAGEMANAGER->addFrameImage("PlantIcon", "Resources/Images/Objects/PlantIcon.bmp", 1900, 80, 25, 1, true, RGB(255, 0, 255));
 	_readyLetter = IMAGEMANAGER->addFrameImage("ReadyLetter", "Resources/Images/Objects/ReadySetPlant.bmp", 1176, 141, 3, 1, true, RGB(255, 0, 255));
 	_waveLetter = IMAGEMANAGER->addImage("WaveLetter", "Resources/Images/Objects/WaveText.bmp", 548, 23, true, RGB(255, 0, 255));
 
@@ -88,6 +88,7 @@ void MinigameScene::render(void) {
 	if (_blackAlpha > 0) _blackChanger->alphaRender(getMemDC(), _blackAlpha);
 	if (_status == MinigameStatus::READY) printReady();
 	else if (_status == MinigameStatus::PLAY) printPlay();
+	_selectedPlantIcon->frameRender(getMemDC(), _ptMouse.x - _selectedPlantIcon->getFrameWidth() / 2, _ptMouse.y - _selectedPlantIcon->getFrameHeight() / 2, static_cast<int>(_selectedPlant), 0);
 }
 
 void MinigameScene::updateReady() {
@@ -263,7 +264,7 @@ void MinigameScene::beltControl() {
 	static int _wallnutBowlingCount = 0;
 	if (_beltCount + _beltCooltime < TIMEMANAGER->getWorldTime()) {
 		if (_wallnutBowlingCount > 6) {
-			int rndTemp = RND->getFromIntTo(1, 4);
+			int rndTemp = RND->getFromIntTo(1, 3);
 			if (rndTemp == 1) _belt->addCard(PlantType::EXPLODEBOWLING);
 			else  _belt->addCard(PlantType::WALLNUTBOWLING);
 		}

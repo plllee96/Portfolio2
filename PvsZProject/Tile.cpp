@@ -65,6 +65,11 @@ void Tile::setNightObstacle(int num) {
 	while (tempNum > 0) {
 		int tempX = RND->getFromIntTo(5, 8);
 		int tempY = RND->getInt(_row);
+		if (num == 6) {
+			while (tempY == 2 || tempY == 3) {
+				tempY = RND->getInt(_row);
+			}
+		}
 		int tempPosition = _column * tempY + tempX;
 		if (!getTile(tempPosition).hasObstacle) {
 			setObstacle(tempPosition, true);

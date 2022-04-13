@@ -73,12 +73,6 @@
     <ClCompile Include="Inventory.cpp">
       <Filter>MainGame\Object\CardDeck</Filter>
     </ClCompile>
-    <ClCompile Include="Peashooter.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClCompile>
-    <ClCompile Include="Sunflower.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClCompile>
     <ClCompile Include="Progressbar.cpp">
       <Filter>MainGame\Object\Progressbar</Filter>
     </ClCompile>
@@ -109,68 +103,23 @@
     <ClCompile Include="PeashooterBullet.cpp">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClCompile>
-    <ClCompile Include="Wallnut.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClCompile>
-    <ClCompile Include="CherryBomb.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClCompile>
-    <ClCompile Include="PotatoMine.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClCompile>
     <ClCompile Include="CherryExplode.cpp">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClCompile>
     <ClCompile Include="PotatoExplode.cpp">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClCompile>
-    <ClCompile Include="Chomper.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClCompile>
     <ClCompile Include="InvisibleRect.cpp">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClCompile>
-    <ClCompile Include="Puffshroom.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClCompile>
     <ClCompile Include="MushroomBullet.cpp">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
-    </ClCompile>
-    <ClCompile Include="Sunshroom.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClCompile>
-    <ClCompile Include="Scaredyshroom.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClCompile>
-    <ClCompile Include="Gravebuster.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClCompile>
-    <ClCompile Include="FumeShroom.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
     </ClCompile>
     <ClCompile Include="FumeshroomBullet.cpp">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClCompile>
     <ClCompile Include="TubeZombie.cpp">
       <Filter>MainGame\Object\Zombie\Zombies</Filter>
-    </ClCompile>
-    <ClCompile Include="Lilypad.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClCompile>
-    <ClCompile Include="TwinSunflower.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClCompile>
-    <ClCompile Include="Cabbagepult.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClCompile>
-    <ClCompile Include="Cactus.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClCompile>
-    <ClCompile Include="Jalapeno.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClCompile>
-    <ClCompile Include="Threepeater.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
     </ClCompile>
     <ClCompile Include="JalapenoExplode.cpp">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
@@ -229,11 +178,77 @@
     <ClCompile Include="Belt.cpp">
       <Filter>MainGame\Object\CardDeck</Filter>
     </ClCompile>
+    <ClCompile Include="Sunflower.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Wallnut.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="PotatoMine.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Peashooter.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Chomper.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="CherryBomb.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Cactus.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage4</Filter>
+    </ClCompile>
+    <ClCompile Include="FumeShroom.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="Gravebuster.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="Puffshroom.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="Scaredyshroom.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="Sunshroom.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="Cabbagepult.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage3</Filter>
+    </ClCompile>
+    <ClCompile Include="Jalapeno.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage3</Filter>
+    </ClCompile>
+    <ClCompile Include="Lilypad.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage3</Filter>
+    </ClCompile>
+    <ClCompile Include="Threepeater.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage3</Filter>
+    </ClCompile>
+    <ClCompile Include="TwinSunflower.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage3</Filter>
+    </ClCompile>
     <ClCompile Include="ExplodeBowling.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
+      <Filter>MainGame\Object\Plant\Plants\Minigame</Filter>
     </ClCompile>
     <ClCompile Include="WallnutBowling.cpp">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
+      <Filter>MainGame\Object\Plant\Plants\Minigame</Filter>
+    </ClCompile>
+    <ClCompile Include="Blover.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage4</Filter>
+    </ClCompile>
+    <ClCompile Include="Plantern.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage4</Filter>
+    </ClCompile>
+    <ClCompile Include="Seashroom.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage4</Filter>
+    </ClCompile>
+    <ClCompile Include="Squash.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage4</Filter>
+    </ClCompile>
+    <ClCompile Include="Torchwood.cpp">
+      <Filter>MainGame\Object\Plant\Plants\Stage4</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -315,12 +330,6 @@
     <ClInclude Include="Inventory.h">
       <Filter>MainGame\Object\CardDeck</Filter>
     </ClInclude>
-    <ClInclude Include="Peashooter.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClInclude>
-    <ClInclude Include="Sunflower.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClInclude>
     <ClInclude Include="Progressbar.h">
       <Filter>MainGame\Object\Progressbar</Filter>
     </ClInclude>
@@ -363,68 +372,23 @@
     <ClInclude Include="PeashooterBullet.h">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClInclude>
-    <ClInclude Include="Wallnut.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClInclude>
-    <ClInclude Include="CherryBomb.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClInclude>
-    <ClInclude Include="PotatoMine.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClInclude>
     <ClInclude Include="CherryExplode.h">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClInclude>
     <ClInclude Include="PotatoExplode.h">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClInclude>
-    <ClInclude Include="Chomper.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClInclude>
     <ClInclude Include="InvisibleRect.h">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClInclude>
-    <ClInclude Include="Puffshroom.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClInclude>
     <ClInclude Include="MushroomBullet.h">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
-    </ClInclude>
-    <ClInclude Include="Sunshroom.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClInclude>
-    <ClInclude Include="Scaredyshroom.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClInclude>
-    <ClInclude Include="Gravebuster.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClInclude>
-    <ClInclude Include="FumeShroom.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
     </ClInclude>
     <ClInclude Include="FumeshroomBullet.h">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
     </ClInclude>
     <ClInclude Include="TubeZombie.h">
       <Filter>MainGame\Object\Zombie\Zombies</Filter>
-    </ClInclude>
-    <ClInclude Include="Lilypad.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClInclude>
-    <ClInclude Include="TwinSunflower.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClInclude>
-    <ClInclude Include="Cabbagepult.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClInclude>
-    <ClInclude Include="Cactus.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClInclude>
-    <ClInclude Include="Jalapeno.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
-    </ClInclude>
-    <ClInclude Include="Threepeater.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
     </ClInclude>
     <ClInclude Include="JalapenoExplode.h">
       <Filter>MainGame\Object\Bullet\Bullets</Filter>
@@ -486,11 +450,77 @@
     <ClInclude Include="Belt.h">
       <Filter>MainGame\Object\CardDeck</Filter>
     </ClInclude>
+    <ClInclude Include="Sunflower.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="Wallnut.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="PotatoMine.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="Peashooter.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="Chomper.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="CherryBomb.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="Cactus.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage4</Filter>
+    </ClInclude>
+    <ClInclude Include="FumeShroom.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="Gravebuster.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="Puffshroom.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="Scaredyshroom.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="Sunshroom.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="Cabbagepult.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage3</Filter>
+    </ClInclude>
+    <ClInclude Include="Jalapeno.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage3</Filter>
+    </ClInclude>
+    <ClInclude Include="Lilypad.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage3</Filter>
+    </ClInclude>
+    <ClInclude Include="Threepeater.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage3</Filter>
+    </ClInclude>
+    <ClInclude Include="TwinSunflower.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage3</Filter>
+    </ClInclude>
     <ClInclude Include="ExplodeBowling.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
+      <Filter>MainGame\Object\Plant\Plants\Minigame</Filter>
     </ClInclude>
     <ClInclude Include="WallnutBowling.h">
-      <Filter>MainGame\Object\Plant\Plants</Filter>
+      <Filter>MainGame\Object\Plant\Plants\Minigame</Filter>
+    </ClInclude>
+    <ClInclude Include="Blover.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage4</Filter>
+    </ClInclude>
+    <ClInclude Include="Plantern.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage4</Filter>
+    </ClInclude>
+    <ClInclude Include="Seashroom.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage4</Filter>
+    </ClInclude>
+    <ClInclude Include="Squash.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage4</Filter>
+    </ClInclude>
+    <ClInclude Include="Torchwood.h">
+      <Filter>MainGame\Object\Plant\Plants\Stage4</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -571,6 +601,21 @@
     </Filter>
     <Filter Include="MainGame\Effect">
       <UniqueIdentifier>{69432c41-ef85-4afd-a8c5-cb52f30639a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Object\Plant\Plants\Stage1">
+      <UniqueIdentifier>{597c5fe2-1543-4be4-9639-913b4561089a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Object\Plant\Plants\Stage2">
+      <UniqueIdentifier>{8ae27403-d391-4297-804a-a43422a9d0b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Object\Plant\Plants\Stage3">
+      <UniqueIdentifier>{af3fb259-1c21-484e-9726-79b942106d6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Object\Plant\Plants\Stage4">
+      <UniqueIdentifier>{85715269-7a42-40d3-9123-e89c7753ba7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Object\Plant\Plants\Minigame">
+      <UniqueIdentifier>{3b36b938-bcf7-4fc0-aafb-50553a7d2697}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

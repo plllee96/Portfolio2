@@ -8,7 +8,7 @@ HRESULT GameScene::init(void) {
 	_sunIcon = IMAGEMANAGER->addImage("SunIcon", "Resources/Images/Objects/SunIcon.bmp", 32, 32, true, RGB(255, 0, 255));
 	_playGameButton = IMAGEMANAGER->addImage("Playbutton", "Resources/Images/Objects/playButton.bmp", 75, 47, true, RGB(255,0,255));
 	_shopButton = IMAGEMANAGER->addImage("Shopbutton", "Resources/Images/Objects/shopButton.bmp", 75, 49, true, RGB(255, 0, 255));
-	_selectedPlantIcon = IMAGEMANAGER->addFrameImage("PlantIcon", "Resources/Images/Objects/PlantIcon.bmp", 1292, 80, 17, 1, true, RGB(255, 0, 255));
+	_selectedPlantIcon = IMAGEMANAGER->addFrameImage("PlantIcon", "Resources/Images/Objects/PlantIcon.bmp", 1900, 80, 25, 1, true, RGB(255, 0, 255));
 	_readyLetter = IMAGEMANAGER->addFrameImage("ReadyLetter", "Resources/Images/Objects/ReadySetPlant.bmp", 1176, 141, 3, 1, true, RGB(255, 0, 255));
 	_waveLetter = IMAGEMANAGER->addImage("WaveLetter", "Resources/Images/Objects/WaveText.bmp", 548, 23, true, RGB(255, 0, 255));
 	
@@ -51,7 +51,7 @@ HRESULT GameScene::init(void) {
 		case 0: _background = IMAGEMANAGER->addImage("Stage1", "Resources/Images/Backgrounds/Stage1.bmp", 894, 384, false, RGB(255, 0, 255)); break;
 		case 1: _background = IMAGEMANAGER->addImage("Stage2", "Resources/Images/Backgrounds/Stage2.bmp", 894, 384, false, RGB(255, 0, 255)); break;
 		case 2: _background = IMAGEMANAGER->addImage("Stage3", "Resources/Images/Backgrounds/Stage3.bmp", 894, 384, false, RGB(255, 0, 255)); break;
-		case 3: break;
+		case 3: _background = IMAGEMANAGER->addImage("Stage4", "Resources/Images/Backgrounds/Stage4.bmp", 894, 384, false, RGB(255, 0, 255)); break;
 		default : _background = IMAGEMANAGER->addImage("Stage1", "Resources/Images/Backgrounds/Stage1.bmp", 894, 384, false, RGB(255, 0, 255));
 	}
 
@@ -301,18 +301,12 @@ void GameScene::loadStage() {
 			_stageTimer = 120.0f;
 			_stageWaveTimer.push_back(119.9f);
 
-			//_stageTimer = 40.0f;
-			//_stageWaveTimer.push_back(39.9f);
-
 			_zombieType.push_back(0);
 			_zombieType.push_back(1);
 		} break;
 		case 1: {
 			_stageTimer = 120.0f;
 			_stageWaveTimer.push_back(119.9f);
-
-			//_stageTimer = 45.0f;
-			//_stageWaveTimer.push_back(44.9f);
 
 			_zombieType.push_back(0);
 			_zombieType.push_back(1);
@@ -329,11 +323,14 @@ void GameScene::loadStage() {
 			_zombieType.push_back(5);
 		} break;
 		default: {
-			_stageTimer = 120.0f;
-			_stageWaveTimer.push_back(119.9f);
+			_stageTimer = 180.0f;
+			_stageWaveTimer.push_back(90.0f);
+			_stageWaveTimer.push_back(179.9f);
 
 			_zombieType.push_back(0);
 			_zombieType.push_back(1);
+			_zombieType.push_back(2);
+			_zombieType.push_back(5);
 		} break;
 	}
 
@@ -393,6 +390,7 @@ void GameScene::updateReadyText() {
 				case 0: SOUNDMANAGER->play("Stage1", 1.0f); break;
 				case 1: SOUNDMANAGER->play("Stage2", 1.0f); break;
 				case 2: SOUNDMANAGER->play("Stage3", 1.0f); break;
+				case 3: SOUNDMANAGER->play("Stage2", 1.0f); break;
 			}
 			_status = GameStatus::PLAY;
 			_progressbar = new Progressbar;
@@ -479,7 +477,14 @@ void GameScene::mouseControl() {
 							_sun -= _deck->getCard(_selectedPlantIndex)->getPrice();
 							SOUNDMANAGER->play("Plant", 1.0f);
 						}
-						
+						else if (_selectedPlant == PlantType::SEASHROOM) {
+							_tile->setPlant(tempIndex, true);
+							_tile->setLilypad(tempIndex, false);
+							_pm->addPlant(_deck->getPlant(_selectedPlantIndex), _tile->getLocation(tempIndex));
+							_deck->getCard(_selectedPlantIndex)->startCoolTime();
+							_sun -= _deck->getCard(_selectedPlantIndex)->getPrice();
+							SOUNDMANAGER->play("Plant", 1.0f);
+						}
 						else if (_tile->getTile(tempIndex).hasLilypad) {	
 							_tile->setPlant(tempIndex, true);
 							_pm->addPlant(_deck->getPlant(_selectedPlantIndex), _tile->getLocation(tempIndex));
@@ -489,7 +494,7 @@ void GameScene::mouseControl() {
 						}
 					}
 					else {
-						if (_selectedPlant != PlantType::GRAVEBUSTER && _selectedPlant != PlantType::LILYPAD) {
+						if (_selectedPlant != PlantType::GRAVEBUSTER && _selectedPlant != PlantType::LILYPAD && _selectedPlant != PlantType::SEASHROOM) {
 							_tile->setPlant(tempIndex, true);
 							_pm->addPlant(_deck->getPlant(_selectedPlantIndex), _tile->getLocation(tempIndex));
 							_deck->getCard(_selectedPlantIndex)->startCoolTime();

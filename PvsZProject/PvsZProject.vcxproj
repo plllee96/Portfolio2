@@ -152,6 +152,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="ArmEffect.cpp" />
     <ClCompile Include="Belt.cpp" />
+    <ClCompile Include="Blover.cpp" />
     <ClCompile Include="BucketheadZombie.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletManager.cpp" />
@@ -194,6 +195,7 @@
     <ClCompile Include="Peashooter.cpp" />
     <ClCompile Include="PeashooterBullet.cpp" />
     <ClCompile Include="Plant.cpp" />
+    <ClCompile Include="Plantern.cpp" />
     <ClCompile Include="PlantManager.cpp" />
     <ClCompile Include="PoleZombie.cpp" />
     <ClCompile Include="PotatoExplode.cpp" />
@@ -203,9 +205,11 @@
     <ClCompile Include="Reward.cpp" />
     <ClCompile Include="Scaredyshroom.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Seashroom.cpp" />
     <ClCompile Include="ShopItem.cpp" />
     <ClCompile Include="ShopScene.cpp" />
     <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="Squash.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -221,6 +225,7 @@
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="Torchwood.cpp" />
     <ClCompile Include="TubeZombie.cpp" />
     <ClCompile Include="TwinSunflower.cpp" />
     <ClCompile Include="Utils.cpp" />
@@ -235,6 +240,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="ArmEffect.h" />
     <ClInclude Include="Belt.h" />
+    <ClInclude Include="Blover.h" />
     <ClInclude Include="BucketheadZombie.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletManager.h" />
@@ -280,6 +286,7 @@
     <ClInclude Include="Peashooter.h" />
     <ClInclude Include="PeashooterBullet.h" />
     <ClInclude Include="Plant.h" />
+    <ClInclude Include="Plantern.h" />
     <ClInclude Include="PlantManager.h" />
     <ClInclude Include="PlantType.h" />
     <ClInclude Include="PoleZombie.h" />
@@ -291,11 +298,13 @@
     <ClInclude Include="Reward.h" />
     <ClInclude Include="Scaredyshroom.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Seashroom.h" />
     <ClInclude Include="ShopItem.h" />
     <ClInclude Include="ShopItemName.h" />
     <ClInclude Include="ShopScene.h" />
     <ClInclude Include="SingletonBase.h" />
     <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="Squash.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="Sun.h" />
     <ClInclude Include="Sunflower.h" />
@@ -308,6 +317,7 @@
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="Torchwood.h" />
     <ClInclude Include="TubeZombie.h" />
     <ClInclude Include="TwinSunflower.h" />
     <ClInclude Include="Utils.h" />

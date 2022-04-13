@@ -25,10 +25,11 @@ void ExplodeBowling::update(void) {
 	Plant::update();
 	if (_fire) _active = false;
 	updateFrame();
-
 	if (_bowlingX > WINSIZE_X) _active = false;
 
 	_bowlingX += 2.0f;
+	_fireX = _bowlingX;
+	_fireY = startY + _location.y * _tileHeight - 30;
 	_rc = _recognizeRc = RectMake(_bowlingX, startY + _location.y * _tileHeight, tileWidth, _tileHeight);
 }
 

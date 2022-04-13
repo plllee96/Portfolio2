@@ -33,7 +33,18 @@ void CornheadZombie::act() {
 	if (_status == CornheadZombieStatus::WALK) _x -= 0.05f;
 
 	if (_hp <= 0.0f) {
-		_active = false;
+		if (_hp > -50.0f) {
+			if (!_objectAlreadyFall) {
+				_objectFall = true;
+				_objectAlreadyFall = true;
+			}
+			if (_objectAlreadyFall) {
+				_active = false;
+			}
+		}
+		else {
+			_active = false;
+		}
 	}
 }
 

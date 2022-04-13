@@ -4,8 +4,12 @@
 HRESULT EffectManager::init(void) {
 	IMAGEMANAGER->addFrameImage("Peashooter_Bullet_Hit", "Resources/Images/Plants/Bullet/Peashooter_Bullet.bmp", 84, 34, 3, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("Puffshroom_Bullet_Hit", "Resources/Images/Plants/Bullet/PuffShroom_Bullet.bmp", 528, 52, 6, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Torchwood_Bullet_Hit", "Resources/Images/Plants/Bullet/Torchwood_Bullet.bmp", 210, 34, 5, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Arm", "Resources/Images/Zombies/arm.bmp", 14, 30, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Head", "Resources/Images/Zombies/head.bmp", 44, 40, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("Corn", "Resources/Images/Zombies/Corn.bmp", 42, 38, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("Bucket", "Resources/Images/Zombies/Bucket.bmp", 44, 40, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("PoleZombieHead", "Resources/Images/Zombies/PoleZombieHead.bmp", 48, 42, true, RGB(255, 0, 255));
 	//! Add Image here
 	
 	return S_OK;

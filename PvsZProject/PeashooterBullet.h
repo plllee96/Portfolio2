@@ -3,6 +3,8 @@
 
 class PeashooterBullet : public Bullet {
 private:
+	Image* _fireImage;
+	bool _isFire;
 	float _speed;
 public:
 	HRESULT init(BulletType type, int x, int y, int line);

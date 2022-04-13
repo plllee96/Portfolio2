@@ -49,12 +49,12 @@ void MainGame::initSound(void) {
 	SOUNDMANAGER->addSound("Reward", "Resources/Sounds/bgm/07. Zen Garden.mp3", true, true);
 	SOUNDMANAGER->addSound("Stage3", "Resources/Sounds/bgm/08. Watery Graves (slow).mp3", true, true);
 
-	SOUNDMANAGER->addSound("ReadySetPlant", "Resources/Sounds/sfx/readysetplant.mp3", false, false);
-	SOUNDMANAGER->addSound("SelectPlant", "Resources/Sounds/sfx/SelectPlant.mp3", false, false);
-	SOUNDMANAGER->addSound("Plant", "Resources/Sounds/sfx/Plant.mp3", false, false);
-	SOUNDMANAGER->addSound("Peashooter", "Resources/Sounds/sfx/Peashooter.mp3", false, false);
-	SOUNDMANAGER->addSound("Puff", "Resources/Sounds/sfx/Puff.mp3", false, false);
-	SOUNDMANAGER->addSound("Hit", "Resources/Sounds/sfx/hit1.mp3", false, false);
-	SOUNDMANAGER->addSound("Explode", "Resources/Sounds/sfx/explode.mp3", false, false);
-	SOUNDMANAGER->addSound("Sun", "Resources/Sounds/sfx/Sun.mp3", false, false);
+	//SOUNDMANAGER->addSound("ReadySetPlant", "Resources/Sounds/sfx/readysetplant.mp3", false, false);
+	//SOUNDMANAGER->addSound("SelectPlant", "Resources/Sounds/sfx/SelectPlant.mp3", false, false);
+	//SOUNDMANAGER->addSound("Plant", "Resources/Sounds/sfx/Plant.mp3", false, false);
+	//SOUNDMANAGER->addSound("Peashooter", "Resources/Sounds/sfx/Peashooter.mp3", false, false);
+	//SOUNDMANAGER->addSound("Puff", "Resources/Sounds/sfx/Puff.mp3", false, false);
+	//SOUNDMANAGER->addSound("Hit", "Resources/Sounds/sfx/hit1.mp3", false, false);
+	//SOUNDMANAGER->addSound("Explode", "Resources/Sounds/sfx/explode.mp3", false, false);
+	//SOUNDMANAGER->addSound("Sun", "Resources/Sounds/sfx/Sun.mp3", false, false);
 }

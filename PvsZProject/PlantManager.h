@@ -3,24 +3,34 @@
 #include "Plant.h"
 #include "Tile.h"
 
-#pragma region PLANTS
+#pragma region PLANT CLASS
 #include "Peashooter.h"
 #include "Sunflower.h"
 #include "Wallnut.h"
 #include "CherryBomb.h"
 #include "PotatoMine.h"
 #include "Chomper.h"
+
 #include "Puffshroom.h"
 #include "Sunshroom.h"
 #include "Scaredyshroom.h"
 #include "Gravebuster.h"
 #include "FumeShroom.h"
+
 #include "Lilypad.h"
 #include "Cabbagepult.h"
 #include "Cactus.h"
 #include "Jalapeno.h"
 #include "Threepeater.h"
+
 #include "TwinSunflower.h"
+
+#include "Plantern.h"
+#include "Blover.h"
+#include "Seashroom.h"
+#include "Squash.h"
+#include "Torchwood.h"
+
 #include "WallnutBowling.h"
 #include "ExplodeBowling.h"
 #pragma endregion

@@ -111,7 +111,9 @@ void ObserverManager::manageRect() {
 					(*_viObserverCompare)->collideObject(observer);
 					SOUNDMANAGER->play("Hit", 1.0f);
 					if ((*observer.bulletType) == BulletType::PEASHOOTER_BULLET || (*observer.bulletType) == BulletType::THREEPEATER_BULLET) {
-						_em->createEffect("Peashooter_Bullet_Hit", 0.08f, observer.rc->left + 35, observer.rc->top - 12);
+						if (*observer.damage == 1.0f) _em->createEffect("Peashooter_Bullet_Hit", 0.08f, observer.rc->left + 35, observer.rc->top - 12);
+						else if (*observer.damage == 2.0f) _em->createEffect("Torchwood_Bullet_Hit", 0.08f, observer.rc->left + 35, observer.rc->top - 12);
+
 					}
 					else if ((*observer.bulletType) == BulletType::MUSHROOM_BULLET) {
 						_em->createEffect("Puffshroom_Bullet_Hit", 0.08f, observer.rc->left + 35, observer.rc->top);
@@ -123,7 +125,7 @@ void ObserverManager::manageRect() {
 			//Collide Plant & Bullet (only Torchwood)
 			if ((*observer.type) == ObservedType::BULLET && (*observerCompare.type) == ObservedType::PLANT) {
 				RECT collisionRc;
-				if (IntersectRect(&collisionRc, observer.rc, observerCompare.rc)) {
+				if (IntersectRect(&collisionRc, observer.rc, observerCompare.rc) && (*observerCompare.plantType) == PlantType::TORCHWOOD) {
 					(*_viObserver)->collideObject(observerCompare);
 					continue;
 				}

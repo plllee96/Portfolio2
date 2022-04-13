@@ -7,6 +7,8 @@ HRESULT CabbagepultBullet::init(BulletType type, int x, int y, int line) {
 	_damage = 2.0f;
 	_rc = _recognizeRc = RectMake(x, y, _image->getFrameWidth(), _image->getFrameHeight());
 	_gravityY = 0.0f;
+	_distance = 0;
+	_zombieRc = { 0,0,0,0 };
 
 	_startX = x;
 	return S_OK;
@@ -20,6 +22,7 @@ void CabbagepultBullet::update(void) {
 	if (_x > WINSIZE_X) _active = false;
 	_x += 3;
 	_rc = _recognizeRc = RectMake(_x, _y + 15, _image->getFrameWidth(), _image->getFrameHeight() - 10);
+	setDistance();
 	setGravityY();
 }
 
@@ -34,6 +37,18 @@ void CabbagepultBullet::collideObject(ObserveData obData) {
 void CabbagepultBullet::recognizeObject(ObserveData observer) {
 }
 
-void CabbagepultBullet::setGravityY() {
+void CabbagepultBullet::setDistance() {
+	if (_distance == 0) {
+		if (_zombieRc.left == 0 || _zombieRc.right == 0 || _zombieRc.top == 0 || _zombieRc.bottom == 0) return;
+		else {
+			_distance = _zombieRc.left - _x;
+			_halfPoint = _x + _distance / 2;
+		}
+	}
+	else return;
+}
 
+void CabbagepultBullet::setGravityY() {
+	_gravityY = -((_x - _halfPoint) * (_x - _halfPoint))/100 + highestY;
+	cout << _gravityY << endl;
 }
