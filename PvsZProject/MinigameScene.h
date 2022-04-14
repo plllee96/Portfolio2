@@ -16,6 +16,8 @@ enum class MinigameCursorSelect {NONE, PLANT};
 class MinigameScene : public GameNode {
 private:
 	Image* _background;
+
+	Image* _whiteChanger;
 	Image* _blackChanger;
 	Image* _selectedPlantIcon;
 	Image* _readyLetter;
@@ -36,6 +38,7 @@ private:
 	MinigameStatus _status;
 	MinigameCursorSelect _cursor;
 
+	int _whiteAlpha;
 	int _blackAlpha;
 	bool _goingClear;
 
@@ -64,6 +67,10 @@ private:
 	float _zombieCount;
 	vector<int> _zombieType;
 	float _zombieCooltime;
+
+	bool _clickReward;
+	float _clickRewardTime;
+	float _clickRewardCount;
 	
 	float _beltCount;
 	float _beltCooltime;

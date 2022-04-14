@@ -39,6 +39,9 @@ HRESULT MinigameScene::init(void) {
 	_selectedPlant = PlantType::NONE;
 	_selectedPlantIndex = -1;
 
+	_clickReward = false;
+	_clickRewardCount = 7.0f;
+
 	//init Class
 	_tile = new Tile;
 	_tile->init(0);
@@ -102,10 +105,22 @@ void MinigameScene::sceneControl() {
 }
 
 void MinigameScene::sceneChangerControl() {
+	if (_goingClear && _blackAlpha >= 253) {
+		_pm->release();
+		_zm->release();
+		_bm->release();
+		stopAllSound();
+
+		SCENEMANAGER->changeScene("Clear");
+	}
 	if (_blackAlpha > 0) {
 		(_goingClear) ? _blackAlpha += 2 : _blackAlpha -= 2;
 		if (_blackAlpha > 255) _blackAlpha = 255;
 		else if (_blackAlpha < 0) _blackAlpha = 0;
+	}
+
+	if (_clickReward && _clickRewardTime + _clickRewardCount < TIMEMANAGER->getWorldTime()) {
+		_goingClear = true;
 	}
 }
 
@@ -188,12 +203,20 @@ void MinigameScene::updatePlay() {
 	_bm->update();
 	_belt->update();
 	_tile->update();
+	if (_reward->isShow()) _reward->update();
 }
 
 void MinigameScene::mouseControl() {
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) {
 		switch (_cursor) {
 			case MinigameCursorSelect::NONE: {
+
+				if (PtInRect(&_reward->getRect(), _ptMouse) && _reward->isShow() && _reward->getStatus() == RewardStatus::GENERATE) {
+					_reward->setObtain();
+					_clickReward = true;
+					_clickRewardTime = TIMEMANAGER->getWorldTime();
+				}
+
 				_selectedPlantIndex = _belt->selectCard();
 				if (_selectedPlantIndex != -1 && _belt->getCard(_selectedPlantIndex)->isActive()) {
 					_selectedPlant = _belt->getPlant(_selectedPlantIndex);
@@ -214,6 +237,15 @@ void MinigameScene::mouseControl() {
 					_selectedPlantIndex = -1;
 					SOUNDMANAGER->play("Plant", 1.0f);
 				}
+			} break;
+		}
+	}
+	if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) {
+		switch (_cursor) {
+			case MinigameCursorSelect::PLANT: {
+				_cursor = MinigameCursorSelect::NONE;
+				_selectedPlant = PlantType::NONE;
+				_selectedPlantIndex = -1;
 			} break;
 		}
 	}
@@ -288,6 +320,7 @@ void MinigameScene::printPlay() {
 	_pm->render();
 	_zm->render();
 	_bm->render();
+	if (_reward->isShow()) _reward->render();
 }
 
 void MinigameScene::stopAllSound() {

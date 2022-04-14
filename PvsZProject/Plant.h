@@ -62,6 +62,7 @@ public:
 	int getLine() { return _line; }
 	PlantType getType() { return _type; }
 	virtual RECT getRect() { return _rc; }
+	virtual RECT getRecognizeRect() { return _recognizeRc; }
 	bool isActive() { return _active; }
 	void setTileHeight(int tileHeight) { _tileHeight = tileHeight; }
 };

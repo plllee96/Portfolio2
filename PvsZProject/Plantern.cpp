@@ -4,9 +4,10 @@
 HRESULT Plantern::init(PlantType type, POINT location) {
 	Plant::init(type, location);
 	_image = IMAGEMANAGER->addFrameImage("Plantern", "Resources/Images/Plants/Plantern.bmp", 264, 72, 4, 1, true, RGB(255, 0, 255));
-	_rc = _recognizeRc = RectMake(startX + _location.x * tileWidth, startY + _location.y * _tileHeight, tileWidth, _tileHeight);
-
+	_rc = RectMake(startX + _location.x * tileWidth, startY + _location.y * _tileHeight, tileWidth, _tileHeight);
+	_recognizeRc = RectMake(startX + _location.x * tileWidth - tileWidth*3, startY + _location.y * _tileHeight - _tileHeight, tileWidth * 6, _tileHeight * 2);
 	_hp = 5.0;
+	_alreadySetLight = false;
 
 	_frame.maxFrameX = 5;
 	_frame.coolTime = 0.5f;
@@ -26,7 +27,7 @@ void Plantern::update(void) {
 
 void Plantern::render(void) {
 	Plant::render();
-	_image->frameRender(getMemDC(), _rc.left, _rc.top - 5, _frame.currentFrameX, _frame.currentFrameY);
+	_image->frameRender(getMemDC(), _rc.left - 10, _rc.top - 5, _frame.currentFrameX, _frame.currentFrameY);
 }
 
 void Plantern::act() {

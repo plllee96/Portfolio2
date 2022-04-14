@@ -19,14 +19,35 @@ void PlantManager::update(void) {
 	_viPlant = _vPlant.begin();
 	for (; _viPlant != _vPlant.end(); ++_viPlant) {
 		(*_viPlant)->update();
+
+		//set Plant Dead
 		if (!(*_viPlant)->isActive()) {
 			if ((*_viPlant)->getType() == PlantType::GRAVEBUSTER) {
 				removeObstacle(_viPlant);
 			}
+			if ((*_viPlant)->getType() == PlantType::PLANTERN) {
+				_tile->removePlantern((*_viPlant)->getRecognizeRect());
+			}
+			if ((*_viPlant)->getType() == PlantType::BLOVER) {
+				_tile->blowFog(false);
+			}
 			removePlant(_viPlant);
 			break;
 		}
-	}
+
+		//set Plant Effect
+		if ((*_viPlant)->getType() == PlantType::PLANTERN) {
+			Plantern* temp = static_cast<Plantern*>(*_viPlant);
+			if (!temp->isAlreadySetLight()) {
+				_tile->setFog((*_viPlant)->getRecognizeRect());
+				temp->setLight(true);
+			}
+		}
+		else if ((*_viPlant)->getType() == PlantType::BLOVER) {
+			Blover* temp = static_cast<Blover*>(*_viPlant);
+			if (temp->isBlow()) _tile->blowFog(true);
+		}
+ 	}
 }
 
 void PlantManager::render(void) {

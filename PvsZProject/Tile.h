@@ -19,13 +19,29 @@ struct SingleTile {
 	bool isWater;
 };
 
+struct SingleFog {
+	int startX;
+	int moveX;
+	int x;
+	int y;
+	RECT rc;
+	bool blown;
+	bool lantern;
+	int alpha;
+};
+
 class Tile : public GameNode {
 private:
 	Image* _image;
+	Image* _fogImage;
 
 	int _row;
 	int _column;
 	vector<SingleTile> _vTile;
+
+	vector<SingleFog> _vFog;
+
+	vector<RECT> _lanternRc;
 
 	int _count;
 public:
@@ -46,5 +62,11 @@ public:
 	int getColumn() { return _column; }
 
 	void setNightObstacle(int num);
+	void setFog(RECT rc);
+	void removePlantern(RECT rc);
+	void blowFog(bool blow);
+
+	void printFog();
+
 };
 

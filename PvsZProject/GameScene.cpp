@@ -60,8 +60,8 @@ HRESULT GameScene::init(void) {
 	_shopbuttonRc = RectMake(460, 165, _shopButton->getWidth(), _shopButton->getHeight());
 
 	_vSun.clear();
-	_sun = 100;
-	_sun = 5000;
+	_sun = 200;
+	//_sun = 5000;
 	_sunCount = TIMEMANAGER->getWorldTime();
 	if (_stageNum == 0 || _stageNum == 2) _sunCooltime = 7.0f;
 	else _sunCooltime = 9999.0f;
@@ -169,6 +169,8 @@ void GameScene::render(void) {
 	
 	if (_reward->isShow()) _reward->render();
 
+	if (_status == GameStatus::PLAY && _stageNum == 3) _tile->printFog();
+
 	//render UI
 	if (_status == GameStatus::PLAY) {
 		_sunIcon->render(getMemDC(), 70, 0);
@@ -261,7 +263,6 @@ void GameScene::sceneChangerControl() {
 
 	if (_goingToClear) {
 		if (_whiteAlpha > 253) {
-			//pm, zm, bm ÃÊ±âÈ­
 			_pm->release();
 			_zm->release();
 			_bm->release();
@@ -582,7 +583,14 @@ void GameScene::zombieControl() {
 	else if (_runningTime >= 15.0f && _runningTime < 45.0f) {
 		if (_zombieCount + _zombieCooltime < TIMEMANAGER->getWorldTime()) {
 			_zombieCount = TIMEMANAGER->getWorldTime();
-			_zm->addZombie(ZombieType::ZOMBIE, RND->getInt(_tile->getRow()));
+
+			int temp = RND->getInt(_tile->getRow());
+			if (_stageNum == 2 || _stageNum == 3) {
+				while (temp == 2 || temp == 3) {
+					temp = RND->getInt(_tile->getRow());
+				}
+			}
+			_zm->addZombie(ZombieType::ZOMBIE, temp);
 		}
 	}
 	else {

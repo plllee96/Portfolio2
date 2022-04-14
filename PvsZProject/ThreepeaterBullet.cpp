@@ -42,7 +42,7 @@ void ThreepeaterBullet::collideObject(ObserveData obData) {
 	if (*obData.type == ObservedType::ZOMBIE) _active = false;
 
 	else if (*obData.type == ObservedType::PLANT) {
-		if (*obData.plantType == PlantType::TORCHWOOD) {
+		if (*obData.plantType == PlantType::TORCHWOOD && *obData.line == _line) {
 			_isFire = true;
 			_damage = 2.0f;
 		}
