@@ -4,7 +4,7 @@
 
 HRESULT Peashooter::init(PlantType type, POINT location) {
 	Plant::init(type, location);
-	_image = IMAGEMANAGER->addFrameImage("Peashooter", "Resources/Images/Plants/Peashooter.bmp", 432, 128, 8, 2, true, RGB(255, 0, 255));
+	_image = IMAGEMANAGER->addFrameImage("Peashooter", "Resources/Images/Plants/Peashooter.bmp", 480, 128, 8, 2, true, RGB(255, 0, 255));
 	_rc = RectMake(startX + _location.x * tileWidth, startY + _location.y * _tileHeight, tileWidth, _tileHeight);
 	_recognizeRc = RectMake(startX + _location.x * tileWidth + (tileWidth / 2), startY + _location.y * _tileHeight, WINSIZE_X, _tileHeight);
 	_status = PeashooterStatus::WAIT;
@@ -64,7 +64,7 @@ void Peashooter::setFrame() {
 	switch (_status) {
 		case PeashooterStatus::WAIT: {
 			_frame.maxFrameX = 8;
-			_frame.coolTime = 0.5f;
+			_frame.coolTime = 0.1f;
 			_frame.currentFrameY = 0;
 		} break;
 		case PeashooterStatus::SHOT: {

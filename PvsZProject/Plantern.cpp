@@ -10,7 +10,7 @@ HRESULT Plantern::init(PlantType type, POINT location) {
 	_alreadySetLight = false;
 
 	_frame.maxFrameX = 5;
-	_frame.coolTime = 0.5f;
+	_frame.coolTime = 0.1f;
 	_frame.currentFrameY = 0;
 	return S_OK;
 }

@@ -62,7 +62,7 @@ void Puffshroom::setFrame() {
 	switch (_status) {
 		case PuffshroomStatus::WAIT: {
 			_frame.maxFrameX = 4;
-			_frame.coolTime = 0.5f;
+			_frame.coolTime = 0.1f;
 			_frame.currentFrameY = 0;
 		} break;
 		case PuffshroomStatus::SHOT: {

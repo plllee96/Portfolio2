@@ -86,12 +86,12 @@ void TitleScene::initFirstData() {
 
 
 
-	_firstData.stage = 3;
-	_firstData.slot = 8;
-	for (int i = 7; i <= 16; i++) {
-		_firstData.inventory.push_back(i);
-	}
-	for (int i = 19; i <= 24; i++) {
-		_firstData.inventory.push_back(i);
-	}
+	//_firstData.stage = 3;
+	//_firstData.slot = 8;
+	//for (int i = 7; i <= 16; i++) {
+	//	_firstData.inventory.push_back(i);
+	//}
+	//for (int i = 19; i <= 24; i++) {
+	//	_firstData.inventory.push_back(i);
+	//}
 }

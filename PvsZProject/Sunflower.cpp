@@ -3,7 +3,7 @@
 
 HRESULT Sunflower::init(PlantType type, POINT location) {
 	Plant::init(type, location);
-	_image = IMAGEMANAGER->addFrameImage("Sunflower", "Resources/Images/Plants/Sunflower.bmp", 464, 128, 8, 2, true, RGB(255, 0, 255));
+	_image = IMAGEMANAGER->addFrameImage("Sunflower", "Resources/Images/Plants/Sunflower.bmp", 512, 128, 8, 2, true, RGB(255, 0, 255));
 	_rc = _recognizeRc = RectMake(startX + _location.x * tileWidth, startY + _location.y * _tileHeight, tileWidth, _tileHeight);
 	_status = SunflowerStatus::WAIT;
 
@@ -41,12 +41,12 @@ void Sunflower::setFrame() {
 	switch (_status) {
 		case SunflowerStatus::WAIT: {
 			_frame.maxFrameX = 8;
-			_frame.coolTime = 0.5f;
+			_frame.coolTime = 0.1f;
 			_frame.currentFrameY = 0;
 		} break;
 		case SunflowerStatus::GENERATE: {
 			_frame.maxFrameX = 1;
-			_frame.coolTime = 0.5f;
+			_frame.coolTime = 0.1f;
 			_frame.currentFrameY = 1;
 		} break;
 	}

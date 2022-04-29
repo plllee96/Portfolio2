@@ -299,24 +299,23 @@ void GameScene::loadStage() {
 
 	switch (_stageNum) {
 		case 0: {
-			_stageTimer = 120.0f;
-			_stageWaveTimer.push_back(119.9f);
+			_stageTimer = 90.0f;
+			_stageWaveTimer.push_back(89.9f);
 
 			_zombieType.push_back(0);
 			_zombieType.push_back(1);
 		} break;
 		case 1: {
-			_stageTimer = 120.0f;
-			_stageWaveTimer.push_back(119.9f);
+			_stageTimer = 105.0f;
+			_stageWaveTimer.push_back(104.9f);
 
 			_zombieType.push_back(0);
 			_zombieType.push_back(1);
 			_zombieType.push_back(2);
 		} break;
 		case 2: {
-			_stageTimer = 180.0f;
-			_stageWaveTimer.push_back(90.0f);
-			_stageWaveTimer.push_back(179.9f);
+			_stageTimer = 120.0f;
+			_stageWaveTimer.push_back(119.9f);
 
 			_zombieType.push_back(0);
 			_zombieType.push_back(1);
@@ -324,14 +323,12 @@ void GameScene::loadStage() {
 			_zombieType.push_back(5);
 		} break;
 		default: {
-			_stageTimer = 180.0f;
-			_stageWaveTimer.push_back(90.0f);
-			_stageWaveTimer.push_back(179.9f);
+			_stageTimer = 120.0f;
+			_stageWaveTimer.push_back(119.9f);
 
 			_zombieType.push_back(0);
 			_zombieType.push_back(1);
 			_zombieType.push_back(2);
-			_zombieType.push_back(5);
 		} break;
 	}
 

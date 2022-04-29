@@ -61,7 +61,7 @@ void FumeShroom::setFrame() {
 	switch (_status) {
 		case FumeshroomStatus::WAIT: {
 			_frame.maxFrameX = 4;
-			_frame.coolTime = 0.5f;
+			_frame.coolTime = 0.1f;
 			_frame.currentFrameY = 0;
 		} break;
 		case FumeshroomStatus::SHOT: {

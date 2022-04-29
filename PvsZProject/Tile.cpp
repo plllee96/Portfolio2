@@ -36,9 +36,9 @@ HRESULT Tile::init(int stageNum) {
 		SingleFog fog;
 		fog.x = i % 7;
 		fog.y = i / 7;
-		fog.startX = 350 + fog.x * 50;
+		fog.startX = 300 + fog.x * 50;
 		fog.moveX = 0;
-		fog.rc = RectMake(350 + fog.x * 50, fog.y * 50, _fogImage->getWidth() , _fogImage->getHeight());
+		fog.rc = RectMake(300 + fog.x * 50, fog.y * 50, _fogImage->getWidth() , _fogImage->getHeight());
 		fog.blown = false;
 		fog.lantern = false;
 		fog.alpha = 0;
@@ -84,7 +84,7 @@ void Tile::update(void) {
 				_vFog[i].moveX --;
 			}
 		}
-		_vFog[i].rc = RectMake(200 + _vFog[i].x * 50 + _vFog[i].moveX, _vFog[i].y * 50, _fogImage->getWidth(), _fogImage->getHeight());
+		_vFog[i].rc = RectMake(300 + _vFog[i].x * 50 + _vFog[i].moveX, _vFog[i].y * 50, _fogImage->getWidth(), _fogImage->getHeight());
 	}
 
 }

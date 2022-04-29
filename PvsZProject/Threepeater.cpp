@@ -62,7 +62,7 @@ void Threepeater::setFrame() {
 	switch (_status) {
 		case ThreepeaterStatus::WAIT: {
 			_frame.maxFrameX = 8;
-			_frame.coolTime = 0.5f;
+			_frame.coolTime = 0.1f;
 			_frame.currentFrameY = 0;
 		} break;
 		case ThreepeaterStatus::SHOT: {

@@ -69,7 +69,7 @@ void Scaredyshroom::setFrame() {
 	switch (_status) {
 		case ScaredyshroomStatus::WAIT: {
 			_frame.maxFrameX = 4;
-			_frame.coolTime = 0.5f;
+			_frame.coolTime = 0.1f;
 			_frame.currentFrameY = 0;
 		} break;
 		case ScaredyshroomStatus::SHOT: {
@@ -79,7 +79,7 @@ void Scaredyshroom::setFrame() {
 		} break;
 		case ScaredyshroomStatus::SCARED: {
 			_frame.maxFrameX = 2;
-			_frame.coolTime = 0.5f;
+			_frame.coolTime = 0.1f;
 			_frame.currentFrameY = 2;
 		} break;
 	}

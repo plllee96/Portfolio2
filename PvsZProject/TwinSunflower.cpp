@@ -41,12 +41,12 @@ void TwinSunflower::setFrame() {
 	switch (_status) {
 		case TwinSunflowerStatus::WAIT: {
 			_frame.maxFrameX = 8;
-			_frame.coolTime = 0.5f;
+			_frame.coolTime = 0.1f;
 			_frame.currentFrameY = 10;
 		} break;
 		case TwinSunflowerStatus::GENERATE: {
 			_frame.maxFrameX = 1;
-			_frame.coolTime = 0.5f;
+			_frame.coolTime = 0.1f;
 			_frame.currentFrameY = 1;
 		} break;
 	}

@@ -179,9 +179,8 @@ void MinigameScene::updateReadyText() {
 
 			_status = MinigameStatus::PLAY;
 			_progressbar = new Progressbar;
-			_stageTimer = 180.0f;
-			_stageWaveTimer.push_back(90.0f);
-			_stageWaveTimer.push_back(179.9f);
+			_stageTimer = 120.0f;
+			_stageWaveTimer.push_back(119.9f);
 			_progressbar->init(_stageTimer, _stageWaveTimer);
 
 			_zombieCount = TIMEMANAGER->getWorldTime();

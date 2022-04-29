@@ -16,7 +16,7 @@ HRESULT Sunshroom::init(PlantType type, POINT location) {
 	_grow = false;
 
 	_frame.maxFrameX = 5;
-	_frame.coolTime = 0.5f;
+	_frame.coolTime = 0.1f;
 
 	return S_OK;
 }
